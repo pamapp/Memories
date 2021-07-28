@@ -15,3 +15,15 @@ struct Title: ViewModifier {
             .padding()
     }
 }
+
+struct MemoryText: ViewModifier {
+    func body(content: Content) -> some View {
+        content
+            .font(.system(size: 25, weight: .bold, design: .serif))
+            .foregroundColor(.black)
+            .accentColor(.black)
+            .multilineTextAlignment(.center)
+            .autocapitalization(.allCharacters)
+    }
+}
+

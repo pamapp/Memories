@@ -7,19 +7,46 @@
 
 import SwiftUI
 import Foundation
+import Combine
 
-struct Memory: Codable, Identifiable, Hashable {
+let imageTest: UIImage = UIImage(imageLiteralResourceName: "test_photo")
+
+struct ImageTest: Codable {
+    let imageData: Data?
+    
+    init(withImage image: UIImage) {
+        self.imageData = image.pngData()
+    }
+
+    func getImage() -> UIImage? {
+        guard let imageData = self.imageData else {
+            return nil
+        }
+        let image = UIImage(data: imageData)
+        
+        return image
+    }
+}
+
+
+struct Memory: Codable, Identifiable {
+    
+    static func == (lhs: Memory, rhs: Memory) -> Bool {
+        return lhs.id == rhs.id
+    }
+    
     var id = UUID().uuidString
     var date: Date
     var text: String
-    var image: String
+    var image: ImageTest
     var place: String
 }
+
 
 extension Memory {
     static var defaultMemory: [Memory] {
         get {[
-            Memory(id: UUID().uuidString, date: Date(), text: "Something", image: "test_photo", place: "Saint-Petersburg")
+            Memory(id: UUID().uuidString, date: Date(), text: "Something", image: ImageTest(withImage: imageTest), place: "Saint-Petersburg")
         ]}
     }
 }
@@ -27,7 +54,7 @@ extension Memory {
 extension Memory {
     var timeFormat: String {
         let formatter = DateFormatter()
-        formatter.dateFormat = "dd.MM.yyyy"
+        formatter.dateFormat = "dd.MM.yyyy, HH:mm"
         return formatter.string(from: self.date)
     }
 }

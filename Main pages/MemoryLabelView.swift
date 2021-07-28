@@ -44,17 +44,17 @@ struct MemoryLabelView: View {
                 self.showingMemoryView.toggle()
             } label: {
                 RoundedRectangle(cornerRadius: 15)
-                    .frame(width: 330, height: 110)
-                    .foregroundColor(.white)
+                    .frame(width: 330, height: 105)
+                    .foregroundColor(.blue)
                     .overlay (
                         HStack(spacing: 30) {
                             VStack(alignment: .leading, spacing: 20) {
                                 Text("\(self.memory.timeFormat)")
                                     .font(.system(size: 20, weight: .bold, design: .serif))
-                                    .foregroundColor(.black)
+                                    .foregroundColor(.white)
                                 Text("\(self.memory.place)")
                                     .font(.system(size: 20, weight: .medium, design: .serif))
-                                    .foregroundColor(.black)
+                                    .foregroundColor(.white)
                             }.padding(.leading, 20)
 
                             Image("\(self.memory.image)")

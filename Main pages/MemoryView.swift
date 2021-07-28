@@ -16,13 +16,12 @@ struct MemoryView: View {
     var deleteAction: (Memory) -> Void
     
     var body: some View {
-        NavigationView {
         ZStack {
-            Color.init(#colorLiteral(red: 0.2588235438, green: 0.7568627596, blue: 0.9686274529, alpha: 1))
-                .edgesIgnoringSafeArea(.all)
+
             VStack(spacing: 60) {
                 Text("\(dayString(date: memory.date))")
                     .font(.system(size: 25, design: .serif))
+                    .padding(.top, 20)
 
                 RoundedRectangle(cornerRadius: 20)
                     .frame(width: 330, height: 330, alignment: .center)
@@ -50,7 +49,6 @@ struct MemoryView: View {
                 
                 Spacer()
                 
-            }
             }
         }
     }
