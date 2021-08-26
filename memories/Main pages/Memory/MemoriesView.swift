@@ -18,26 +18,8 @@ struct MemoriesView: View {
     @State var folder: Folder
     
     @State var date = Date()
+
     
-//    let folder: Folder?
-    
-//    init(folder: Folder? = nil) {
-//        self.folder = folder
-//
-////        let predicate: NSPredicate
-////        if let safeFolder = folder {
-////            predicate = NSPredicate(format: "folder == %@ AND isInTrash == NO", safeFolder)
-////        } else {
-////            predicate = NSPredicate(format: "isInTrash == NO")
-////        }
-//
-//        self._memories = FetchRequest(
-//            sortDescriptors: [SortDescriptor<Memory>(\.date, order: .reverse)]
-////            predicate: predicate,
-////            animation: .default
-//        )
-//    }
-//    
     var body: some View {
         VStack {
             ScrollView(.vertical, showsIndicators: false) {
@@ -59,7 +41,7 @@ struct MemoriesView: View {
                             .padding(.bottom, 5)
                     )
             })
-            .navigationTitle("Memories")
+            .navigationTitle("\(folder.safeName) memories")
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Menu {

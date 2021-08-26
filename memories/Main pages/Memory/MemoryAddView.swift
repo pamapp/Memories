@@ -104,7 +104,6 @@ struct MemoryAddView: View {
                     self.isPresented.wrappedValue.dismiss()
                 }, label: {
                     Text("Save")
-                        .foregroundColor(.blue)
                 })
             )
 

@@ -9,7 +9,7 @@ import SwiftUI
 
 struct FoldersView: View {
     @EnvironmentObject private var dataController: DataController
-    @FetchRequest(entity: Folder.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \Folder.name, ascending: false),]) var folders: FetchedResults<Folder>
+    @FetchRequest(entity: Folder.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \Folder.isFavorite, ascending: false),]) var folders: FetchedResults<Folder>
     
     @State private var showAddFolderSheet = false
     
@@ -24,10 +24,7 @@ struct FoldersView: View {
                 ScrollView {
                     LazyVGrid(columns: columns) {
                         ForEach(folders) { folder in
-                            FolderCellView(folder: folder)
-//                                .swipeActions(edge: .trailing) {
-//                                    deleteSwipeAction(folder: folder)
-//                                }
+                            FolderCellView(folder: folder, isFav: folder.isFavorite)
                                 .environmentObject(dataController)
                         }
                     }

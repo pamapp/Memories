@@ -13,30 +13,35 @@ struct FolderCellView: View {
 
     @State var folder: Folder
     
+    @State var isFav: Bool
+    
     var body: some View {
-        NavigationLink(destination: MemoriesView(folder: folder).environmentObject(dataController), label: {
-            VStack {
-                RoundedRectangle(cornerRadius: 30)
-                    .foregroundColor(Color(UIColor.separator))
-                    .frame(width: 155, height: 155, alignment: .center)
-                    .overlay(
-                        ZStack {
-                            VStack {
-                                HStack() {
-//                                    Button {
-//                                        changeStatus()
-//                                    } label: {
-                                        Image(systemName: folder.safeIsFavorite ? "star.fill" : "star")
-                                            .foregroundColor(.yellow)
-                                            .font(.system(size: 25))
-//                                    }
-                                    Spacer()
-                                    Image(systemName: "ellipsis")
-                                        .foregroundColor(.white)
-                                        .rotationEffect(Angle(degrees: 90))
-                                }.frame(width: 130)
-                                Spacer()
+        RoundedRectangle(cornerRadius: 30)
+            .foregroundColor(Color(UIColor.separator))
+            .frame(width: 155, height: 155, alignment: .center)
+            .overlay(
+                VStack {
+                    VStack {
+                        HStack() {
+                            Button {
+                                self.isFav.toggle()
+                                folder.isFavorite.toggle()
+                                dataController.save()
+                            } label: {
+                                Image(systemName: isFav ? "star.fill" : "star")
+                                    .foregroundColor(.yellow)
+                                    .font(.system(size: 25))
                             }
+                            Spacer()
+                            Image(systemName: "ellipsis")
+                                .foregroundColor(.white)
+                                .rotationEffect(Angle(degrees: 90))
+                        }.frame(width: 130)
+                        Spacer()
+                    }
+                
+                    NavigationLink(destination: MemoriesView(folder: folder).environmentObject(dataController), label: {
+                        VStack {
                             HStack() {
                                 VStack(alignment: .leading) {
                                     Spacer()
@@ -46,28 +51,13 @@ struct FolderCellView: View {
                                     Text("\(folder.safeNotes.count) memories")
                                         .foregroundColor(.white)
                                         .font(Font.subheadline.weight(.light))
-                                }.frame(height: 110)
+                                }.frame(height: 90)
+                                
                                 Spacer()
-                            }.frame(width: 120, height: 130)
-                        }.frame(width: 130, height: 130)
-                    )
-                    .padding(.bottom, 30)
-            }
-        })
-    }
-
-    func changeStatus() {
-//        if let folder = folder {
-            folder.isFavorite.toggle()
-//        }
-
-        dataController.save()
+                            }.frame(width: 120, height: 90)
+                        }
+                    })
+                }.frame(width: 130, height: 110)
+        )
     }
 }
-//folder.safeName
-
-//struct FolderCellView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        FolderCellView()
-//    }
-//}
