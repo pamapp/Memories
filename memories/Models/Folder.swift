@@ -36,5 +36,4 @@ extension Folder {
         get { memories as? Set<Memory> ?? [] }
         set { memories = newValue as NSSet }
     }
-    
 }

@@ -18,7 +18,6 @@ struct MemoriesView: View {
     @State var folder: Folder
     
     @State var date = Date()
-
     
     var body: some View {
         VStack {
