@@ -50,8 +50,10 @@ struct MemoryView: View {
                 }
                 
                 Section(header: Text("MEMORY")) {
-                    Text(memory.safeText)
-                        .font(.system(size: 18, design: .serif))
+                    ScrollView(.vertical, showsIndicators: true) {
+                        Text(memory.safeText)
+                            .font(.system(size: 18, design: .serif))
+                    }
                 }
             }
             .listStyle(.grouped)
@@ -81,7 +83,7 @@ struct MemoryView: View {
 
                     Button(action: {
                         self.isPresented.wrappedValue.dismiss()
-                        self.deleteMemory()
+                        self.deleteMemory()     
                     }, label: {
                         Label (
                             title: { Text("Delete") },

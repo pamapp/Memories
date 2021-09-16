@@ -33,9 +33,12 @@ struct FolderCellView: View {
                                     .font(.system(size: 25))
                             }
                             Spacer()
-                            Image(systemName: "ellipsis")
-                                .foregroundColor(.white)
-                                .rotationEffect(Angle(degrees: 90))
+                            
+                            Button(action: {
+                                deleteFolder()
+                            }, label: {
+                                Image(systemName: "minus.circle")
+                            })
                         }.frame(width: 130)
                         Spacer()
                     }
@@ -58,6 +61,12 @@ struct FolderCellView: View {
                         }
                     })
                 }.frame(width: 130, height: 110)
-        )
+            )
+            .padding(.bottom, 25)
+    }
+    
+    func deleteFolder() {
+        dataController.delete(folder)
+        dataController.save()
     }
 }

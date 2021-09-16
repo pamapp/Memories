@@ -400,7 +400,7 @@
 				DEVELOPMENT_TEAM = 93HP7KN2HJ;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = memories/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.7;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -422,7 +422,7 @@
 				DEVELOPMENT_TEAM = 93HP7KN2HJ;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = memories/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.7;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

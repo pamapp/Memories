@@ -11,7 +11,7 @@ struct FolderAddView: View {
     
     @EnvironmentObject private var dataController: DataController
     @Environment(\.presentationMode) private var presentationMode
-    
+
     @State private var name: String = ""
     
 //    private let folder: Folder?
