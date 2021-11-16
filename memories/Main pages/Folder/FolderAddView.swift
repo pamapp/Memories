@@ -9,14 +9,14 @@ import SwiftUI
 
 struct FolderAddView: View {
     
-    @EnvironmentObject private var dataController: DataController
+    @Environment(\.managedObjectContext) private var viewContext
     @Environment(\.presentationMode) private var presentationMode
 
     @State private var name: String = ""
     
 //    private let folder: Folder?
     //    @FetchRequest(entity: Folder.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \Folder.name, ascending: false),]) var folders: FetchedResults<Folder>
-    
+    @ObservedObject var viewModel: FoldersView.FolderModel
     var body: some View {
         NavigationView {
             Form {
@@ -32,9 +32,7 @@ struct FolderAddView: View {
     private var doneToolBar: some ToolbarContent {
         ToolbarItem(placement: .navigationBarTrailing) {
             Button("Done") {
-                let newFolder = Folder(context: dataController.context)
-                newFolder.name = self.name
-                dataController.save()
+                self.viewModel.addNewFolder(name: name == "" ? "Folder" : self.name)
                 presentationMode.wrappedValue.dismiss()
             }
         }

@@ -9,11 +9,13 @@ import SwiftUI
 
 struct FolderCellView: View {
     
-    @EnvironmentObject private var dataController: DataController
+    @Environment(\.managedObjectContext) private var viewContext
 
-    @State var folder: Folder
+    var folder: Folder
     
     @State var isFav: Bool
+    
+    @ObservedObject var viewModel: FoldersView.FolderModel
     
     var body: some View {
         RoundedRectangle(cornerRadius: 30)
@@ -25,8 +27,8 @@ struct FolderCellView: View {
                         HStack() {
                             Button {
                                 self.isFav.toggle()
-                                folder.isFavorite.toggle()
-                                dataController.save()
+                                self.viewModel.favToggle(folder: folder)
+//                                dataController.save()
                             } label: {
                                 Image(systemName: isFav ? "star.fill" : "star")
                                     .foregroundColor(.yellow)
@@ -35,7 +37,7 @@ struct FolderCellView: View {
                             Spacer()
                             
                             Button(action: {
-                                deleteFolder()
+                                self.viewModel.removeFolder(folder: folder)
                             }, label: {
                                 Image(systemName: "minus.circle")
                             })
@@ -43,7 +45,7 @@ struct FolderCellView: View {
                         Spacer()
                     }
                 
-                    NavigationLink(destination: MemoriesView(folder: folder).environmentObject(dataController), label: {
+                NavigationLink(destination: MemoriesView(viewModel: MemoriesView.MemoryModel.init(moc: self.viewContext, folder: folder), folder: folder), label: {
                         VStack {
                             HStack() {
                                 VStack(alignment: .leading) {
@@ -51,7 +53,7 @@ struct FolderCellView: View {
                                     Text("\(folder.safeName)")
                                         .foregroundColor(.white)
                                         .font(Font.title.weight(.bold))
-                                    Text("\(folder.safeNotes.count) memories")
+                                    Text("\( self.viewModel.getMemoriesNum(folder: folder)) memories")
                                         .foregroundColor(.white)
                                         .font(Font.subheadline.weight(.light))
                                 }.frame(height: 90)
@@ -63,10 +65,5 @@ struct FolderCellView: View {
                 }.frame(width: 130, height: 110)
             )
             .padding(.bottom, 25)
-    }
-    
-    func deleteFolder() {
-        dataController.delete(folder)
-        dataController.save()
     }
 }

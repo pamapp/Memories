@@ -10,105 +10,140 @@ import SwiftUI
 struct MemoryView: View {
     
     @Environment(\.presentationMode) var isPresented
-    @EnvironmentObject private var dataController: DataController
-    @FetchRequest(entity: Memory.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \Memory.date, ascending: false),]) var memories: FetchedResults<Memory>
+    @Environment(\.managedObjectContext) private var viewContext
 
-    @State private var inputImage: UIImage?
-    @State private var image: Image? = Image("test_photo")
+    @State var showImage: Bool = false
+    @State var showEditView = false
     
-    let memory: Memory
+    @State private var inputImage: UIImage?
+    @State var image: Image? = Image("test_photo")
+    
+    @ObservedObject var viewModel: MemoriesView.MemoryModel
+    
+    var memory: Memory
+    
+    var folder: Folder
     
     var body: some View {
-        VStack {
-            image?
-                .resizable()
-                .scaledToFit()
-                .frame(height: 150)
-                .cornerRadius(10)
-            
-            List {
-                Section(header: Text("MEMORY INFO")) {
-                    HStack(alignment: .center) {
-                        Text("Date")
-                        
-                        Spacer()
-
-                        Text(memory.safeDate)
-                            .font(.system(size: 18, design: .serif))
-                            .foregroundColor(.secondary)
-                    }
+        ZStack {
+            if !showEditView {
+                VStack {
+                    image?
+                        .resizable()
+                        .scaledToFit()
+                        .frame(height: 150)
+                        .cornerRadius(10)
+                        .onTapGesture {
+                            self.showImage.toggle()
+                        }
                     
-                    HStack() {
-                        Text("Place")
+                    List {
+                        Section(header: Text("MEMORY INFO")) {
+                            HStack(alignment: .center) {
+                                Text("Date")
+                                
+                                Spacer()
+
+                                Text(dateString(memory.date))
+                                    .font(.system(size: 18, design: .serif))
+                                    .foregroundColor(.secondary)
+                            }
+                            
+                            HStack() {
+                                Text("Place")
+                                
+                                Spacer()
+                                
+                                Text(memory.safePlace)
+                                    .foregroundColor(.secondary)
+                                    .font(.system(size: 18, design: .serif))
+                            }
+                        }
                         
-                        Spacer()
-                        
-                        Text(memory.safePlace)
-                            .foregroundColor(.secondary)
-                            .font(.system(size: 18, design: .serif))
+                        Section(header: Text("MEMORY")) {
+                            ScrollView(.vertical, showsIndicators: true) {
+                                Text(memory.safeText)
+                                    .font(.system(size: 18, design: .serif))
+                            }
+                        }
+                    }
+                    .listStyle(.grouped)
+                    .padding(.top, 10)
+                    .hasScrollEnabled(false)
+
+                    Spacer()
+                    
+                }
+                .onAppear {
+                    self.loadImage()
+                }
+                .navigationBarTitle(Text(navDateString(memory.date)), displayMode: .inline)
+
+                .toolbar {
+                    ToolbarItem(placement: .navigationBarTrailing) {
+                        Menu {
+                            Button(action: {
+        //                        self.isPresented.wrappedValue.dismiss()
+        //                        self.deleteMemory()
+                                self.showEditView.toggle()
+                            }, label: {
+                                Label (
+                                    title: { Text("Edit") },
+                                    icon: { Image(systemName: "pencil") }
+                                )
+                            })
+
+                            Button(action: {
+                                self.isPresented.wrappedValue.dismiss()
+                                self.viewModel.removeMemory(memory: memory)
+                            }, label: {
+                                Label (
+                                    title: { Text("Delete") },
+                                    icon: { Image(systemName: "xmark.bin") }
+                                )
+                            })
+                            
+                            Button(action: {
+        //                        self.isPresented.wrappedValue.dismiss()
+        //                        self.deleteMemory()
+                            }, label: {
+                                Label (
+                                    title: { Text("Add to the favorites") },
+                                    icon: { Image(systemName: "star") }
+                                )
+                            })
+                        } label: {
+                            Label (
+                                title: { Text("Menu") },
+                                icon: { Image(systemName: "ellipsis") }
+                            )
+                        }
                     }
                 }
+                .padding(.top, 30)
                 
-                Section(header: Text("MEMORY")) {
-                    ScrollView(.vertical, showsIndicators: true) {
-                        Text(memory.safeText)
-                            .font(.system(size: 18, design: .serif))
+                if self.showImage {
+                    ZStack {
+                        Color.black
+                            .edgesIgnoringSafeArea(.all)
+                            .onTapGesture {
+    //                            withAnimation{
+                                    self.showImage.toggle()
+    //                            }
+                            }
+                            
+                        image?
+                            .resizable()
+                            .scaledToFit()
+                            .frame(height: 350)
                     }
+                    .navigationBarHidden(true)
                 }
-            }
-            .listStyle(.grouped)
-            .padding(.top, 10)
-            .hasScrollEnabled(false)
-
-            Spacer()
-            
-        }
-        .onAppear {
-            self.loadImage()
-        }
-        .navigationBarTitle(Text(memory.safeNavDate), displayMode: .inline)
-
-        .toolbar {
-            ToolbarItem(placement: .navigationBarTrailing) {
-                Menu {
-                    Button(action: {
-//                        self.isPresented.wrappedValue.dismiss()
-//                        self.deleteMemory()
-                    }, label: {
-                        Label (
-                            title: { Text("Edit") },
-                            icon: { Image(systemName: "pencil") }
-                        )
-                    })
-
-                    Button(action: {
-                        self.isPresented.wrappedValue.dismiss()
-                        self.deleteMemory()     
-                    }, label: {
-                        Label (
-                            title: { Text("Delete") },
-                            icon: { Image(systemName: "xmark.bin") }
-                        )
-                    })
-                    
-                    Button(action: {
-//                        self.isPresented.wrappedValue.dismiss()
-//                        self.deleteMemory()
-                    }, label: {
-                        Label (
-                            title: { Text("Add to the favorites") },
-                            icon: { Image(systemName: "star") }
-                        )
-                    })
-                } label: {
-                    Label (
-                        title: { Text("Menu") },
-                        icon: { Image(systemName: "ellipsis") }
-                    )
-                }
+            } else {
+                MemoryEditView(showEditView: self.$showEditView, viewModel: MemoriesView.MemoryModel.init(moc: self.viewContext, folder: folder))
+                
             }
         }
-        .padding(.top, 30)
     }
     
     func loadImage() {
@@ -132,9 +167,22 @@ struct MemoryView: View {
         }
     }
     
-    func deleteMemory() {
-        deleteFromDirectory(Name: memory.id!.uuidString)
-        dataController.delete(memory)
-        dataController.save()
+    private func dateString(_ date: Date?) -> String{
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd.MM.yyyy, EE"
+        if let date = date{
+            return formatter.string(from: date)
+        }
+        return "Unknown"
     }
+    
+    private func navDateString(_ date: Date?) -> String{
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd.MM.yyyy"
+        if let date = date{
+            return formatter.string(from: date)
+        }
+        return "Unknown"
+    }
+    
 }

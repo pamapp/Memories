@@ -9,13 +9,13 @@ import SwiftUI
 
 struct MemoriesView: View {
     
-    @EnvironmentObject private var dataController: DataController
-    @FetchRequest(entity: Memory.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \Memory.date, ascending: false),]) var memories: FetchedResults<Memory>
+    @Environment(\.managedObjectContext) private var viewContext
     
-    @State private var selectedMemories = Set<Memory>()
+    @ObservedObject var viewModel: MemoryModel
+    
     @State private var showingAddMemoryView = false
     
-    @State var folder: Folder
+    var folder: Folder
     
     @State var date = Date()
     
@@ -23,13 +23,29 @@ struct MemoriesView: View {
         VStack {
             ScrollView(.vertical, showsIndicators: false) {
                 LazyVStack(alignment: .center, spacing: 15) {
-                    ForEach(memories, id: \.self) { item in
-                        MemoryCellView(memory: item)
+                    ForEach(self.viewModel.memories) { memory in
+                        NavigationLink(destination: MemoryView(viewModel: MemoriesView.MemoryModel.init(moc: self.viewContext, folder: folder), memory: memory, folder: folder)) {
+                            MemoryCellView(memory: memory)
+                        }
+//                        .swipeActions(allowsFullSwipe: false) {
+//                            Button {
+//                                print("Muting conversation")
+//                            } label: {
+//                                Label("Mute", systemImage: "bell.slash.fill")
+//                            }
+//                            .tint(.indigo)
+//
+//                            Button(role: .destructive) {
+//                                print("Deleting conversation")
+//                            } label: {
+//                                Label("Delete", systemImage: "trash.fill")
+//                            }
+//                        }
                     }
                 }
             }.padding(.top, 15)
-            
-            NavigationLink(destination: MemoryAddView(), label: {
+
+            NavigationLink(destination: MemoryAddView(folder: folder, viewModel: MemoriesView.MemoryModel.init(moc: self.viewContext, folder: folder)), label: {
                 Circle()
                     .foregroundColor(Color(UIColor.separator))
                     .frame(width: 900, height: 90, alignment: .center)
@@ -41,11 +57,11 @@ struct MemoriesView: View {
                     )
             })
             .navigationTitle("\(folder.safeName) memories")
-            .toolbar {
+            .toolbar{
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Menu {
                         Button(action: {
-                            deleteFolder()
+//                            self.viewModel.removeFolder(folder: folder)
                         }, label: {
                             Label (
                                 title: { Text("Delete") },
@@ -70,11 +86,6 @@ struct MemoriesView: View {
                 }
             }
         }
-    }
-
-    func deleteFolder() {
-        dataController.delete(folder)
-        dataController.save()
     }
 }
 

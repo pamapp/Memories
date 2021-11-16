@@ -1,5 +1,5 @@
 //
-//  SwiftUIView.swift
+//  FoldersView.swift
 //  memories
 //
 //  Created by Alina Potapova on 16.08.2021.
@@ -8,9 +8,8 @@
 import SwiftUI
 
 struct FoldersView: View {
-    @EnvironmentObject private var dataController: DataController
-    @FetchRequest(entity: Folder.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \Folder.isFavorite, ascending: false),]) var folders: FetchedResults<Folder>
-    
+    @Environment(\.managedObjectContext) private var viewContext
+    @ObservedObject var viewModel: FolderModel
     @State private var showAddFolderSheet = false
     
     let columns = [
@@ -23,9 +22,8 @@ struct FoldersView: View {
             VStack {
                 ScrollView {
                     LazyVGrid(columns: columns) {
-                        ForEach(folders) { folder in
-                            FolderCellView(folder: folder, isFav: folder.isFavorite)
-                                .environmentObject(dataController)
+                        ForEach(viewModel.folders) { folder in
+                            FolderCellView(folder: folder, isFav: folder.isFavorite, viewModel: FoldersView.FolderModel.init(moc: self.viewContext))
                         }
                         RoundedRectangle(cornerRadius: 30)
                             .stroke()
@@ -37,9 +35,10 @@ struct FoldersView: View {
                                 } label: {
                                     Image(systemName: "folder.fill.badge.plus")
                                         .foregroundColor(Color(UIColor.separator))
-                                        .font(.system(size: 40)) 
-                                }.sheet(isPresented: $showAddFolderSheet) {
-                                    FolderAddView()
+                                        .font(.system(size: 40))
+                                }
+                                .sheet(isPresented: $showAddFolderSheet) {
+                                    FolderAddView(viewModel: FoldersView.FolderModel.init(moc: self.viewContext))
                                 }
                             ).padding(.bottom, 25)
                     }
@@ -49,7 +48,7 @@ struct FoldersView: View {
 //                Button {
 //                    self.showAddFolderSheet.toggle()
 //                } label: {
-//                    Circle()
+//                     Circle()
 //                        .foregroundColor(Color(UIColor.separator))
 //                        .frame(width: 80, height: 80, alignment: .center)
 //                        .overlay(

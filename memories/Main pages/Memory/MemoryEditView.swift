@@ -1,58 +1,55 @@
-////
-////  MemoryEditView.swift
-////  memories
-////
-////  Created by Alina Potapova on 14.08.2021.
-////
 //
-//import SwiftUI
+//  MemoryEditView.swift
+//  memories
 //
-//struct MemoryEditView: View {
-//    
-//    @Environment(\.presentationMode) var isPresented
-//    @EnvironmentObject private var dataController: DataController
-////
-////    @FetchRequest(entity: Memory.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \Memory.date, ascending: false),]) var memories: FetchedResults<Memory>
-////
-//    @State private var date: Date
-//    @State private var placeText: String
-//    @State private var memoryText: String
+//  Created by Alina Potapova on 14.08.2021.
 //
-//    @State var isShowPicker: Bool = false
-//    @State var showDatePicker: Bool = false
-//    
-//    @State private var inputImage: UIImage?
-//    @State private var image: Image?
-//    
+
+import SwiftUI
+
+struct MemoryEditView: View {
+    @Environment(\.presentationMode) var isPresented
+    @Environment(\.managedObjectContext) private var viewContext
+
+    @State var date: Date = Date()
+    @State var placeText: String = ""
+    @State var memoryText: String = ""
+
+    @State var isShowPicker: Bool = false
+    @State var showDatePicker: Bool = false
+
+    @Binding var showEditView: Bool
+    
+    @State private var inputImage: UIImage?
+    @State private var image: Image?
+
 //    @Binding private var memory: Memory?
-//    
-//    init() {
-//        UITextView.appearance().backgroundColor = .clear
-//    }
-//    
+    
+    @ObservedObject var viewModel: MemoriesView.MemoryModel
+
 //    init(memory: Binding<Memory?>) {
 //        self._memory = memory
 //        self._date = State(initialValue: memory.wrappedValue?.safeDateContent ?? Date())
 //        self._placeText = State(initialValue: memory.wrappedValue?.safeTextContent ?? "somewhere")
 //        self._memoryText = State(initialValue: memory.wrappedValue?.safePlaceContent ?? "something")
 //    }
-//    
+    
 //    var dateFormat: String {
 //        let formatter = DateFormatter()
 //        formatter.dateFormat = "dd.MM.yyyy, EE"
 //        return formatter.string(from: self.date)
 //    }
-//    
-//    var body: some View {
-//        ZStack {
+
+    var body: some View {
+        ZStack {
 //            VStack {
 //                List {
 //                    Section(header: Text("MEMORY INFO")) {
 //                        HStack(alignment: .center) {
 //                            Text("Date")
-//                            
+//
 //                            Spacer()
-//                            
+//
 //                            Button {
 //                                self.endEditing()
 //                                self.showDatePicker.toggle()
@@ -62,28 +59,28 @@
 //                                    .foregroundColor(.secondary)
 //                            }
 //                        }
-//                        
+//
 //                        HStack() {
 //                            Text("Place")
-//                            
+//
 //                            Spacer()
-//                            
+//
 //                            TextField("Somewhere", text: $placeText)
 //                                .multilineTextAlignment(.trailing)
 //                                .foregroundColor(.secondary)
 //                                .font(.system(size: 18, design: .serif))
-//                         
+//
 //                        }
-//                        
+//
 //                        HStack(alignment: .center) {
 //                            Text("Image")
-//                            
+//
 //                            Spacer()
-//                            
+//
 //                            Button {
 //                                self.endEditing()
 //                                self.isShowPicker.toggle()
-//                                
+//
 //                            } label: {
 //                                image?
 //                                    .resizable()
@@ -95,7 +92,7 @@
 //                            }
 //                        }.padding(.top, 5).padding(.bottom, 5)
 //                    }
-//                    
+//
 //                    Section(header: Text("MEMORY")) {
 //                        TextEditor(text: $memoryText)
 //                            .foregroundColor(.white)
@@ -118,11 +115,11 @@
 //                        .foregroundColor(.blue)
 //                })
 //            )
-//            
+//
 //            if self.showDatePicker {
 //                ZStack {
 //                    Color.black
-//                    
+//
 //                    VStack() {
 //                        DatePicker("Prompt Text", selection: $date)
 //                            .accentColor(.blue)
@@ -133,7 +130,7 @@
 //                            )
 //                            .datePickerStyle(GraphicalDatePickerStyle())
 //                            .frame(width: 300, height: 400)
-//                        
+//
 //                        Button {
 //                            self.showDatePicker.toggle()
 //                        } label: {
@@ -149,48 +146,20 @@
 //                    }
 //                }
 //            }
-//        }
-//    }
-//
-////    func loadImage() {
-////        guard let inputImage = inputImage else { return }
-////        image = Image(uiImage: inputImage)
-////    }
-////
-//    func loadImage() {
-//        guard let inputImage = inputImage else { return }
-//        image = Image(uiImage: inputImage)
-//
-//
-//    }
-//    
-////    func savesImage(Name: String, inputImage: UIImage?) {
-////        let fileName = helper.getDocumentsDirectory().appendingPathComponent(Name)
-////        do {
-////            if let jpegData = inputImage?.jpegData(compressionQuality: 0.8) {
-////                try jpegData.write(to: fileName, options: [.atomicWrite, .completeFileProtection])
-////            }
-////        } catch {
-////            print("Unable to save image")
-////        }
-////     }
-//    
-//    func saveMemoryEdit() {
-//        if let memory = memory {
-//            if date != memory.safeDateContent ||
-//                placeText != memory.safePlaceContent ||
-//                memoryText != memory.safeTextContent {
-//                memory.date = date
-//                memory.place = placeText
-//                memory.text = memoryText
-//            }
-//        }
-//        
-//        dataController.save()
-//    }
-//    
-//    private func endEditing() {
-//        UIApplication.shared.endEditing()
-//    }
-//    
-//}
+            VStack {
+                Text("hello")
+                    .navigationBarHidden(true)
+                Button(action: {
+                    self.showEditView.toggle()
+                }, label: {
+                    Text("Save")
+                })
+            }
+        }
+    }
+
+    private func endEditing() {
+        UIApplication.shared.endEditing()
+    }
+
+}

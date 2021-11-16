@@ -10,11 +10,13 @@ import SwiftUI
 struct MemoryAddView: View {
     
     @Environment(\.presentationMode) var isPresented
-    @EnvironmentObject private var dataController: DataController
+    @Environment(\.managedObjectContext) private var viewContext
     
     @State private var memoryText: String = ""
     @State private var placeText: String = ""
     @State private var date: Date = Date()
+    
+    var folder: Folder
     
     @State var isShowPicker: Bool = false
     @State var showDatePicker: Bool = false
@@ -22,16 +24,14 @@ struct MemoryAddView: View {
     @State private var inputImage: UIImage?
     @State private var image: Image? = Image("test_photo")
     
+    @ObservedObject var viewModel: MemoriesView.MemoryModel
+    
     var timeFormat: String {
         let formatter = DateFormatter()
         formatter.dateFormat = "dd.MM.yyyy, HH:mm"
         return formatter.string(from: self.date)
     }
-    
-    init() {
-        UITextView.appearance().backgroundColor = .clear
-    }
-    
+
     var body: some View {
         ZStack {
             VStack {
@@ -89,6 +89,9 @@ struct MemoryAddView: View {
                         TextEditor(text: $memoryText)
                             .foregroundColor(.white)
                             .frame(height: UIScreen.main.bounds.height / 6.5)
+                            .onAppear() {
+                               UITextView.appearance().backgroundColor = .clear
+                             }
                     }
                 }
                 .listStyle(.grouped)
@@ -100,7 +103,12 @@ struct MemoryAddView: View {
             .navigationBarTitle(Text("New Memory"), displayMode: .inline)
             .navigationBarItems(trailing:
                 Button(action: {
-                    self.addMemory()
+                    self.viewModel.addNewMemory(
+                        place: placeText,
+                        text: memoryText,
+                        date: date,
+                        folder: folder,
+                        image: inputImage)
                     self.isPresented.wrappedValue.dismiss()
                 }, label: {
                     Text("Save")
@@ -157,15 +165,24 @@ struct MemoryAddView: View {
      }
 
     func addMemory() {
-        
-        let newMemory = Memory(context: dataController.context)
-        newMemory.id = UUID()
-        newMemory.date = self.date
-        newMemory.place = self.placeText
-        newMemory.text = self.memoryText
-        dataController.save()
-        
-        savesImage(Name: newMemory.id!.uuidString, inputImage: inputImage)
+//        if let id = id{ // Ak mame id poznamku iba editujeme
+//            let note = notes.filter({$0.id == id}).map({return $0}) // Ziskame konkretnu poznamku
+//            if(note.count != 0) {
+//                note[0].content = text
+//                note[0].name = name
+//                note[0].date = Date()
+//            }
+//        } else{
+//        let newMemory = Memory(context: dataController.context)
+//        newMemory.id = UUID()
+//        newMemory.date = self.date
+//        newMemory.place = self.placeText
+//        newMemory.text = self.memoryText
+//        newMemory.folder = self.folder
+//        dataController.save()
+    
+    
+//        savesImage(Name: newMemory.id!.uuidString, inputImage: inputImage)
     }
     
     private func endEditing() {
