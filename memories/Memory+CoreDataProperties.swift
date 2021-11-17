@@ -7,7 +7,7 @@
 
 import Foundation
 import CoreData
-
+import SwiftUI
 
 extension Memory {
 
@@ -15,19 +15,20 @@ extension Memory {
         return NSFetchRequest<Memory>(entityName: "Memory")
     }
 
-    @nonobjc public class func resultsController(moc: NSManagedObjectContext, sortDescriptors: [NSSortDescriptor],predicate: NSPredicate) -> NSFetchedResultsController<Memory> {
+    @nonobjc public class func resultsController(moc: NSManagedObjectContext, sortDescriptors: [NSSortDescriptor], predicate: NSPredicate) -> NSFetchedResultsController<Memory> {
         let request =  NSFetchRequest<Memory>(entityName: "Memory")
         request.sortDescriptors = sortDescriptors
         request.predicate = predicate
         return NSFetchedResultsController(fetchRequest: request, managedObjectContext: moc, sectionNameKeyPath: nil, cacheName: nil)
     }
+    
     @NSManaged public var place: String?
     @NSManaged public var content: String?
     @NSManaged public var date: Date?
     @NSManaged public var id: UUID?
+    @NSManaged public var isFavorite: Bool
     @NSManaged public var is_in: Folder?
 
-    
     public var safeTextContent: String {
         get { content ?? "" }
         set { content = newValue }

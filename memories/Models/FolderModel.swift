@@ -46,6 +46,7 @@ extension FoldersView{
         
         func favToggle(folder: Folder) {
             folder.isFavorite.toggle()
+            saveContext()
         }
       
         func removeFolder(folder: Folder){

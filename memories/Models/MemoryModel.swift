@@ -17,9 +17,8 @@ extension MemoriesView {
         public var alert = false
         public var alertMessage = ""
         init(moc: NSManagedObjectContext, folder: Folder) {
-            let sortDescriptors = [NSSortDescriptor(keyPath: \Memory.date, ascending: true)]
-            
-            controller = Memory.resultsController(moc: moc, sortDescriptors: sortDescriptors,predicate: NSPredicate(format: "is_in = %@",folder))
+            let sortDescriptors = [NSSortDescriptor(keyPath: \Memory.isFavorite, ascending: false), NSSortDescriptor(keyPath: \Memory.date, ascending: false)]
+            controller = Memory.resultsController(moc: moc, sortDescriptors: sortDescriptors, predicate: NSPredicate(format: "is_in = %@",folder))
             super.init()
             
             controller.delegate = self
@@ -54,6 +53,7 @@ extension MemoriesView {
             memory.content = text
             memory.place = place
             memory.date = date
+            memory.isFavorite = false
             memory.id = UUID()
             memory.is_in = folder
 //            }
@@ -62,11 +62,24 @@ extension MemoriesView {
             saveContext()
         }
         
+//        var includeFavs: Bool {
+//            let memories = memories.filter({$0.isFavorite == true})
+//            if (memories.count != 0) {
+//                return true
+//            }
+//            return false
+//        }
+        
         func removeMemory(memory: Memory) {
             controller.managedObjectContext.delete(memory)
             saveContext()
         }
     
+        func changeFavStatus(memory: Memory) {
+            memory.isFavorite.toggle()
+            saveContext()
+        }
+        
         func saveContext(){
             do{
                 try controller.managedObjectContext.save()

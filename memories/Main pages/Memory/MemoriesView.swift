@@ -25,25 +25,12 @@ struct MemoriesView: View {
                 LazyVStack(alignment: .center, spacing: 15) {
                     ForEach(self.viewModel.memories) { memory in
                         NavigationLink(destination: MemoryView(viewModel: MemoriesView.MemoryModel.init(moc: self.viewContext, folder: folder), memory: memory, folder: folder)) {
-                            MemoryCellView(memory: memory)
+                            MemoryCellView(memory: memory, folder: folder, viewModel: MemoriesView.MemoryModel.init(moc: self.viewContext, folder: folder))
                         }
-//                        .swipeActions(allowsFullSwipe: false) {
-//                            Button {
-//                                print("Muting conversation")
-//                            } label: {
-//                                Label("Mute", systemImage: "bell.slash.fill")
-//                            }
-//                            .tint(.indigo)
-//
-//                            Button(role: .destructive) {
-//                                print("Deleting conversation")
-//                            } label: {
-//                                Label("Delete", systemImage: "trash.fill")
-//                            }
-//                        }
                     }
                 }
             }.padding(.top, 15)
+      
 
             NavigationLink(destination: MemoryAddView(folder: folder, viewModel: MemoriesView.MemoryModel.init(moc: self.viewContext, folder: folder)), label: {
                 Circle()

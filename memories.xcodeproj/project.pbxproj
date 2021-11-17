@@ -31,6 +31,7 @@
 		91C0454826CA603600E29DDC /* FoldersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91C0454726CA603600E29DDC /* FoldersView.swift */; };
 		91C0454A26CA83F600E29DDC /* FolderCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91C0454926CA83F500E29DDC /* FolderCellView.swift */; };
 		91C0454C26CA858E00E29DDC /* FolderAddView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91C0454B26CA858E00E29DDC /* FolderAddView.swift */; };
+		91CAE44F27453A4C0020D0DB /* CellButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91CAE44E27453A4C0020D0DB /* CellButtons.swift */; };
 		91E78DE826A73E9D00A6913F /* MemoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91E78DE726A73E9D00A6913F /* MemoryView.swift */; };
 /* End PBXBuildFile section */
 
@@ -61,6 +62,7 @@
 		91C0454726CA603600E29DDC /* FoldersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoldersView.swift; sourceTree = "<group>"; };
 		91C0454926CA83F500E29DDC /* FolderCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderCellView.swift; sourceTree = "<group>"; };
 		91C0454B26CA858E00E29DDC /* FolderAddView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderAddView.swift; sourceTree = "<group>"; };
+		91CAE44E27453A4C0020D0DB /* CellButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellButtons.swift; sourceTree = "<group>"; };
 		91E78DE726A73E9D00A6913F /* MemoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoryView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -160,6 +162,7 @@
 		91B0578626984CC6003E4963 /* Main pages */ = {
 			isa = PBXGroup;
 			children = (
+				91CAE44E27453A4C0020D0DB /* CellButtons.swift */,
 				91C0454626C7FE8400E29DDC /* Folder */,
 				91C0454526C7FE6200E29DDC /* Memory */,
 			);
@@ -280,6 +283,7 @@
 				910A0C592744249500E7A42D /* Folder+CoreDataClass.swift in Sources */,
 				910A0C50274423B000E7A42D /* FolderModel.swift in Sources */,
 				91C0454C26CA858E00E29DDC /* FolderAddView.swift in Sources */,
+				91CAE44F27453A4C0020D0DB /* CellButtons.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
