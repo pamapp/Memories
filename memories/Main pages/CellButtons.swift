@@ -9,7 +9,7 @@
 
 import SwiftUI
 
-let buttonWidth: CGFloat = 90
+let buttonWidth: CGFloat = 60  
 
 enum CellButtons: Identifiable {
     case fav
@@ -30,7 +30,7 @@ struct CellButtonView: View {
             .foregroundColor(color)
             .overlay(
                 Image(systemName: image)
-                    .font(.system(size: 30))
+                    .font(.system(size: 25))
                     .foregroundColor(.white)
             )
     }
@@ -64,7 +64,7 @@ struct SwipeContainerCell: ViewModifier  {
     init(leadingButtons: [CellButtons], trailingButton: [CellButtons], onClick: @escaping (CellButtons) -> Void) {
         self.leadingButtons = leadingButtons
         self.trailingButton = trailingButton
-        maxLeadingOffset = CGFloat(leadingButtons.count) * buttonWidth
+        maxLeadingOffset = CGFloat(leadingButtons.count) * buttonWidth + 4
         minTrailingOffset = CGFloat(trailingButton.count) * buttonWidth * -1
         self.onClick = onClick
     }
@@ -77,49 +77,39 @@ struct SwipeContainerCell: ViewModifier  {
     
     func body(content: Content) -> some View {
         ZStack {
-            GeometryReader { proxy in
-                HStack(spacing: 0) {
-//                    HStack(spacing: 0) {
-//                        ForEach(leadingButtons) { buttonsData in
-//                            Button(action: {
-//                                withAnimation {
-//                                    reset()
-//                                }
-//                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.20) { ///call once hide animation done
-//                                    onClick(buttonsData)
-//                                }
-//                            }, label: {
-//                                CellButtonView.init(data: buttonsData, cellHeight: proxy.size.height)
-//                            })
-//                        }
-//                    }.offset(x: (-1 * maxLeadingOffset) + offset)
-                    
-                    Spacer()
-                    
-                    HStack(spacing: 0) {
-                        ForEach(trailingButton) { buttonsData in
-                            Button(action: {
-                                withAnimation {
-                                    reset()
-                                }
-                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.20) { ///call once hide animation done
-                                    onClick(buttonsData)
-                                }
-                            }, label: {
-                                CellButtonView.init(data: buttonsData, cellHeight: proxy.size.height)
-                            })
-                            .padding(.leading, 5)
+            HStack(alignment: .center, spacing: 2) {
+
+                ForEach(leadingButtons) { buttonsData in
+                    Button(action: {
+                        withAnimation {
+                            reset()
                         }
-                    }
-//                    .offset(x: (-1 * minTrailingOffset) + offset)
-                }.frame(width: 330)
-            }
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.20) { ///call once hide animation done
+                            onClick(buttonsData)
+                        }
+                    }, label: {
+                        CellButtonView.init(data: buttonsData, cellHeight: 90)
+                    })
+                }
+
+                Spacer()
+                ForEach(trailingButton) { buttonsData in
+                    Button(action: {
+                        withAnimation {
+                            reset()
+                        }
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.20) {
+                            onClick(buttonsData)
+                        }
+                    }, label: {
+                        CellButtonView.init(data: buttonsData, cellHeight: 90)
+                    })
+                }
+            }.frame(width: 330)
             
             content
-                .contentShape(RoundedRectangle(cornerRadius: 15)) ///otherwise swipe won't work in vacant area
+                .contentShape(RoundedRectangle(cornerRadius: 15))
                 .offset(x: offset)
-//                .background(.black)
-
                 .gesture(DragGesture(minimumDistance: 15, coordinateSpace: .local)
                     .onChanged({ (value) in
                         let totalSlide = value.translation.width + oldOffset
@@ -153,3 +143,18 @@ struct SwipeContainerCell: ViewModifier  {
         }
     }
 }
+
+//                    HStack(spacing: 0) {
+//                        ForEach(leadingButtons) { buttonsData in
+//                            Button(action: {
+//                                withAnimation {
+//                                    reset()
+//                                }
+//                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.20) { ///call once hide animation done
+//                                    onClick(buttonsData)
+//                                }
+//                            }, label: {
+//                                CellButtonView.init(data: buttonsData, cellHeight: proxy.size.height)
+//                            })
+//                        }
+//                    }.offset(x: (-1 * maxLeadingOffset) + offset)

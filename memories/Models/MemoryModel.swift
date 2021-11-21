@@ -41,14 +41,7 @@ extension MemoriesView {
         }
         
         func addNewMemory(place: String, text: String, date: Date, folder: Folder, image: UIImage?){
-//            if let id = id{ // Ak mame id poznamku iba editujeme
-//                let memory = memories.filter({$0.id == id}).map({return $0}) // Ziskame konkretnu poznamku
-//                if(memory.count != 0) {
-//                    memory[0].content = text
-//                    memory[0].place = place
-//                    memory[0].date = Date()
-//                }
-//            }else{
+
             let memory = Memory(context: controller.managedObjectContext)
             memory.content = text
             memory.place = place
@@ -56,21 +49,13 @@ extension MemoriesView {
             memory.isFavorite = false
             memory.id = UUID()
             memory.is_in = folder
-//            }
             savesImage(Name: memory.id!.uuidString, inputImage: image)
             
             saveContext()
         }
         
-//        var includeFavs: Bool {
-//            let memories = memories.filter({$0.isFavorite == true})
-//            if (memories.count != 0) {
-//                return true
-//            }
-//            return false
-//        }
-        
         func removeMemory(memory: Memory) {
+            deleteFromDirectory(Name: memory.id!.uuidString)
             controller.managedObjectContext.delete(memory)
             saveContext()
         }

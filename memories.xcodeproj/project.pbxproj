@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		91062D0326A1CB5100C44739 /* MemoryAddView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91062D0226A1CB5100C44739 /* MemoryAddView.swift */; };
+		910700E12746EE42004919C0 /* FolderEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 910700E02746EE42004919C0 /* FolderEditView.swift */; };
+		910700E3274911E2004919C0 /* ImageCroppingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 910700E2274911E1004919C0 /* ImageCroppingView.swift */; };
 		910A0C4F274423B000E7A42D /* MemoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 910A0C4D274423B000E7A42D /* MemoryModel.swift */; };
 		910A0C50274423B000E7A42D /* FolderModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 910A0C4E274423B000E7A42D /* FolderModel.swift */; };
 		910A0C542744248A00E7A42D /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 910A0C532744248A00E7A42D /* Persistence.swift */; };
@@ -32,11 +34,14 @@
 		91C0454A26CA83F600E29DDC /* FolderCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91C0454926CA83F500E29DDC /* FolderCellView.swift */; };
 		91C0454C26CA858E00E29DDC /* FolderAddView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91C0454B26CA858E00E29DDC /* FolderAddView.swift */; };
 		91CAE44F27453A4C0020D0DB /* CellButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91CAE44E27453A4C0020D0DB /* CellButtons.swift */; };
+		91CAE451274622320020D0DB /* ButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91CAE450274622320020D0DB /* ButtonStyle.swift */; };
 		91E78DE826A73E9D00A6913F /* MemoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91E78DE726A73E9D00A6913F /* MemoryView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		91062D0226A1CB5100C44739 /* MemoryAddView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoryAddView.swift; sourceTree = "<group>"; };
+		910700E02746EE42004919C0 /* FolderEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderEditView.swift; sourceTree = "<group>"; };
+		910700E2274911E1004919C0 /* ImageCroppingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCroppingView.swift; sourceTree = "<group>"; };
 		910A0C4D274423B000E7A42D /* MemoryModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemoryModel.swift; sourceTree = "<group>"; };
 		910A0C4E274423B000E7A42D /* FolderModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FolderModel.swift; sourceTree = "<group>"; };
 		910A0C532744248A00E7A42D /* Persistence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
@@ -63,6 +68,7 @@
 		91C0454926CA83F500E29DDC /* FolderCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderCellView.swift; sourceTree = "<group>"; };
 		91C0454B26CA858E00E29DDC /* FolderAddView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderAddView.swift; sourceTree = "<group>"; };
 		91CAE44E27453A4C0020D0DB /* CellButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellButtons.swift; sourceTree = "<group>"; };
+		91CAE450274622320020D0DB /* ButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonStyle.swift; sourceTree = "<group>"; };
 		91E78DE726A73E9D00A6913F /* MemoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoryView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -81,6 +87,7 @@
 			isa = PBXGroup;
 			children = (
 				912B6B3326AF754E00E78093 /* ImagePicker.swift */,
+				910700E2274911E1004919C0 /* ImageCroppingView.swift */,
 			);
 			path = Image;
 			sourceTree = "<group>";
@@ -99,6 +106,7 @@
 			isa = PBXGroup;
 			children = (
 				91326C99269872B50044F71D /* TextStyles.swift */,
+				91CAE450274622320020D0DB /* ButtonStyle.swift */,
 			);
 			path = Styles;
 			sourceTree = "<group>";
@@ -187,6 +195,7 @@
 				91C0454726CA603600E29DDC /* FoldersView.swift */,
 				91C0454926CA83F500E29DDC /* FolderCellView.swift */,
 				91C0454B26CA858E00E29DDC /* FolderAddView.swift */,
+				910700E02746EE42004919C0 /* FolderEditView.swift */,
 			);
 			path = Folder;
 			sourceTree = "<group>";
@@ -266,6 +275,7 @@
 				910A0C5A2744249500E7A42D /* Folder+CoreDataProperties.swift in Sources */,
 				910A0C4F274423B000E7A42D /* MemoryModel.swift in Sources */,
 				91C0454826CA603600E29DDC /* FoldersView.swift in Sources */,
+				91CAE451274622320020D0DB /* ButtonStyle.swift in Sources */,
 				918495DB26C53AA100362A84 /* Helper.swift in Sources */,
 				910A0C5B2744249500E7A42D /* Memory+CoreDataProperties.swift in Sources */,
 				91E78DE826A73E9D00A6913F /* MemoryView.swift in Sources */,
@@ -279,8 +289,10 @@
 				91326C97269872900044F71D /* View+Extensions.swift in Sources */,
 				91326C9A269872B50044F71D /* TextStyles.swift in Sources */,
 				91441A7F2697022500F44AE3 /* memoriesApp.swift in Sources */,
+				910700E3274911E2004919C0 /* ImageCroppingView.swift in Sources */,
 				91B0578426984CBB003E4963 /* MemoriesView.swift in Sources */,
 				910A0C592744249500E7A42D /* Folder+CoreDataClass.swift in Sources */,
+				910700E12746EE42004919C0 /* FolderEditView.swift in Sources */,
 				910A0C50274423B000E7A42D /* FolderModel.swift in Sources */,
 				91C0454C26CA858E00E29DDC /* FolderAddView.swift in Sources */,
 				91CAE44F27453A4C0020D0DB /* CellButtons.swift in Sources */,

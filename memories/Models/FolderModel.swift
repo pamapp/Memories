@@ -31,17 +31,31 @@ extension FoldersView{
             }
         }
         
+        var folders: [Folder] {
+            return controller.fetchedObjects ?? []
+        }
+        
         func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
             objectWillChange.send()
         }
 
-        func addNewFolder(name: String){
-            if(name.count > 0) {
-                let folder = Folder(context: controller.managedObjectContext)
-                folder.name = name
-                folder.isFavorite = false
-                saveContext()
-            }
+        func addNewFolder(name: String, image: UIImage?){
+//            if(name.count > 0) {
+            let folder = Folder(context: controller.managedObjectContext)
+            folder.name = name
+            folder.isFavorite = false
+            folder.id = UUID()
+//            }
+            savesImage(Name: folder.id!.uuidString, inputImage: image)
+            saveContext()
+        }
+        
+        
+        func editFolder(folder: Folder, name: String, image: UIImage?){
+            folder.name = name
+            deleteFromDirectory(Name: folder.id!.uuidString)
+            savesImage(Name: folder.id!.uuidString, inputImage: image)
+            saveContext()
         }
         
         func favToggle(folder: Folder) {
@@ -68,10 +82,26 @@ extension FoldersView{
             return folder.safeMemoriesNumber
         }
         
-        var folders: [Folder] {
-            return controller.fetchedObjects ?? []
-        }
+        func savesImage(Name: String, inputImage: UIImage?) {
+            let fileName = helper.getDocumentsDirectory().appendingPathComponent(Name)
+            do {
+                if let jpegData = inputImage?.jpegData(compressionQuality: 0.8) {
+                    try jpegData.write(to: fileName, options: [.atomicWrite, .completeFileProtection])
+                }
+            } catch {
+                print("Unable to save image")
+            }
+         }
         
+        func deleteFromDirectory(Name: String) {
+            let fileName = helper.getDocumentsDirectory().appendingPathComponent(Name)
+            let filePath = fileName.path
+            let fileManager = FileManager.default
+            if fileManager.fileExists(atPath: filePath) {
+                try? fileManager.removeItem(atPath: filePath)
+            } else {
+                print("File at path \(filePath) does not exist")
+            }
+        }
     }
 }
-

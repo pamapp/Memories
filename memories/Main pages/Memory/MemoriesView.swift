@@ -24,8 +24,10 @@ struct MemoriesView: View {
             ScrollView(.vertical, showsIndicators: false) {
                 LazyVStack(alignment: .center, spacing: 15) {
                     ForEach(self.viewModel.memories) { memory in
-                        NavigationLink(destination: MemoryView(viewModel: MemoriesView.MemoryModel.init(moc: self.viewContext, folder: folder), memory: memory, folder: folder)) {
-                            MemoryCellView(memory: memory, folder: folder, viewModel: MemoriesView.MemoryModel.init(moc: self.viewContext, folder: folder))
+                        ZStack {
+                            NavigationLink(destination: MemoryView(viewModel: MemoriesView.MemoryModel.init(moc: self.viewContext, folder: folder), memory: memory, folder: folder)) {
+                                MemoryCellView(memory: memory, folder: folder, viewModel: MemoriesView.MemoryModel.init(moc: self.viewContext, folder: folder))
+                            }.buttonStyle(MemoryButton())
                         }
                     }
                 }

@@ -1,25 +1,26 @@
 //
-//  FolderAddView.swift
+//  FolderEditView.swift
 //  memories
 //
-//  Created by Alina Potapova on 16.08.2021.
+//  Created by Alina Potapova on 18.11.2021.
 //
 
 import SwiftUI
 
-struct FolderAddView: View {
-    
+struct FolderEditView: View {
     @Environment(\.managedObjectContext) private var viewContext
     @Environment(\.presentationMode) private var presentationMode
 
-    @State private var name: String = ""
-    
-    @State private var inputImage: UIImage?
-    @State private var image: Image? = Image("test_photo")
+    @State var name: String
+    @State var inputImage: UIImage?
+    @State var image: Image?
     
     @State var isShowPicker: Bool = false
     
+    var folder: Folder
+    
     @ObservedObject var viewModel: FoldersView.FolderModel
+    
     var body: some View {
         NavigationView {
             VStack {
@@ -65,12 +66,12 @@ struct FolderAddView: View {
             .padding(.top, 20)
             .navigationTitle(self.name == "" ? "New Folder" : "\(self.name)")
             .toolbar {
+                doletToolBar
                 doneToolBar
             }
         }.accentColor(.red)
     }
     
-
     func loadImage() {
         guard let inputImage = inputImage else { return }
         image = Image(uiImage: inputImage)
@@ -79,7 +80,16 @@ struct FolderAddView: View {
     private var doneToolBar: some ToolbarContent {
         ToolbarItem(placement: .navigationBarTrailing) {
             Button("Done") {
-                self.viewModel.addNewFolder(name: name == "" ? "Folder" : self.name, image: inputImage)
+                self.viewModel.editFolder(folder: folder, name: name == "" ? "Folder" : self.name, image: inputImage)
+                presentationMode.wrappedValue.dismiss()
+            }
+        }
+    }
+    
+    private var doletToolBar: some ToolbarContent {
+        ToolbarItem(placement: .navigationBarLeading) {
+            Button("Delete") {
+                self.viewModel.removeFolder(folder: folder)
                 presentationMode.wrappedValue.dismiss()
             }
         }
@@ -89,4 +99,3 @@ struct FolderAddView: View {
         UIApplication.shared.endEditing()
     }
 }
-

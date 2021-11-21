@@ -21,7 +21,8 @@ extension Folder {
         request.sortDescriptors = sortDescriptors
         return NSFetchedResultsController(fetchRequest: request, managedObjectContext: moc, sectionNameKeyPath: nil, cacheName: nil)
     }
-
+    
+    @NSManaged public var id: UUID?
     @NSManaged public var name: String?
     @NSManaged public var isFavorite: Bool
     @NSManaged public var contains: NSSet?

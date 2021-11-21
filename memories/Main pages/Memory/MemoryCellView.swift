@@ -29,6 +29,10 @@ struct MemoryCellView: View {
         RoundedRectangle(cornerRadius: 15)
             .frame(width: 330, height: 90, alignment: .leading)
             .foregroundColor(Color(UIColor.separator))
+            .background(
+                RoundedRectangle(cornerRadius: 15)
+                    .foregroundColor(Color.black)
+            )
             .onAppear {
                 self.loadImage()
             }
@@ -65,7 +69,7 @@ struct MemoryCellView: View {
                     .padding(.trailing, 20)
                 }
             )
-            .addButtonActions(leadingButtons: [], trailingButton: [.fav, .delete], onClick: { button in
+            .addButtonActions(leadingButtons: [.fav], trailingButton: [.delete], onClick: { button in
                 if button == CellButtons.delete {
                     withAnimation {
                         self.viewModel.removeMemory(memory: memory)

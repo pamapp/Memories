@@ -79,8 +79,10 @@ struct MemoryAddView: View {
                                     .scaledToFit()
                                     .frame(height: 50)
                                     .cornerRadius(10)
-                            }.sheet(isPresented: $isShowPicker, onDismiss: loadImage) {
+                            }
+                            .sheet(isPresented: $isShowPicker, onDismiss: loadImage) {
                                 ImagePicker(image: self.$inputImage)
+                                    .accentColor(.red)
                             }
                         }.padding(.top, 5).padding(.bottom, 5)
                     }
@@ -114,14 +116,14 @@ struct MemoryAddView: View {
                     Text("Save")
                 })
             )
-
+            
             if self.showDatePicker {
                 ZStack {
                     Color.black
                     
                     VStack() {
                         DatePicker("Prompt Text", selection: $date)
-                            .accentColor(.blue)
+                            .accentColor(.red)
                             .background(
                                 RoundedRectangle(cornerRadius: 10)
                                     .fill(Color.blue)
@@ -134,7 +136,7 @@ struct MemoryAddView: View {
                             self.showDatePicker.toggle()
                         } label: {
                             RoundedRectangle(cornerRadius: 5)
-                                .foregroundColor(.blue)
+                                .foregroundColor(.red)
                                 .frame(width: 70, height: 30)
                                 .overlay(
                                     Text("Save")

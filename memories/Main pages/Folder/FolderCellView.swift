@@ -14,56 +14,100 @@ struct FolderCellView: View {
     var folder: Folder
     
     @State var isFav: Bool
-    
+    @State var showEditView: Bool = false
     @ObservedObject var viewModel: FoldersView.FolderModel
+    
+    @State var showImage: Bool = false
+    @State private var inputImage: UIImage?
+    @State var image: Image? = Image("test_photo")
+    @State var isPressed = false
     
     var body: some View {
         RoundedRectangle(cornerRadius: 30)
             .foregroundColor(Color(UIColor.separator))
             .frame(width: 155, height: 155, alignment: .center)
+            .onAppear {
+                self.loadImage()
+            }
             .overlay(
-                VStack {
-                    VStack {
-                        HStack() {
-                            Button {
-                                self.isFav.toggle()
-                                self.viewModel.favToggle(folder: folder)
-//                                dataController.save()
-                            } label: {
-                                Image(systemName: isFav ? "star.fill" : "star")
-                                    .foregroundColor(.yellow)
-                                    .font(.system(size: 25))
+                ZStack {
+                    ZStack  {
+                        image?
+                            .resizable()
+                            .aspectRatio(contentMode: .fill)
+                            .layoutPriority(-1)
+                            .frame(width: 155, height: 155)
+                            .onTapGesture {
+                                self.showImage.toggle()
                             }
-                            Spacer()
-                            
-                            Button(action: {
-                                self.viewModel.removeFolder(folder: folder)
-                            }, label: {
-                                Image(systemName: "minus.circle")
-                            })
-                        }.frame(width: 130)
-                        Spacer()
                     }
+                    .clipped()
+                    .aspectRatio(1, contentMode: .fit)
+                    .frame(width: 155, height: 155)
+                    .opacity(0.3)
+                    .cornerRadius(30)
                 
-                NavigationLink(destination: MemoriesView(viewModel: MemoriesView.MemoryModel.init(moc: self.viewContext, folder: folder), folder: folder), label: {
-                        VStack {
-                            HStack() {
-                                VStack(alignment: .leading) {
-                                    Spacer()
-                                    Text("\(folder.safeName)")
-                                        .foregroundColor(.white)
-                                        .font(Font.title.weight(.bold))
-                                    Text("\( self.viewModel.getMemoriesNum(folder: folder)) memories")
-                                        .foregroundColor(.white)
-                                        .font(Font.subheadline.weight(.light))
-                                }.frame(height: 90)
-                                
-                                Spacer()
-                            }.frame(width: 120, height: 90)
-                        }
-                    })
-                }.frame(width: 130, height: 110)
-            )
-            .padding(.bottom, 25)
+                     VStack {
+                         VStack {
+                             HStack() {
+                                 Button {
+                                     self.isFav.toggle()
+                                     self.viewModel.favToggle(folder: folder)
+                                 } label: {
+                                     Image(systemName: isFav ? "star.fill" : "star")
+                                         .foregroundColor(.yellow)
+                                         .font(.system(size: 25))
+                                 }
+                                 Spacer()
+           
+                                 Button(action: {
+//                                     self.viewModel.removeFolder(folder: folder)
+                                     self.showEditView.toggle()
+                                 }, label: {
+                                     Image(systemName: "pencil")
+                                         .foregroundColor(.white)
+                                         .font(.system(size: 25))
+//                                         .rotationEffect(90)
+                                 }).sheet(isPresented: $showEditView) {
+                                     FolderEditView(name: folder.name ?? "", image: image, folder: folder, viewModel: FoldersView.FolderModel.init(moc: self.viewContext))
+                                 }
+                                 
+                             }.frame(width: 130)
+                             Spacer()
+                         }
+           
+                         NavigationLink(destination: MemoriesView(viewModel: MemoriesView.MemoryModel.init(moc: self.viewContext, folder: folder), folder: folder), label: {
+                             VStack {
+                                 HStack() {
+                                     VStack(alignment: .leading) {
+                                         Spacer()
+                                         Text("\(folder.safeName)")
+                                             .foregroundColor(.white)
+                                             .font(Font.title.weight(.bold))
+                                         Text("\( self.viewModel.getMemoriesNum(folder: folder)) memories")
+                                             .foregroundColor(.white)
+                                             .font(Font.subheadline.weight(.light))
+                                     }.frame(height: 90)
+           
+                                     Spacer()
+                                 }.frame(width: 120, height: 90)
+                             }
+                         }).buttonStyle(FolderButton())
+                     }.frame(width: 130, height: 110)
+                 }
+             ).padding(.bottom, 25)
+    }
+    func loadImage() {
+        if folder.id == nil {
+            print("nil")
+        }
+        else {
+            let data = helper.loadImage(imageIdName: folder.id!.uuidString)
+            guard  let loadedData = data else {
+                return
+            }
+            self.inputImage =  UIImage(data: loadedData)
+            self.image = Image(uiImage: inputImage!)
+        }
     }
 }
