@@ -9,4 +9,4 @@
   <img src="https://user-images.githubusercontent.com/55293935/133600902-68a296fc-844c-493f-822b-29b568182171.png" width="250">
 </p>
 
-**Potapova Alina, 3530202/90202**
+**By Potapova Alina, 3530202/90202**
