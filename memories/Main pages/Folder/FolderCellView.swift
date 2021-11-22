@@ -31,22 +31,17 @@ struct FolderCellView: View {
             }
             .overlay(
                 ZStack {
-                    ZStack  {
-                        image?
-                            .resizable()
-                            .aspectRatio(contentMode: .fill)
-                            .layoutPriority(-1)
-                            .frame(width: 155, height: 155)
-                            .onTapGesture {
-                                self.showImage.toggle()
-                            }
-                    }
-                    .clipped()
-                    .aspectRatio(1, contentMode: .fit)
-                    .frame(width: 155, height: 155)
-                    .opacity(0.3)
-                    .cornerRadius(30)
-                
+                    image?
+                        .resizable()
+                        .aspectRatio(contentMode: .fill)
+                        .frame(width: 155, height: 155)
+                        .clipped()
+                        .cornerRadius(30)
+                        .opacity(0.35)
+                    
+                        .onTapGesture {
+                            self.showImage.toggle()
+                        }
                      VStack {
                          VStack {
                              HStack() {
@@ -61,13 +56,11 @@ struct FolderCellView: View {
                                  Spacer()
            
                                  Button(action: {
-//                                     self.viewModel.removeFolder(folder: folder)
                                      self.showEditView.toggle()
                                  }, label: {
                                      Image(systemName: "pencil")
                                          .foregroundColor(.white)
                                          .font(.system(size: 25))
-//                                         .rotationEffect(90)
                                  }).sheet(isPresented: $showEditView) {
                                      FolderEditView(name: folder.name ?? "", image: image, folder: folder, viewModel: FoldersView.FolderModel.init(moc: self.viewContext))
                                  }

@@ -120,9 +120,11 @@ struct MemoryAddView: View {
             if self.showDatePicker {
                 ZStack {
                     Color.black
+                        .edgesIgnoringSafeArea(.all)
+                        
                     
                     VStack() {
-                        DatePicker("Prompt Text", selection: $date)
+                        DatePicker("Prompt Text", selection: $date, displayedComponents: [.date])
                             .accentColor(.red)
                             .background(
                                 RoundedRectangle(cornerRadius: 10)
@@ -143,9 +145,8 @@ struct MemoryAddView: View {
                                         .foregroundColor(.white)
                                 )
                         }
-
                     }
-                }
+                }.navigationBarHidden(true)
             }
         }
     }
