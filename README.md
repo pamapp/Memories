@@ -8,3 +8,6 @@
   <img src="https://user-images.githubusercontent.com/55293935/133600909-61a669da-a6aa-4d38-8c76-0505ee901c68.png" width="250">
   <img src="https://user-images.githubusercontent.com/55293935/133600902-68a296fc-844c-493f-822b-29b568182171.png" width="250">
 </p>
+
+**Student: Potapova Alina**
+**Group Number: 3530202/90202**
