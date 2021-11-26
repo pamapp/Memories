@@ -27,7 +27,7 @@ extension MemoriesView {
                 alert = false
             } catch{
                 alert =  true
-                alertMessage = "Chyba pri načítaní poznámok"
+                alertMessage = "Saving data error"
             }
         }
         
@@ -71,7 +71,7 @@ extension MemoriesView {
                 alert = false
             }catch {
                 alert =  true
-                alertMessage = "Chyba pri ukladaní poznámok"
+                alertMessage = "Saving data error"
             }
         }
         

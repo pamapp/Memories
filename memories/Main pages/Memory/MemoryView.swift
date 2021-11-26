@@ -136,6 +136,7 @@ struct MemoryView: View {
                             .resizable()
                             .scaledToFit()
                             .frame(height: 350)
+                        
                     }
                     .navigationBarHidden(true)
                 }

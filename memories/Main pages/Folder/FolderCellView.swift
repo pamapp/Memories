@@ -53,12 +53,13 @@ struct FolderCellView: View {
                                          .foregroundColor(.yellow)
                                          .font(.system(size: 25))
                                  }
+                                 
                                  Spacer()
            
                                  Button(action: {
                                      self.showEditView.toggle()
                                  }, label: {
-                                     Image(systemName: "pencil")
+                                     Image(systemName: "gear")
                                          .foregroundColor(.white)
                                          .font(.system(size: 25))
                                  }).sheet(isPresented: $showEditView) {
@@ -77,7 +78,7 @@ struct FolderCellView: View {
                                          Text("\(folder.safeName)")
                                              .foregroundColor(.white)
                                              .font(Font.title.weight(.bold))
-                                         Text("\( self.viewModel.getMemoriesNum(folder: folder)) memories")
+                                         Text(self.viewModel.getMemoriesNum(folder: folder))
                                              .foregroundColor(.white)
                                              .font(Font.subheadline.weight(.light))
                                      }.frame(height: 90)

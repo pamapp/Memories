@@ -75,6 +75,14 @@ struct SwipeContainerCell: ViewModifier  {
         oldOffset = 0
     }
     
+    private func autoBack() {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+            withAnimation {
+                self.reset()
+            }
+        }
+    }
+    
     func body(content: Content) -> some View {
         ZStack {
             HStack(alignment: .center, spacing: 2) {
@@ -93,6 +101,7 @@ struct SwipeContainerCell: ViewModifier  {
                 }
 
                 Spacer()
+                
                 ForEach(trailingButton) { buttonsData in
                     Button(action: {
                         withAnimation {
@@ -121,40 +130,28 @@ struct SwipeContainerCell: ViewModifier  {
                     })
                     .onEnded({ value in
                         withAnimation {
-                          if visibleButton == .left && value.translation.width < -20 { ///user dismisses left buttons
-                            reset()
-                         } else if  visibleButton == .right && value.translation.width > 20 { ///user dismisses right buttons
-                            reset()
-                         } else if offset > 10 || offset < -10 { ///scroller more then 50% show button
-                            if offset > 0 {
-                                visibleButton = .left
-                                offset = maxLeadingOffset
-                            } else {
-                                visibleButton = .right
-                                offset = minTrailingOffset
-                            }
-                            oldOffset = offset
-                            ///Bonus Handling -> set action if user swipe more then x px
-                        } else {
-                            reset()
-                        }
+                            autoBack()
+                            
+                            if visibleButton == .left && value.translation.width < -20 { ///user dismisses left buttons
+                              reset()
+                           } else if  visibleButton == .right && value.translation.width > 20 { ///user dismisses right buttons
+                              reset()
+                           } else if offset > 10 || offset < -10 { ///scroller more then 50% show button
+                              if offset > 0 {
+                                  visibleButton = .left
+                                  offset = maxLeadingOffset
+                              } else {
+                                  visibleButton = .right
+                                  offset = minTrailingOffset
+                              }
+                              oldOffset = offset
+                              ///Bonus Handling -> set action if user swipe more then x px
+                          } else {
+                              reset()
+                          }
+                            
                      }
                  }))
         }
     }
 }
-
-//                    HStack(spacing: 0) {
-//                        ForEach(leadingButtons) { buttonsData in
-//                            Button(action: {
-//                                withAnimation {
-//                                    reset()
-//                                }
-//                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.20) { ///call once hide animation done
-//                                    onClick(buttonsData)
-//                                }
-//                            }, label: {
-//                                CellButtonView.init(data: buttonsData, cellHeight: proxy.size.height)
-//                            })
-//                        }
-//                    }.offset(x: (-1 * maxLeadingOffset) + offset)

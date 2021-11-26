@@ -27,7 +27,7 @@ extension FoldersView{
                 alert = false
             }catch{
                 alert =  true
-                alertMessage = "Upload error"
+                alertMessage = "Saving data error"
             }
         }
         
@@ -53,7 +53,7 @@ extension FoldersView{
         
         func editFolder(folder: Folder, name: String, image: UIImage?){
             folder.name = name
-            deleteFromDirectory(Name: folder.id!.uuidString)
+//            deleteFromDirectory(Name: folder.id!.uuidString)
             savesImage(Name: folder.id!.uuidString, inputImage: image)
             saveContext()
         }
@@ -74,12 +74,18 @@ extension FoldersView{
                 alert = false
             }catch {
                 alert =  true
-                alertMessage = "Upload error"
+                alertMessage = "Saving data error"
             }
         }
         
-        func getMemoriesNum(folder: Folder) -> Int {
-            return folder.safeMemoriesNumber
+        func getMemoriesNum(folder: Folder) -> String {
+            let memoriesNum = folder.safeMemoriesNumber
+            if memoriesNum == 1 {
+                return "\(memoriesNum) memory"
+            } else if memoriesNum > 1 {
+                return "\(memoriesNum) memories"
+            }
+            return "No memories"
         }
         
         func savesImage(Name: String, inputImage: UIImage?) {
