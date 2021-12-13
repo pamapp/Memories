@@ -14,6 +14,18 @@ extension View {
     public func loginDataStyle() -> some View {
         self.modifier(MemoryText())
     }
+    public func infoLineTextStyle() -> some View {
+        self.modifier(InfoLineText())
+    }
+}
+
+extension View {
+    
+    func hasScrollEnabled(_ value: Bool) -> some View {
+        self.onAppear {
+            UITableView.appearance().isScrollEnabled = value
+        }
+    }
 }
 
 extension UIApplication {
@@ -49,5 +61,11 @@ extension UIView {
         return renderer.image { rendererContext in
             layer.render(in: rendererContext.cgContext)
         }
+    }
+}
+
+extension View {
+    func addButtonActions(leadingButtons: [CellButtons], trailingButton: [CellButtons], onClick: @escaping (CellButtons) -> Void) -> some View {
+        self.modifier(SwipeContainerCell(leadingButtons: leadingButtons, trailingButton: trailingButton, onClick: onClick))
     }
 }

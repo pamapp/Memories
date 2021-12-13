@@ -27,3 +27,10 @@ struct MemoryText: ViewModifier {
     }
 }
 
+struct InfoLineText: ViewModifier {
+    func body(content: Content) -> some View {
+        content
+            .font(.system(size: 18))
+    }
+}
+
