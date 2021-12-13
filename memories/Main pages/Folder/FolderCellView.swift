@@ -62,7 +62,7 @@ struct FolderCellView: View {
                                      Image(systemName: "gear")
                                          .foregroundColor(.white)
                                          .font(.system(size: 25))
-                                 }).sheet(isPresented: $showEditView) {
+                                 }).sheet(isPresented: $showEditView, onDismiss: loadImage) {
                                      FolderEditView(name: folder.name ?? "", image: image, folder: folder, viewModel: FoldersView.FolderModel.init(moc: self.viewContext))
                                  }
                                  
@@ -91,6 +91,7 @@ struct FolderCellView: View {
                  }
              ).padding(.bottom, 25)
     }
+    
     func loadImage() {
         if folder.id == nil {
             print("nil")

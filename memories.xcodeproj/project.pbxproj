@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		91062D0326A1CB5100C44739 /* MemoryAddView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91062D0226A1CB5100C44739 /* MemoryAddView.swift */; };
 		910700E12746EE42004919C0 /* FolderEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 910700E02746EE42004919C0 /* FolderEditView.swift */; };
-		910700E3274911E2004919C0 /* ImageCroppingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 910700E2274911E1004919C0 /* ImageCroppingView.swift */; };
 		910A0C4F274423B000E7A42D /* MemoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 910A0C4D274423B000E7A42D /* MemoryModel.swift */; };
 		910A0C50274423B000E7A42D /* FolderModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 910A0C4E274423B000E7A42D /* FolderModel.swift */; };
 		910A0C542744248A00E7A42D /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 910A0C532744248A00E7A42D /* Persistence.swift */; };
@@ -35,13 +34,23 @@
 		91C0454C26CA858E00E29DDC /* FolderAddView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91C0454B26CA858E00E29DDC /* FolderAddView.swift */; };
 		91CAE44F27453A4C0020D0DB /* CellButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91CAE44E27453A4C0020D0DB /* CellButtons.swift */; };
 		91CAE451274622320020D0DB /* ButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91CAE450274622320020D0DB /* ButtonStyle.swift */; };
+		91CBDA10275FC609002F20E6 /* memoriesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91CBDA0F275FC609002F20E6 /* memoriesTests.swift */; };
 		91E78DE826A73E9D00A6913F /* MemoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91E78DE726A73E9D00A6913F /* MemoryView.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		91CBDA11275FC609002F20E6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 91441A732697022400F44AE3 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 91441A7A2697022400F44AE3;
+			remoteInfo = memories;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		91062D0226A1CB5100C44739 /* MemoryAddView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoryAddView.swift; sourceTree = "<group>"; };
 		910700E02746EE42004919C0 /* FolderEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderEditView.swift; sourceTree = "<group>"; };
-		910700E2274911E1004919C0 /* ImageCroppingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCroppingView.swift; sourceTree = "<group>"; };
 		910A0C4D274423B000E7A42D /* MemoryModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemoryModel.swift; sourceTree = "<group>"; };
 		910A0C4E274423B000E7A42D /* FolderModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FolderModel.swift; sourceTree = "<group>"; };
 		910A0C532744248A00E7A42D /* Persistence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
@@ -69,11 +78,20 @@
 		91C0454B26CA858E00E29DDC /* FolderAddView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderAddView.swift; sourceTree = "<group>"; };
 		91CAE44E27453A4C0020D0DB /* CellButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellButtons.swift; sourceTree = "<group>"; };
 		91CAE450274622320020D0DB /* ButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonStyle.swift; sourceTree = "<group>"; };
+		91CBDA0D275FC609002F20E6 /* memoriesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = memoriesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		91CBDA0F275FC609002F20E6 /* memoriesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = memoriesTests.swift; sourceTree = "<group>"; };
 		91E78DE726A73E9D00A6913F /* MemoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoryView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		91441A782697022400F44AE3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		91CBDA0A275FC609002F20E6 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -87,7 +105,6 @@
 			isa = PBXGroup;
 			children = (
 				912B6B3326AF754E00E78093 /* ImagePicker.swift */,
-				910700E2274911E1004919C0 /* ImageCroppingView.swift */,
 			);
 			path = Image;
 			sourceTree = "<group>";
@@ -124,6 +141,7 @@
 			isa = PBXGroup;
 			children = (
 				91441A7D2697022500F44AE3 /* memories */,
+				91CBDA0E275FC609002F20E6 /* memoriesTests */,
 				91441A7C2697022400F44AE3 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -132,6 +150,7 @@
 			isa = PBXGroup;
 			children = (
 				91441A7B2697022400F44AE3 /* memories.app */,
+				91CBDA0D275FC609002F20E6 /* memoriesTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -200,6 +219,14 @@
 			path = Folder;
 			sourceTree = "<group>";
 		};
+		91CBDA0E275FC609002F20E6 /* memoriesTests */ = {
+			isa = PBXGroup;
+			children = (
+				91CBDA0F275FC609002F20E6 /* memoriesTests.swift */,
+			);
+			path = memoriesTests;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -220,17 +247,39 @@
 			productReference = 91441A7B2697022400F44AE3 /* memories.app */;
 			productType = "com.apple.product-type.application";
 		};
+		91CBDA0C275FC609002F20E6 /* memoriesTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 91CBDA15275FC609002F20E6 /* Build configuration list for PBXNativeTarget "memoriesTests" */;
+			buildPhases = (
+				91CBDA09275FC609002F20E6 /* Sources */,
+				91CBDA0A275FC609002F20E6 /* Frameworks */,
+				91CBDA0B275FC609002F20E6 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				91CBDA12275FC609002F20E6 /* PBXTargetDependency */,
+			);
+			name = memoriesTests;
+			productName = memoriesTests;
+			productReference = 91CBDA0D275FC609002F20E6 /* memoriesTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		91441A732697022400F44AE3 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1230;
+				LastSwiftUpdateCheck = 1300;
 				LastUpgradeCheck = 1230;
 				TargetAttributes = {
 					91441A7A2697022400F44AE3 = {
 						CreatedOnToolsVersion = 12.3;
+					};
+					91CBDA0C275FC609002F20E6 = {
+						CreatedOnToolsVersion = 13.0;
+						TestTargetID = 91441A7A2697022400F44AE3;
 					};
 				};
 			};
@@ -248,6 +297,7 @@
 			projectRoot = "";
 			targets = (
 				91441A7A2697022400F44AE3 /* memories */,
+				91CBDA0C275FC609002F20E6 /* memoriesTests */,
 			);
 		};
 /* End PBXProject section */
@@ -261,6 +311,13 @@
 				91441A862697024500F44AE3 /* Preview Assets.xcassets in Resources */,
 				91441A832697024500F44AE3 /* Assets.xcassets in Resources */,
 				91713F5426D561DE00311680 /* 1024_icon.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		91CBDA0B275FC609002F20E6 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -289,7 +346,6 @@
 				91326C97269872900044F71D /* View+Extensions.swift in Sources */,
 				91326C9A269872B50044F71D /* TextStyles.swift in Sources */,
 				91441A7F2697022500F44AE3 /* memoriesApp.swift in Sources */,
-				910700E3274911E2004919C0 /* ImageCroppingView.swift in Sources */,
 				91B0578426984CBB003E4963 /* MemoriesView.swift in Sources */,
 				910A0C592744249500E7A42D /* Folder+CoreDataClass.swift in Sources */,
 				910700E12746EE42004919C0 /* FolderEditView.swift in Sources */,
@@ -299,7 +355,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		91CBDA09275FC609002F20E6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				91CBDA10275FC609002F20E6 /* memoriesTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		91CBDA12275FC609002F20E6 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 91441A7A2697022400F44AE3 /* memories */;
+			targetProxy = 91CBDA11275FC609002F20E6 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		91441A882697024500F44AE3 /* Debug */ = {
@@ -462,6 +534,52 @@
 			};
 			name = Release;
 		};
+		91CBDA13275FC609002F20E6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 93HP7KN2HJ;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = pamapp.memoriesTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/memories.app/memories";
+			};
+			name = Debug;
+		};
+		91CBDA14275FC609002F20E6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 93HP7KN2HJ;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = pamapp.memoriesTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/memories.app/memories";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -479,6 +597,15 @@
 			buildConfigurations = (
 				91441A8B2697024500F44AE3 /* Debug */,
 				91441A8C2697024500F44AE3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		91CBDA15275FC609002F20E6 /* Build configuration list for PBXNativeTarget "memoriesTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				91CBDA13275FC609002F20E6 /* Debug */,
+				91CBDA14275FC609002F20E6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
