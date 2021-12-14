@@ -92,15 +92,5 @@ class memoriesTests: XCTestCase {
         XCTAssertEqual(memory.is_in, folder)
     }
     
-    func testAddFolder() {
-        let folder = Folder(context: context)
-        folder.name = "TestFolder"
-        folder.isFavorite = false
-        folder.id = UUID()
-        XCTAssertEqual(folder.name, "TestFolder")
-        XCTAssertEqual(folder.isFavorite, false)
-        XCTAssertNotNil(folder.id, "id should not be nil")
-    }
-    
 }
 
