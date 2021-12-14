@@ -16,6 +16,7 @@ extension FoldersView{
 
         public var alert = false
         public var alertMessage = ""
+        
         init(moc: NSManagedObjectContext) {
             let sortDescriptors = [NSSortDescriptor(keyPath: \Folder.isFavorite, ascending: false)]
             controller = Folder.resultsController(moc: moc, sortDescriptors: sortDescriptors)
@@ -40,12 +41,11 @@ extension FoldersView{
         }
 
         func addNewFolder(name: String, image: UIImage?){
-//            if(name.count > 0) {
+
             let folder = Folder(context: controller.managedObjectContext)
             folder.name = name
             folder.isFavorite = false
             folder.id = UUID()
-//            }
             savesImage(Name: folder.id!.uuidString, inputImage: image)
             saveContext()
         }
@@ -53,7 +53,6 @@ extension FoldersView{
         
         func editFolder(folder: Folder, name: String, image: UIImage?){
             folder.name = name
-//            deleteFromDirectory(Name: folder.id!.uuidString)
             savesImage(Name: folder.id!.uuidString, inputImage: image)
             saveContext()
         }

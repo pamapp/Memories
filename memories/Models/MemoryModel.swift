@@ -11,7 +11,7 @@ import CoreData
 import SwiftUI
 
 extension MemoriesView {
-    final class MemoryModel:NSObject, ObservableObject, NSFetchedResultsControllerDelegate{
+    final class MemoryModel: NSObject, ObservableObject, NSFetchedResultsControllerDelegate{
         private let controller :  NSFetchedResultsController<Memory>
 
         public var alert = false

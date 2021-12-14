@@ -25,6 +25,7 @@
 		91441A832697024500F44AE3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 91441A822697024500F44AE3 /* Assets.xcassets */; };
 		91441A862697024500F44AE3 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 91441A852697024500F44AE3 /* Preview Assets.xcassets */; };
 		91713F5426D561DE00311680 /* 1024_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 91713F5326D561DE00311680 /* 1024_icon.png */; };
+		917EDCC02769259D0008FF79 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 917EDCBF2769259D0008FF79 /* CoreDataStack.swift */; };
 		918495D526C5365500362A84 /* NSManaged+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 918495D426C5365500362A84 /* NSManaged+Helpers.swift */; };
 		918495DB26C53AA100362A84 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 918495DA26C53AA100362A84 /* Helper.swift */; };
 		91B0578426984CBB003E4963 /* MemoriesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91B0578326984CBB003E4963 /* MemoriesView.swift */; };
@@ -69,6 +70,7 @@
 		91441A872697024500F44AE3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		91713F5326D561DE00311680 /* 1024_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = 1024_icon.png; path = ../../../Desktop/icons/memories/1024_icon.png; sourceTree = "<group>"; };
 		9171FFC926D7C72500924E2F /* Commentarium.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Commentarium.xcdatamodel; sourceTree = "<group>"; };
+		917EDCBF2769259D0008FF79 /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		918495D426C5365500362A84 /* NSManaged+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSManaged+Helpers.swift"; sourceTree = "<group>"; };
 		918495DA26C53AA100362A84 /* Helper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 		91B0578326984CBB003E4963 /* MemoriesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoriesView.swift; sourceTree = "<group>"; };
@@ -223,6 +225,7 @@
 			isa = PBXGroup;
 			children = (
 				91CBDA0F275FC609002F20E6 /* memoriesTests.swift */,
+				917EDCBF2769259D0008FF79 /* CoreDataStack.swift */,
 			);
 			path = memoriesTests;
 			sourceTree = "<group>";
@@ -360,6 +363,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				91CBDA10275FC609002F20E6 /* memoriesTests.swift in Sources */,
+				917EDCC02769259D0008FF79 /* CoreDataStack.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
