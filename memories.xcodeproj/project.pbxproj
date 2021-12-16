@@ -16,7 +16,6 @@
 		910A0C5A2744249500E7A42D /* Folder+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 910A0C562744249400E7A42D /* Folder+CoreDataProperties.swift */; };
 		910A0C5B2744249500E7A42D /* Memory+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 910A0C572744249500E7A42D /* Memory+CoreDataProperties.swift */; };
 		910A0C5C2744249500E7A42D /* Memory+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 910A0C582744249500E7A42D /* Memory+CoreDataClass.swift */; };
-		910A0C5D2744280B00E7A42D /* Memories.xcdatamodeld in Resources */ = {isa = PBXBuildFile; fileRef = 9171FFC826D7C72500924E2F /* Memories.xcdatamodeld */; };
 		912B6B3426AF754F00E78093 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 912B6B3326AF754E00E78093 /* ImagePicker.swift */; };
 		91326C97269872900044F71D /* View+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91326C96269872900044F71D /* View+Extensions.swift */; };
 		91326C9A269872B50044F71D /* TextStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91326C99269872B50044F71D /* TextStyles.swift */; };
@@ -24,11 +23,11 @@
 		91441A7F2697022500F44AE3 /* memoriesApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91441A7E2697022500F44AE3 /* memoriesApp.swift */; };
 		91441A832697024500F44AE3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 91441A822697024500F44AE3 /* Assets.xcassets */; };
 		91441A862697024500F44AE3 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 91441A852697024500F44AE3 /* Preview Assets.xcassets */; };
-		91713F5426D561DE00311680 /* 1024_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 91713F5326D561DE00311680 /* 1024_icon.png */; };
 		917EDCC02769259D0008FF79 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 917EDCBF2769259D0008FF79 /* CoreDataStack.swift */; };
 		918495D526C5365500362A84 /* NSManaged+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 918495D426C5365500362A84 /* NSManaged+Helpers.swift */; };
 		918495DB26C53AA100362A84 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 918495DA26C53AA100362A84 /* Helper.swift */; };
 		91B0578426984CBB003E4963 /* MemoriesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91B0578326984CBB003E4963 /* MemoriesView.swift */; };
+		91BAC844276A8BE900CA60A1 /* Commentarium.xcdatamodeld in Resources */ = {isa = PBXBuildFile; fileRef = 91BAC83F276A8AF300CA60A1 /* Commentarium.xcdatamodeld */; };
 		91C0454426C7FA4800E29DDC /* MemoryEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91C0454326C7FA4800E29DDC /* MemoryEditView.swift */; };
 		91C0454826CA603600E29DDC /* FoldersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91C0454726CA603600E29DDC /* FoldersView.swift */; };
 		91C0454A26CA83F600E29DDC /* FolderCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91C0454926CA83F500E29DDC /* FolderCellView.swift */; };
@@ -68,12 +67,11 @@
 		91441A822697024500F44AE3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		91441A852697024500F44AE3 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		91441A872697024500F44AE3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		91713F5326D561DE00311680 /* 1024_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = 1024_icon.png; path = ../../../Desktop/icons/memories/1024_icon.png; sourceTree = "<group>"; };
-		9171FFC926D7C72500924E2F /* Commentarium.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Commentarium.xcdatamodel; sourceTree = "<group>"; };
 		917EDCBF2769259D0008FF79 /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		918495D426C5365500362A84 /* NSManaged+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSManaged+Helpers.swift"; sourceTree = "<group>"; };
 		918495DA26C53AA100362A84 /* Helper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 		91B0578326984CBB003E4963 /* MemoriesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoriesView.swift; sourceTree = "<group>"; };
+		91BAC840276A8AF300CA60A1 /* Commentarium.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Commentarium.xcdatamodel; sourceTree = "<group>"; };
 		91C0454326C7FA4800E29DDC /* MemoryEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoryEditView.swift; sourceTree = "<group>"; };
 		91C0454726CA603600E29DDC /* FoldersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoldersView.swift; sourceTree = "<group>"; };
 		91C0454926CA83F500E29DDC /* FolderCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderCellView.swift; sourceTree = "<group>"; };
@@ -172,9 +170,8 @@
 				912B6B3526AF755400E78093 /* Image */,
 				91B0578626984CC6003E4963 /* Main pages */,
 				91441A822697024500F44AE3 /* Assets.xcassets */,
-				9171FFC826D7C72500924E2F /* Memories.xcdatamodeld */,
+				91BAC83F276A8AF300CA60A1 /* Commentarium.xcdatamodeld */,
 				91441A872697024500F44AE3 /* Info.plist */,
-				91713F5326D561DE00311680 /* 1024_icon.png */,
 				91441A842697024500F44AE3 /* Preview Content */,
 			);
 			path = memories;
@@ -310,10 +307,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				910A0C5D2744280B00E7A42D /* Memories.xcdatamodeld in Resources */,
 				91441A862697024500F44AE3 /* Preview Assets.xcassets in Resources */,
+				91BAC844276A8BE900CA60A1 /* Commentarium.xcdatamodeld in Resources */,
 				91441A832697024500F44AE3 /* Assets.xcassets in Resources */,
-				91713F5426D561DE00311680 /* 1024_icon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -617,14 +613,13 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		9171FFC826D7C72500924E2F /* Memories.xcdatamodeld */ = {
+		91BAC83F276A8AF300CA60A1 /* Commentarium.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				9171FFC926D7C72500924E2F /* Commentarium.xcdatamodel */,
+				91BAC840276A8AF300CA60A1 /* Commentarium.xcdatamodel */,
 			);
-			currentVersion = 9171FFC926D7C72500924E2F /* Commentarium.xcdatamodel */;
-			name = Memories.xcdatamodeld;
-			path = "../../../Downloads/Commentarium-main/Shared/Memories.xcdatamodeld";
+			currentVersion = 91BAC840276A8AF300CA60A1 /* Commentarium.xcdatamodel */;
+			path = Commentarium.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

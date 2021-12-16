@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="19141.11" systemVersion="20F71" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="19574" systemVersion="21A559" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Folder" representedClassName="Folder" syncable="YES" codeGenerationType="class">
-        <attribute name="icon" attributeType="String" defaultValueString="folder"/>
+        <attribute name="id" attributeType="UUID" defaultValueString="folder" usesScalarValueType="NO"/>
+        <attribute name="isFavorite" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="name" attributeType="String"/>
-        <relationship name="notes" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Note" inverseName="folder" inverseEntity="Note"/>
+        <relationship name="contains" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Memory" inverseName="is_in" inverseEntity="Memory"/>
     </entity>
-    <entity name="Note" representedClassName="Note" syncable="YES" codeGenerationType="class">
+    <entity name="Memory" representedClassName="Memory" syncable="YES" codeGenerationType="class">
         <attribute name="content" attributeType="String"/>
-        <attribute name="dateCreated" attributeType="Date" usesScalarValueType="NO"/>
-        <attribute name="dateUpdated" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="date" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="id" attributeType="UUID" usesScalarValueType="NO"/>
-        <attribute name="isInTrash" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
-        <attribute name="isPinned" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
-        <relationship name="folder" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Folder" inverseName="notes" inverseEntity="Folder"/>
+        <attribute name="isFavorite" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="place" attributeType="String"/>
+        <relationship name="is_in" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Folder" inverseName="contains" inverseEntity="Folder"/>
     </entity>
     <elements>
-        <element name="Folder" positionX="-53" positionY="-9" width="128" height="88"/>
-        <element name="Note" positionX="-447.4254150390625" positionY="-21.59942626953125" width="136.8533935546875" height="148"/>
+        <element name="Folder" positionX="-94.62493896484375" positionY="-9" width="41.62493896484375" height="14"/>
+        <element name="Memory" positionX="-447.4254150390625" positionY="-21.59942626953125" width="136.8533935546875" height="14"/>
     </elements>
 </model>
