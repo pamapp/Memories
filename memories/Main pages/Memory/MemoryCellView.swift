@@ -27,7 +27,7 @@ struct MemoryCellView: View {
     
     var body: some View {
         RoundedRectangle(cornerRadius: 15)
-            .frame(width: 330, height: 90, alignment: .leading)
+            .frame(width: UIScreen.main.bounds.width / 1.15, height: 90, alignment: .leading)
             .foregroundColor(Color(UIColor.separator))
             .background(
                 RoundedRectangle(cornerRadius: 15)
@@ -61,7 +61,7 @@ struct MemoryCellView: View {
                     Text("\(memory.safePlace)")
                         .font(.system(size: 20, weight: .medium, design: .serif))
                         .foregroundColor(.white)
-                }.frame(width: 180, height: 65, alignment: .leading)
+                }.frame(width: UIScreen.main.bounds.width / 2, height: 65, alignment: .leading)
             
                 Image(systemName: "chevron.right")
                     .foregroundColor(.secondary)

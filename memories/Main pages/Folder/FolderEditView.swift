@@ -69,7 +69,7 @@ struct FolderEditView: View {
                 doletToolBar
                 doneToolBar
             }
-        }.accentColor(.red)
+        }.accentColor(.purple)
     }
     
     func loadImage() {

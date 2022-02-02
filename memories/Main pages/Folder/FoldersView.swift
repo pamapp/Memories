@@ -63,7 +63,7 @@ struct FoldersView: View {
             }
             .navigationTitle("Folders")
         }
-        .accentColor(.red)
+        .accentColor(.purple)
         .navigationViewStyle(StackNavigationViewStyle())
     }
 }

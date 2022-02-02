@@ -26,6 +26,9 @@
 		917EDCC02769259D0008FF79 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 917EDCBF2769259D0008FF79 /* CoreDataStack.swift */; };
 		918495D526C5365500362A84 /* NSManaged+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 918495D426C5365500362A84 /* NSManaged+Helpers.swift */; };
 		918495DB26C53AA100362A84 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 918495DA26C53AA100362A84 /* Helper.swift */; };
+		91984A5A27AA8E5500B6703F /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91984A5927AA8E5500B6703F /* TabBarView.swift */; };
+		91984A5C27AA8E8B00B6703F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91984A5B27AA8E8B00B6703F /* ContentView.swift */; };
+		91984A5E27AA9BF300B6703F /* Color+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91984A5D27AA9BF300B6703F /* Color+Extensions.swift */; };
 		91B0578426984CBB003E4963 /* MemoriesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91B0578326984CBB003E4963 /* MemoriesView.swift */; };
 		91BAC844276A8BE900CA60A1 /* Commentarium.xcdatamodeld in Resources */ = {isa = PBXBuildFile; fileRef = 91BAC83F276A8AF300CA60A1 /* Commentarium.xcdatamodeld */; };
 		91C0454426C7FA4800E29DDC /* MemoryEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91C0454326C7FA4800E29DDC /* MemoryEditView.swift */; };
@@ -70,6 +73,9 @@
 		917EDCBF2769259D0008FF79 /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		918495D426C5365500362A84 /* NSManaged+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSManaged+Helpers.swift"; sourceTree = "<group>"; };
 		918495DA26C53AA100362A84 /* Helper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
+		91984A5927AA8E5500B6703F /* TabBarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarView.swift; sourceTree = "<group>"; };
+		91984A5B27AA8E8B00B6703F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		91984A5D27AA9BF300B6703F /* Color+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Color+Extensions.swift"; sourceTree = "<group>"; };
 		91B0578326984CBB003E4963 /* MemoriesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoriesView.swift; sourceTree = "<group>"; };
 		91BAC840276A8AF300CA60A1 /* Commentarium.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Commentarium.xcdatamodel; sourceTree = "<group>"; };
 		91C0454326C7FA4800E29DDC /* MemoryEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoryEditView.swift; sourceTree = "<group>"; };
@@ -112,6 +118,7 @@
 		91326C9C2698739F0044F71D /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				91984A5D27AA9BF300B6703F /* Color+Extensions.swift */,
 				918495DA26C53AA100362A84 /* Helper.swift */,
 				91326C96269872900044F71D /* View+Extensions.swift */,
 				918495D426C5365500362A84 /* NSManaged+Helpers.swift */,
@@ -158,16 +165,14 @@
 		91441A7D2697022500F44AE3 /* memories */ = {
 			isa = PBXGroup;
 			children = (
+				91984A5B27AA8E8B00B6703F /* ContentView.swift */,
 				91441A7E2697022500F44AE3 /* memoriesApp.swift */,
-				910A0C552744249400E7A42D /* Folder+CoreDataClass.swift */,
-				910A0C562744249400E7A42D /* Folder+CoreDataProperties.swift */,
-				910A0C582744249500E7A42D /* Memory+CoreDataClass.swift */,
-				910A0C572744249500E7A42D /* Memory+CoreDataProperties.swift */,
-				910A0C532744248A00E7A42D /* Persistence.swift */,
+				91984A5727AA898C00B6703F /* CoreData */,
 				91326CA6269875260044F71D /* Models */,
 				91326C9C2698739F0044F71D /* Extensions */,
 				91326C9D269873B30044F71D /* Styles */,
 				912B6B3526AF755400E78093 /* Image */,
+				91984A5827AA8E2000B6703F /* CustomViewObjects */,
 				91B0578626984CC6003E4963 /* Main pages */,
 				91441A822697024500F44AE3 /* Assets.xcassets */,
 				91BAC83F276A8AF300CA60A1 /* Commentarium.xcdatamodeld */,
@@ -185,10 +190,31 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
-		91B0578626984CC6003E4963 /* Main pages */ = {
+		91984A5727AA898C00B6703F /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				910A0C532744248A00E7A42D /* Persistence.swift */,
+				910A0C582744249500E7A42D /* Memory+CoreDataClass.swift */,
+				910A0C572744249500E7A42D /* Memory+CoreDataProperties.swift */,
+				910A0C552744249400E7A42D /* Folder+CoreDataClass.swift */,
+				910A0C562744249400E7A42D /* Folder+CoreDataProperties.swift */,
+			);
+			name = CoreData;
+			path = "New Group";
+			sourceTree = "<group>";
+		};
+		91984A5827AA8E2000B6703F /* CustomViewObjects */ = {
 			isa = PBXGroup;
 			children = (
 				91CAE44E27453A4C0020D0DB /* CellButtons.swift */,
+				91984A5927AA8E5500B6703F /* TabBarView.swift */,
+			);
+			path = CustomViewObjects;
+			sourceTree = "<group>";
+		};
+		91B0578626984CC6003E4963 /* Main pages */ = {
+			isa = PBXGroup;
+			children = (
 				91C0454626C7FE8400E29DDC /* Folder */,
 				91C0454526C7FE6200E29DDC /* Memory */,
 			);
@@ -329,6 +355,7 @@
 			files = (
 				912B6B3426AF754F00E78093 /* ImagePicker.swift in Sources */,
 				910A0C5A2744249500E7A42D /* Folder+CoreDataProperties.swift in Sources */,
+				91984A5E27AA9BF300B6703F /* Color+Extensions.swift in Sources */,
 				910A0C4F274423B000E7A42D /* MemoryModel.swift in Sources */,
 				91C0454826CA603600E29DDC /* FoldersView.swift in Sources */,
 				91CAE451274622320020D0DB /* ButtonStyle.swift in Sources */,
@@ -337,6 +364,7 @@
 				91E78DE826A73E9D00A6913F /* MemoryView.swift in Sources */,
 				918495D526C5365500362A84 /* NSManaged+Helpers.swift in Sources */,
 				910A0C5C2744249500E7A42D /* Memory+CoreDataClass.swift in Sources */,
+				91984A5C27AA8E8B00B6703F /* ContentView.swift in Sources */,
 				91326CAB2698769B0044F71D /* MemoryCellView.swift in Sources */,
 				910A0C542744248A00E7A42D /* Persistence.swift in Sources */,
 				91C0454A26CA83F600E29DDC /* FolderCellView.swift in Sources */,
@@ -345,6 +373,7 @@
 				91326C97269872900044F71D /* View+Extensions.swift in Sources */,
 				91326C9A269872B50044F71D /* TextStyles.swift in Sources */,
 				91441A7F2697022500F44AE3 /* memoriesApp.swift in Sources */,
+				91984A5A27AA8E5500B6703F /* TabBarView.swift in Sources */,
 				91B0578426984CBB003E4963 /* MemoriesView.swift in Sources */,
 				910A0C592744249500E7A42D /* Folder+CoreDataClass.swift in Sources */,
 				910700E12746EE42004919C0 /* FolderEditView.swift in Sources */,
