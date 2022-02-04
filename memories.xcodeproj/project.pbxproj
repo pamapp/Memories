@@ -38,6 +38,7 @@
 		91CAE44F27453A4C0020D0DB /* CellButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91CAE44E27453A4C0020D0DB /* CellButtons.swift */; };
 		91CAE451274622320020D0DB /* ButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91CAE450274622320020D0DB /* ButtonStyle.swift */; };
 		91CBDA10275FC609002F20E6 /* memoriesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91CBDA0F275FC609002F20E6 /* memoriesTests.swift */; };
+		91D08BB827AC18720069BAC6 /* LocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91D08BB727AC18720069BAC6 /* LocationView.swift */; };
 		91E78DE826A73E9D00A6913F /* MemoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91E78DE726A73E9D00A6913F /* MemoryView.swift */; };
 /* End PBXBuildFile section */
 
@@ -86,6 +87,7 @@
 		91CAE450274622320020D0DB /* ButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonStyle.swift; sourceTree = "<group>"; };
 		91CBDA0D275FC609002F20E6 /* memoriesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = memoriesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		91CBDA0F275FC609002F20E6 /* memoriesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = memoriesTests.swift; sourceTree = "<group>"; };
+		91D08BB727AC18720069BAC6 /* LocationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationView.swift; sourceTree = "<group>"; };
 		91E78DE726A73E9D00A6913F /* MemoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoryView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -165,7 +167,6 @@
 		91441A7D2697022500F44AE3 /* memories */ = {
 			isa = PBXGroup;
 			children = (
-				91984A5B27AA8E8B00B6703F /* ContentView.swift */,
 				91441A7E2697022500F44AE3 /* memoriesApp.swift */,
 				91984A5727AA898C00B6703F /* CoreData */,
 				91326CA6269875260044F71D /* Models */,
@@ -215,6 +216,8 @@
 		91B0578626984CC6003E4963 /* Main pages */ = {
 			isa = PBXGroup;
 			children = (
+				91984A5B27AA8E8B00B6703F /* ContentView.swift */,
+				91D08BB727AC18720069BAC6 /* LocationView.swift */,
 				91C0454626C7FE8400E29DDC /* Folder */,
 				91C0454526C7FE6200E29DDC /* Memory */,
 			);
@@ -378,6 +381,7 @@
 				910A0C592744249500E7A42D /* Folder+CoreDataClass.swift in Sources */,
 				910700E12746EE42004919C0 /* FolderEditView.swift in Sources */,
 				910A0C50274423B000E7A42D /* FolderModel.swift in Sources */,
+				91D08BB827AC18720069BAC6 /* LocationView.swift in Sources */,
 				91C0454C26CA858E00E29DDC /* FolderAddView.swift in Sources */,
 				91CAE44F27453A4C0020D0DB /* CellButtons.swift in Sources */,
 			);

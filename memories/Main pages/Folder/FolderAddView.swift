@@ -67,7 +67,7 @@ struct FolderAddView: View {
             .toolbar {
                 doneToolBar
             }
-        }.accentColor(.red)
+        }.accentColor(.purple)
     }
     
 

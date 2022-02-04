@@ -14,7 +14,7 @@ struct ContentView: View {
     var body: some View {
         TabBarView(pages: .constant([
             TabBarPage(
-                page: Text("Location View")
+                page: LocationView()
                     .preferredColorScheme(.dark),
                 icon: "map",
                 fillIcon: "map.fill",

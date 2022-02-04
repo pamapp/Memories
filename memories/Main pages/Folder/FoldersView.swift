@@ -28,7 +28,7 @@ struct FoldersView: View {
                         RoundedRectangle(cornerRadius: 30)
                             .stroke()
                             .foregroundColor(Color(UIColor.separator))
-                            .frame(width: 155, height: 155, alignment: .center)
+                            .frame(width: UIScreen.main.bounds.width / 2.5, height: UIScreen.main.bounds.width / 2.2, alignment: .center)
                             .overlay (
                                 Button {
                                     self.showAddFolderSheet.toggle()
@@ -43,7 +43,7 @@ struct FoldersView: View {
                             ).padding(.bottom, 25)
                     }
                 }
-                .padding(.top, 15)
+                .offset(y: 10)
 
 //                Button {
 //                    self.showAddFolderSheet.toggle()

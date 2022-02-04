@@ -25,7 +25,7 @@ struct FolderCellView: View {
     var body: some View {
         RoundedRectangle(cornerRadius: 30)
             .foregroundColor(Color(UIColor.separator))
-            .frame(width: 155, height: 155, alignment: .center)
+            .frame(width: UIScreen.main.bounds.width / 2.5, height: UIScreen.main.bounds.width / 2.2, alignment: .center)
             .onAppear {
                 self.loadImage()
             }
@@ -34,14 +34,14 @@ struct FolderCellView: View {
                     image?
                         .resizable()
                         .aspectRatio(contentMode: .fill)
-                        .frame(width: 155, height: 155)
+                        .frame(width: UIScreen.main.bounds.width / 2.5, height: UIScreen.main.bounds.width / 2.2)
                         .clipped()
                         .cornerRadius(30)
                         .opacity(0.35)
-                    
                         .onTapGesture {
                             self.showImage.toggle()
                         }
+                    
                      VStack {
                          VStack {
                              HStack() {
@@ -50,7 +50,7 @@ struct FolderCellView: View {
                                      self.viewModel.favToggle(folder: folder)
                                  } label: {
                                      Image(systemName: isFav ? "star.fill" : "star")
-                                         .foregroundColor(.yellow)
+                                         .foregroundColor(.purple)
                                          .font(.system(size: 25))
                                  }
                                  
@@ -66,7 +66,7 @@ struct FolderCellView: View {
                                      FolderEditView(name: folder.name ?? "", image: image, folder: folder, viewModel: FoldersView.FolderModel.init(moc: self.viewContext))
                                  }
                                  
-                             }.frame(width: 130)
+                             }.frame(width: UIScreen.main.bounds.width / 3)
                              Spacer()
                          }
            
@@ -84,10 +84,11 @@ struct FolderCellView: View {
                                      }.frame(height: 90)
            
                                      Spacer()
-                                 }.frame(width: 120, height: 90)
+                                 }.frame(width: UIScreen.main.bounds.width / 3.2, height: 90)
+//                                     .background(Color.tabColor)
                              }
                          }).buttonStyle(FolderButton())
-                     }.frame(width: 130, height: 110)
+                     }.frame(width: UIScreen.main.bounds.width / 2, height: UIScreen.main.bounds.width / 2.5)
                  }
              ).padding(.bottom, 25)
     }
