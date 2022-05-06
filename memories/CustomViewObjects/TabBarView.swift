@@ -45,16 +45,16 @@ struct TabBarView: View {
                         }
                     }
                 }
-                .padding(.top, 5)
-                .padding(.bottom, 20)
+                .padding(.top, 4)
+                .padding(.bottom, 18)
                 .background(Color.tabColor)
                 .cornerRadius(20)
                 
                 HStack {
                     Circle()
                         .frame(width: 80, height: 80)
-                        .offset(y: -25)
-                        .foregroundColor(.purple)
+                        .offset(y: -22)
+                        .foregroundColor(.tabButtonColor)
                         .overlay(
                             ForEach(pages) { item in
                                 Button(action: {
@@ -69,7 +69,7 @@ struct TabBarView: View {
                                     }
                                 }
                                 .frame(width: 80, height: 80)
-                                .padding(.bottom, 50)
+                                .padding(.bottom, 44)
                             }
                         )
                 }
@@ -84,49 +84,4 @@ struct TabBarPage: Identifiable {
     var icon: String
     var fillIcon: String
     var tag: String
-}
-
-struct TabBarView_Previews: PreviewProvider {
-    static var previews: some View {
-        TabBarView(pages: .constant([
-            TabBarPage(
-                page: Text("Location View")
-                    .preferredColorScheme(.dark),
-                icon: "map",
-                fillIcon: "map.fill",
-                tag: "Location"
-            ),
-            TabBarPage(
-                page:
-                    Text("Memories View")
-                    .preferredColorScheme(.dark),
-                icon: "cloud",
-                fillIcon: "cloud.fill",
-                tag: "Memories"
-            ),
-            TabBarPage(
-                page:
-                    Text("Add View")
-                    .preferredColorScheme(.dark),
-                icon: "plus",
-                fillIcon: "plus",
-                tag: "Add"
-            ),
-            TabBarPage(
-                page:
-                    Text("Dreams View")
-                    .preferredColorScheme(.dark),
-                icon: "moon",
-                fillIcon: "moon.fill",
-                tag: "Dreams"
-            ),TabBarPage(
-                page:
-                    Text("Settings View")
-                    .preferredColorScheme(.dark),
-                icon: "gearshape",
-                fillIcon: "gearshape.fill",
-                tag: "Settings"
-            )
-        ]))
-    }
 }

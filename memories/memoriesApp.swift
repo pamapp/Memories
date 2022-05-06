@@ -7,10 +7,12 @@
 
 import SwiftUI
 
+
 @main
 struct memoriesApp: App {
 //    let persistenceController = PersistenceController.shared
-
+    @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
+    
     var body: some Scene {
         WindowGroup {
             ContentView()
@@ -18,5 +20,14 @@ struct memoriesApp: App {
 //                .environment(\.managedObjectContext, persistenceController.container.viewContext)
 //                .preferredColorScheme(.dark)
         }
+    }
+}
+
+class AppDelegate: NSObject, UIApplicationDelegate {
+        
+    static var orientationLock = UIInterfaceOrientationMask.all //By default you want all your views to rotate freely
+
+    func application(_ application: UIApplication, supportedInterfaceOrientationsFor window: UIWindow?) -> UIInterfaceOrientationMask {
+        return AppDelegate.orientationLock
     }
 }

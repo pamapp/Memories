@@ -25,14 +25,8 @@ extension Folder {
     @NSManaged public var id: UUID?
     @NSManaged public var name: String?
     @NSManaged public var isFavorite: Bool
+    @NSManaged public var color: Int16
     @NSManaged public var contains: NSSet?
-    
-//    public var wContains: [Memory]{
-//        let notes = contains as? Set<Memory> ?? []
-//        return notes.sorted(by: {firstNote, secondNote -> Bool in
-//            return firstNote.date < secondNote.date
-//        })
-//    }
     
     public var safeNameContent: String {
         get { name ?? "Unnamed Folder" }

@@ -14,73 +14,78 @@ struct MemoryCellView: View {
     
     var memory: Memory
     
-    var timeFormat: String {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "dd.MM.yyyy, EE"
-        return formatter.string(from: memory.date ?? Date())
-    }
-    
-    var folder: Folder
-    
     @ObservedObject var viewModel: MemoriesView.MemoryModel
     
+    var width: Double
+    var height: Double
     
     var body: some View {
         RoundedRectangle(cornerRadius: 15)
-            .frame(width: UIScreen.main.bounds.width / 1.15, height: 90, alignment: .leading)
-            .foregroundColor(Color(UIColor.separator))
-            .background(
-                RoundedRectangle(cornerRadius: 15)
-                    .foregroundColor(Color.black)
-            )
+            .frame(width: width / 2.4, height: height / 3.95)
+            .foregroundColor(self.viewModel.getMemoryColor(memory: memory))
+            .opacity(0.5)
             .onAppear {
                 self.loadImage()
             }
-            .overlay (
-                HStack() {
-                Spacer()
-                ZStack{
+            .overlay(
+                VStack {
                     image?
                         .resizable()
                         .aspectRatio(contentMode: .fill)
-                        .frame(width: 65, height: 65)
+                        .frame(width: width / 2.4, height: height / 9.3)
                         .clipped()
-                        .cornerRadius(7)
-                    if memory.isFavorite {
-                        Image(systemName: "star.fill")
-                            .foregroundColor(.yellow)
-                            .offset(x: -31.5, y: 31.5)
+                        .cornerRadius(15)
+                    
+                    Spacer()
+                    
+                    VStack {
+                        HStack(spacing: 1) {
+                            Image(systemName: "mappin")
+                                .font(.system(size: 10))
+                                .foregroundColor(.gray)
+                            Text("\(memory.safePlace)")
+                                .font(.montserrat(11))
+                                .foregroundColor(.gray)
+                            Spacer()
+                        }
+                        .padding(.horizontal, 10)
+                        
+                        HStack {
+                            Text("\(memory.safeText)")
+                                .font(.montserrat(12))
+                                .lineSpacing(4)
+                                .foregroundColor(.white)
+                                .frame(height: height / 17)
+                                .multilineTextAlignment(.leading)
+                            Spacer()
+                        }
+                        .padding(.horizontal, 10)
+                        .padding(.vertical, 6)
+                        
+                        
+                        HStack {
+                            Text("\(timeFormat)")
+                                .font(.system(size: 11))
+                                .foregroundColor(.gray)
+                            Spacer()
+                            Text("\(memory.safeTitle)")
+                                .font(.system(size: 11))
+                                .foregroundColor(.gray)
+                                .fontWeight(.bold)
+                        }
+                        .padding(.horizontal, 10)
+                        .padding(.bottom, 8)
+                        
                     }
-                }
-                Spacer()
-            
-                VStack(alignment: .leading, spacing: 10) {
-                    Text("\(timeFormat)")
-                        .font(.system(size: 20, weight: .bold, design: .serif))
-                        .foregroundColor(.white)
-                    Text("\(memory.safePlace)")
-                        .font(.system(size: 20, weight: .medium, design: .serif))
-                        .foregroundColor(.white)
-                }.frame(width: UIScreen.main.bounds.width / 2, height: 65, alignment: .leading)
-            
-                Image(systemName: "chevron.right")
-                    .foregroundColor(.secondary)
-                    .padding(.leading, 20)
-                    .padding(.trailing, 20)
                 }
             )
-            .addButtonActions(leadingButtons: [.fav], trailingButton: [.delete], onClick: { button in
-                if button == CellButtons.delete {
-                    withAnimation {
-                        self.viewModel.removeMemory(memory: memory)
-                    }
-                } else if button == CellButtons.fav {
-                    withAnimation {
-                        self.viewModel.changeFavStatus(memory: memory)
-                        print(memory.isFavorite)
-                    }
-                }
-            })
+            
+        }
+    
+    var timeFormat: String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "MMMM d"
+        return formatter.string(from: memory.date ?? Date())
     }
     
     func loadImage() {
@@ -97,3 +102,4 @@ struct MemoryCellView: View {
         }
     }
 }
+

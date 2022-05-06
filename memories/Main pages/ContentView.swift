@@ -14,7 +14,7 @@ struct ContentView: View {
     var body: some View {
         TabBarView(pages: .constant([
             TabBarPage(
-                page: LocationView()
+                page: LocationView(viewLocationModel: LocationSelectView.LocationModel.init(moc: persistenceController.container.viewContext))
                     .preferredColorScheme(.dark),
                 icon: "map",
                 fillIcon: "map.fill",
@@ -31,19 +31,24 @@ struct ContentView: View {
             ),
             TabBarPage(
                 page:
-                    Text("Add View")
-                    .preferredColorScheme(.dark),
+                    SelectAddView(
+                        viewModel: FoldersView.FolderModel.init(moc: persistenceController.container.viewContext))
+                        .environment(\.managedObjectContext, persistenceController.container.viewContext)
+                        .preferredColorScheme(.dark),
                 icon: "plus",
                 fillIcon: "plus",
                 tag: "Add"
             ),
             TabBarPage(
                 page:
-                    Text("Dreams View")
-                    .preferredColorScheme(.dark),
-                icon: "moon",
-                fillIcon: "moon.fill",
-                tag: "Dreams"
+                    ProfileView(viewLocationModel: LocationSelectView.LocationModel.init(moc: persistenceController.container.viewContext),
+                                viewFolderModel: FoldersView.FolderModel.init(moc: persistenceController.container.viewContext),
+                                viewMemoryModel: MemoriesView.MemoryModel.init(moc: persistenceController.container.viewContext, folder: FoldersView.FolderModel.init(moc: persistenceController.container.viewContext).getDefaultFolder()))
+                        .environment(\.managedObjectContext, persistenceController.container.viewContext)
+                        .preferredColorScheme(.dark),
+                icon: "person",
+                fillIcon: "person.fill",
+                tag: "Profile"
             ),TabBarPage(
                 page:
                     Text("Settings View")
@@ -52,12 +57,9 @@ struct ContentView: View {
                 fillIcon: "gearshape.fill",
                 tag: "Settings"
             )
-        ]))
-    }
-}
-
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
+        ])).onAppear {
+            UIDevice.current.setValue(UIInterfaceOrientation.portrait.rawValue, forKey: "orientation") // Forcing the rotation to portrait
+            AppDelegate.orientationLock = .portrait // And making sure it stays that way
+        }
     }
 }

@@ -18,10 +18,11 @@ extension MemoriesView {
         public var alertMessage = ""
         init(moc: NSManagedObjectContext, folder: Folder) {
             let sortDescriptors = [NSSortDescriptor(keyPath: \Memory.isFavorite, ascending: false), NSSortDescriptor(keyPath: \Memory.date, ascending: false)]
-            controller = Memory.resultsController(moc: moc, sortDescriptors: sortDescriptors, predicate: NSPredicate(format: "is_in = %@",folder))
+            controller = Memory.resultsController(moc: moc, sortDescriptors: sortDescriptors, predicate: NSPredicate(format: "is_in = %@", folder))
             super.init()
             
             controller.delegate = self
+            
             do{
                 try controller.performFetch()
                 alert = false
@@ -40,28 +41,48 @@ extension MemoriesView {
             return controller.fetchedObjects ?? []
         }
         
-        func addNewMemory(place: String, text: String, date: Date, folder: Folder, image: UIImage?){
-
+        
+        func addtoFavorites(memory: Memory) {
+            memory.isFavorite = true
+            saveContext()
+        }
+        
+        func removeFromFavorites(memory: Memory) {
+            memory.isFavorite = false
+            saveContext()
+        }
+        
+        func getMemoryColor(memory: Memory) -> Color {
+            let color = memory.color
+            switch color {
+            case 0: return .cellColor
+            case 1: return .pickerGreen
+            case 2: return .pickerBlue
+            case 3: return .pickerPink
+            case 4: return .pickerPurple
+            default:
+                return .cellColor
+            }
+        }
+        
+        
+        func addNewMemory(title: String, place: Location, text: String, date: Date, folder: Folder, image: UIImage?, color: Int) {
             let memory = Memory(context: controller.managedObjectContext)
             memory.content = text
+            memory.title = title
             memory.place = place
             memory.date = date
             memory.isFavorite = false
             memory.id = UUID()
             memory.is_in = folder
+            memory.color = Int16(color)
             savesImage(Name: memory.id!.uuidString, inputImage: image)
-            
             saveContext()
         }
         
         func removeMemory(memory: Memory) {
             deleteFromDirectory(Name: memory.id!.uuidString)
             controller.managedObjectContext.delete(memory)
-            saveContext()
-        }
-    
-        func changeFavStatus(memory: Memory) {
-            memory.isFavorite.toggle()
             saveContext()
         }
         
@@ -95,6 +116,69 @@ extension MemoriesView {
             } else {
                 print("File at path \(filePath) does not exist")
             }
+        }
+        
+        func memoriesNumberByMonth(month: Int) -> Int {
+            var monthMemoryNum: Int = 0
+            for memory in memories {
+                if memory.date?.get(.month) == month {
+                    monthMemoryNum += 1
+                }
+            }
+            return monthMemoryNum
+        }
+
+        func memoriesNumberByDate(month: Int) -> [Int] {
+            let lastMonth: Int = month
+            var halfYearMemories: [Int] = []
+
+            if lastMonth > 6 {
+                for index in (lastMonth - 6..<lastMonth + 1) {
+                    halfYearMemories.append(memoriesNumberByMonth(month: index))
+                }
+            } else if lastMonth == 6 {
+                for index in (1..<7) {
+                    halfYearMemories.append(memoriesNumberByMonth(month: index))
+                }
+            } else {
+                let lastYearStartMonth: Int = 13 + (lastMonth - 6)
+                for index in (lastYearStartMonth..<13) {
+                    halfYearMemories.append(memoriesNumberByMonth(month: index))
+                }
+                for index in (1..<lastMonth+1) {
+                    halfYearMemories.append(memoriesNumberByMonth(month: index))
+                }
+            }
+
+            return halfYearMemories
+        }
+        
+        
+        
+        func monthToStringByDate(month: Int) -> [String] {
+            let lastMonth: Int = month
+            var monthes: [String] = []
+            let ma = Calendar.current.shortMonthSymbols
+
+            if lastMonth > 6 {
+                for index in (lastMonth - 6..<lastMonth + 1) {
+                    monthes.append(ma[index - 1])
+                }
+            } else if lastMonth == 6 {
+                for index in (1..<7) {
+                    monthes.append(ma[index - 1])
+                }
+            } else {
+                let lastYearStartMonth: Int = 13 + (lastMonth - 6)
+                for index in (lastYearStartMonth..<13) {
+                    monthes.append(ma[index - 1])
+                }
+                for index in (1..<lastMonth+1) {
+                    monthes.append(ma[index - 1])
+                }
+            }
+
+            return monthes
         }
     }
 }
