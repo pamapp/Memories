@@ -43,7 +43,8 @@ struct ContentView: View {
                 page:
                     ProfileView(viewLocationModel: LocationSelectView.LocationModel.init(moc: persistenceController.container.viewContext),
                                 viewFolderModel: FoldersView.FolderModel.init(moc: persistenceController.container.viewContext),
-                                viewMemoryModel: MemoriesView.MemoryModel.init(moc: persistenceController.container.viewContext, folder: FoldersView.FolderModel.init(moc: persistenceController.container.viewContext).getDefaultFolder()))
+                                viewMemoryModel: MemoriesView.MemoryModel.init(moc: persistenceController.container.viewContext, folder: FoldersView.FolderModel.init(moc: persistenceController.container.viewContext).getDefaultFolder()),
+                                viewUserModel: ProfileView.UserModel.init(moc: persistenceController.container.viewContext))
                         .environment(\.managedObjectContext, persistenceController.container.viewContext)
                         .preferredColorScheme(.dark),
                 icon: "person",

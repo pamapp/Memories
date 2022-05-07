@@ -16,7 +16,13 @@ struct ProfileView: View {
     
     @ObservedObject var viewMemoryModel: MemoriesView.MemoryModel
     
+    @ObservedObject var viewUserModel: ProfileView.UserModel
+    
     @State var date = Date()
+    
+    @State private var inputImage: UIImage?
+    
+    @State var image: Image? = Image("test_photo")
     
     var body: some View {
         NavigationView {
@@ -25,16 +31,31 @@ struct ProfileView: View {
                     .ignoresSafeArea()
                 VStack(spacing: 40) {
                     VStack(spacing: 10) {
-                        Image("test_photo")
+                        image?
                             .resizable()
                             .aspectRatio(contentMode: .fill)
                             .frame(width: 125, height: 125)
                             .clipped()
                             .mask(Circle())
+                            .overlay(
+                                Button (action: {
+                                    print("Edit")
+                                }, label: {
+                                    Circle()
+                                        .frame(width: 35, height: 35)
+                                        .foregroundColor(.cellColor)
+                                        .overlay(Image(systemName: "pencil").foregroundColor(.tabButtonColor))
+                                }).offset(x: 40, y: -40)
+                                
+                            )
                         
-                        Text("Alina")
+                        Text(viewUserModel.userName.uppercased())
                             .font(.title2)
-                    }.padding(.top, 50)
+                    }
+                    .onAppear {
+                        self.loadImage()
+                    }
+                    .padding(.top, 50)
                     
                     VStack(alignment: .leading) {
                         Text("Activity".uppercased())
@@ -65,6 +86,16 @@ struct ProfileView: View {
             }
             .navigationBarHidden(true)
         }
+    }
+    
+    func loadImage() {
+        let data = helper.loadImage(imageIdName: viewUserModel.userId.uuidString)
+        guard  let loadedData = data else {
+            return
+        }
+        self.inputImage =  UIImage(data: loadedData)
+        self.image = Image(uiImage: inputImage!)
+
     }
 
     func chartHeigth(value: Int) -> Double {

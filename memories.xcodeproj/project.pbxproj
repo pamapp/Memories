@@ -37,6 +37,9 @@
 		91A236F3281919F600D09D3C /* LocationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A236F2281919F600D09D3C /* LocationModel.swift */; };
 		91A236F528193A1A00D09D3C /* LocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A236F428193A1A00D09D3C /* LocationView.swift */; };
 		91A857CF27B7CEAE0001545D /* BackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A857CE27B7CEAE0001545D /* BackgroundView.swift */; };
+		91A914D428267BB3007366D1 /* User+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A914D228267BB3007366D1 /* User+CoreDataClass.swift */; };
+		91A914D528267BB3007366D1 /* User+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A914D328267BB3007366D1 /* User+CoreDataProperties.swift */; };
+		91A914D728267C05007366D1 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A914D628267C05007366D1 /* UserModel.swift */; };
 		91AB5DB2280EE78C008D8C89 /* Font+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91AB5DB1280EE78C008D8C89 /* Font+Extensions.swift */; };
 		91B0578426984CBB003E4963 /* MemoriesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91B0578326984CBB003E4963 /* MemoriesView.swift */; };
 		91BAC844276A8BE900CA60A1 /* Commentarium.xcdatamodeld in Resources */ = {isa = PBXBuildFile; fileRef = 91BAC83F276A8AF300CA60A1 /* Commentarium.xcdatamodeld */; };
@@ -98,6 +101,9 @@
 		91A236F2281919F600D09D3C /* LocationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationModel.swift; sourceTree = "<group>"; };
 		91A236F428193A1A00D09D3C /* LocationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationView.swift; sourceTree = "<group>"; };
 		91A857CE27B7CEAE0001545D /* BackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundView.swift; sourceTree = "<group>"; };
+		91A914D228267BB3007366D1 /* User+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "User+CoreDataClass.swift"; path = "../../../../.Trash/User+CoreDataClass.swift"; sourceTree = "<group>"; };
+		91A914D328267BB3007366D1 /* User+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "User+CoreDataProperties.swift"; path = "../../../../.Trash/User+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		91A914D628267C05007366D1 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		91AB5DB1280EE78C008D8C89 /* Font+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Font+Extensions.swift"; sourceTree = "<group>"; };
 		91B0578326984CBB003E4963 /* MemoriesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoriesView.swift; sourceTree = "<group>"; };
 		91BAC840276A8AF300CA60A1 /* Commentarium.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Commentarium.xcdatamodel; sourceTree = "<group>"; };
@@ -172,6 +178,7 @@
 				910A0C4D274423B000E7A42D /* MemoryModel.swift */,
 				91A236F2281919F600D09D3C /* LocationModel.swift */,
 				91BE149A281AD96500800B67 /* MapViewModel.swift */,
+				91A914D628267C05007366D1 /* UserModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -226,11 +233,13 @@
 			children = (
 				910A0C532744248A00E7A42D /* Persistence.swift */,
 				91A236EE2819155D00D09D3C /* Location+CoreDataClass.swift */,
-				910A0C582744249500E7A42D /* Memory+CoreDataClass.swift */,
-				910A0C552744249400E7A42D /* Folder+CoreDataClass.swift */,
 				91A236F0281915B800D09D3C /* Location+CoreDataProperties.swift */,
+				910A0C582744249500E7A42D /* Memory+CoreDataClass.swift */,
 				910A0C572744249500E7A42D /* Memory+CoreDataProperties.swift */,
+				910A0C552744249400E7A42D /* Folder+CoreDataClass.swift */,
 				910A0C562744249400E7A42D /* Folder+CoreDataProperties.swift */,
+				91A914D228267BB3007366D1 /* User+CoreDataClass.swift */,
+				91A914D328267BB3007366D1 /* User+CoreDataProperties.swift */,
 			);
 			name = CoreData;
 			path = "New Group";
@@ -399,11 +408,13 @@
 				91BE1499281AD93000800B67 /* ProfileView.swift in Sources */,
 				910A0C5A2744249500E7A42D /* Folder+CoreDataProperties.swift in Sources */,
 				91984A5E27AA9BF300B6703F /* Color+Extensions.swift in Sources */,
+				91A914D528267BB3007366D1 /* User+CoreDataProperties.swift in Sources */,
 				91A236F3281919F600D09D3C /* LocationModel.swift in Sources */,
 				910A0C4F274423B000E7A42D /* MemoryModel.swift in Sources */,
 				91C0454826CA603600E29DDC /* FoldersView.swift in Sources */,
 				91CAE451274622320020D0DB /* ButtonStyle.swift in Sources */,
 				910E229127BEC4220092B511 /* SearchBar.swift in Sources */,
+				91A914D728267C05007366D1 /* UserModel.swift in Sources */,
 				91C0F39E27C1828B00806BE2 /* LocationSelectView.swift in Sources */,
 				912B935128112F4A007D1AEA /* TestView.swift in Sources */,
 				918495DB26C53AA100362A84 /* Helper.swift in Sources */,
@@ -415,6 +426,7 @@
 				910A0C5C2744249500E7A42D /* Memory+CoreDataClass.swift in Sources */,
 				91984A5C27AA8E8B00B6703F /* ContentView.swift in Sources */,
 				91A236F528193A1A00D09D3C /* LocationView.swift in Sources */,
+				91A914D428267BB3007366D1 /* User+CoreDataClass.swift in Sources */,
 				91326CAB2698769B0044F71D /* MemoryCellView.swift in Sources */,
 				910A0C542744248A00E7A42D /* Persistence.swift in Sources */,
 				91C0454A26CA83F600E29DDC /* FolderCellView.swift in Sources */,

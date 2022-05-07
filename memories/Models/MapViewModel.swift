@@ -132,9 +132,8 @@ class MapViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
         
         guard let location = locations.last else { return }
         
-//        self.region = MKCoordinateRegion(center: location.coordinate, latitudinalMeters: 100, longitudinalMeters: 100)
         self.region = MKCoordinateRegion(center: location.coordinate, span: MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05))
-        //updating map...
+
         self.mapView.setRegion(self.region, animated: true)
         
         self.latitude = mapView.centerCoordinate.latitude
@@ -148,7 +147,7 @@ class MapViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
             self.name = placemark.postalAddressFormatted ?? ""
         }
         
-        //Smooth animations
+
         self.mapView.setVisibleMapRect(self.mapView.visibleMapRect, animated: true)
     }
 }
