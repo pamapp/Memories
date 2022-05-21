@@ -22,22 +22,30 @@ extension Memory {
         return NSFetchedResultsController(fetchRequest: request, managedObjectContext: moc, sectionNameKeyPath: nil, cacheName: nil)
     }
     
-    @NSManaged public var place: String?
     @NSManaged public var content: String?
+    @NSManaged public var title: String?
     @NSManaged public var date: Date?
     @NSManaged public var id: UUID?
     @NSManaged public var isFavorite: Bool
+    @NSManaged public var color: Int16
     @NSManaged public var is_in: Folder?
-
+    @NSManaged public var place: Location
+    
     public var safeTextContent: String {
         get { content ?? "" }
         set { content = newValue }
     }
     
-    public var safePlaceContent: String {
-        get { place ?? "" }
-        set { place = newValue }
+    public var safeTitleContent: String {
+        get { title ?? "" }
+        set { title = newValue }
     }
+    
+    public var safePlaceContent: String {
+        get { place.name ?? "" }
+        set { place.name = newValue }
+    }
+    
     
     public var safeID: UUID {
         get { id ?? UUID() }
@@ -48,6 +56,12 @@ extension Memory {
         return safeTextContent != ""
                 ? String(safeTextContent.split(whereSeparator: \.isNewline)[0])
                 : "Something"
+    }
+    
+    public var safeTitle: String {
+        return safeTitleContent != ""
+                ? String(safeTitleContent.split(whereSeparator: \.isNewline)[0])
+                : "Untitled"
     }
     
     public var safePlace: String {

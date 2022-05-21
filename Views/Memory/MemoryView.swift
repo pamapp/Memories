@@ -19,6 +19,11 @@ struct MemoryView: View {
     @State var image: Image? = Image("test_photo")
     
     @ObservedObject var viewModel: MemoriesView.MemoryModel
+    @ObservedObject var viewLocationModel: LocationSelectView.LocationModel
+    
+    let imageHeight = UIScreen.main.bounds.height / 4
+    let infoWidth = UIScreen.main.bounds.width / 2
+
     
     var memory: Memory
     
@@ -26,60 +31,84 @@ struct MemoryView: View {
     
     var body: some View {
         ZStack {
+            Color.mainBackgroundColor
+                .ignoresSafeArea()
             if !showEditView {
-                VStack {
-                    image?
-                        .resizable()
-                        .scaledToFit()
-                        .frame(height: 150)
-                        .cornerRadius(10)
-                        .onTapGesture {
-                            self.showImage.toggle()
-                        }
+                VStack(spacing: 15) {
+                    VStack(alignment: .center) {
+                        image?
+                            .resizable()
+                            .scaledToFill()
+                            .frame(width: UIScreen.main.bounds.width / 1.1, height: imageHeight)
+                            .clipped()
+                            .cornerRadius(15)
+                            .onTapGesture {
+                                self.showImage.toggle()
+                            }
+                    }.padding(.top, 0)
                     
-                    List {
-                        Section(header: Text("MEMORY INFO")) {
-                            HStack(alignment: .center) {
-                                Text("Date")
-                                
-                                Spacer()
-
-                                Text(dateString(memory.date))
-                                    .font(.system(size: 18, design: .serif))
-                                    .foregroundColor(.secondary)
-                            }
-                            
-                            HStack() {
-                                Text("Place")
-                                
-                                Spacer()
-                                
+                    VStack {
+                        HStack(alignment: .center) {
+                            HStack(spacing: 2) {
+                                Image(systemName: "mappin")
+                                    .font(.system(size: 15))
+                                    .foregroundColor(.tabButtonColor)
                                 Text(memory.safePlace)
-                                    .foregroundColor(.secondary)
-                                    .font(.system(size: 18, design: .serif))
+                                    .font(.system(size: 15, weight: .bold))
+                                    .foregroundColor(.tabButtonColor)
                             }
+                            Spacer()
+                            Text(dateString(memory.date))
+                                .font(.system(size: 15, weight: .bold))
+                                .foregroundColor(.tabButtonColor)
                         }
-                        
-                        Section(header: Text("MEMORY")) {
-                            ScrollView(.vertical, showsIndicators: true) {
-                                Text(memory.safeText)
-                                    .font(.system(size: 18, design: .serif))
-                            }
+                    }.padding(.horizontal, 25)
+                    
+                    Divider()
+                    
+                    VStack {
+                        HStack {
+                            Text(memory.safeTitle)
+                                .font(.montserrat(18))
+//                                .font(.system(size: 18, weight: .bold, design: .serif))
                         }
                     }
-                    .listStyle(.grouped)
-                    .padding(.top, 10)
-                    .hasScrollEnabled(false)
-
-                    Spacer()
                     
+                    VStack(alignment: .leading) {
+                        HStack {
+                            ScrollView(.vertical, showsIndicators: true) {
+                                Text(memory.safeText)
+                                    .font(.montserrat(18))
+                                    .lineSpacing(10)
+//                                    .font(.system(size: 18, weight: .regular, design: .serif))
+                            }
+                            Spacer()
+                        }
+                    }.padding(.leading, 15).padding(.bottom, 50)
+                    
+                    Spacer()
                 }
                 .onAppear {
                     self.loadImage()
                 }
+                
                 .navigationBarTitle(Text(navDateString(memory.date)), displayMode: .inline)
-
+                .navigationBarBackButtonHidden(true)
+                
                 .toolbar {
+                    ToolbarItem(placement: .navigationBarLeading) {
+                        Button() {
+                            self.isPresented.wrappedValue.dismiss()
+                        } label: {
+                            HStack {
+                                Image(systemName: "chevron.left")
+                                    .foregroundColor(.white)
+                                Text("Back")
+                                    .foregroundColor(.white)
+                            }
+                        }
+                    }
+                    
                     ToolbarItem(placement: .navigationBarTrailing) {
                         Menu {
                             Button(action: {
@@ -95,6 +124,7 @@ struct MemoryView: View {
 
                             Button(action: {
                                 self.isPresented.wrappedValue.dismiss()
+                                self.viewLocationModel.removeLocation(location: memory.place)
                                 self.viewModel.removeMemory(memory: memory)
                             }, label: {
                                 Label (
@@ -104,18 +134,27 @@ struct MemoryView: View {
                             })
                             
                             Button(action: {
-        //                        self.isPresented.wrappedValue.dismiss()
-        //                        self.deleteMemory()
+                                if !memory.isFavorite {
+                                    self.viewModel.addtoFavorites(memory: memory)
+                                } else {
+                                    self.viewModel.removeFromFavorites(memory: memory)
+                                }
                             }, label: {
                                 Label (
-                                    title: { Text("Add to the favorites") },
+                                    title: {
+                                        if !memory.isFavorite {
+                                            Text("Add to favorites")
+                                        } else {
+                                            Text("Remove from favorites")
+                                        }
+                                    },
                                     icon: { Image(systemName: "star") }
                                 )
                             })
                         } label: {
                             Label (
                                 title: { Text("Menu") },
-                                icon: { Image(systemName: "ellipsis") }
+                                icon: { Image(systemName: "ellipsis").foregroundColor(.white) }
                             )
                         }
                     }
@@ -127,9 +166,9 @@ struct MemoryView: View {
                         Color.black
                             .edgesIgnoringSafeArea(.all)
                             .onTapGesture {
-    //                            withAnimation{
+                                withAnimation{
                                     self.showImage.toggle()
-    //                            }
+                                }
                             }
                             
                         image?
@@ -170,7 +209,7 @@ struct MemoryView: View {
     
     private func dateString(_ date: Date?) -> String{
         let formatter = DateFormatter()
-        formatter.dateFormat = "dd.MM.yyyy, EE"
+        formatter.dateFormat = "MMMM d, yyyy"
         if let date = date{
             return formatter.string(from: date)
         }
@@ -187,3 +226,6 @@ struct MemoryView: View {
     }
     
 }
+
+
+//ссылка на источник рядом с картинкой

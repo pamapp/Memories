@@ -114,7 +114,7 @@ struct SwipeContainerCell: ViewModifier  {
                         CellButtonView.init(data: buttonsData, cellHeight: 90)
                     })
                 }
-            }.frame(width: 330)
+            }.frame(width: UIScreen.main.bounds.width / 1.15)
             
             content
                 .contentShape(RoundedRectangle(cornerRadius: 15))

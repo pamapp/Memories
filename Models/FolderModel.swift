@@ -16,8 +16,9 @@ extension FoldersView{
 
         public var alert = false
         public var alertMessage = ""
+        
         init(moc: NSManagedObjectContext) {
-            let sortDescriptors = [NSSortDescriptor(keyPath: \Folder.isFavorite, ascending: false)]
+            let sortDescriptors = [NSSortDescriptor(keyPath: \Folder.isFavorite, ascending: false), NSSortDescriptor(keyPath: \Folder.name, ascending: true)]
             controller = Folder.resultsController(moc: moc, sortDescriptors: sortDescriptors)
             super.init()
             
@@ -38,76 +39,86 @@ extension FoldersView{
         func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
             objectWillChange.send()
         }
-
-        func addNewFolder(name: String, image: UIImage?){
-//            if(name.count > 0) {
+    
+        
+        func getDefaultFolder() -> Folder {
+            if folders.isEmpty {
+                let folder = Folder(context: controller.managedObjectContext)
+                folder.name = "Folder"
+                folder.isFavorite = false
+                folder.id = UUID()
+                folder.color = 0
+                saveContext()
+                return folder
+            } else {
+                return folders[0]
+            }
+        }
+        
+        func getFolderColor(folder: Folder) -> Color {
+            let color = folder.color
+            switch color {
+            case 0: return .defaultFolderColor
+            case 1: return .pickerGreen
+            case 2: return .pickerBlue
+            case 3: return .pickerPink
+            case 4: return .pickerPurple
+            default:
+                return .defaultFolderColor
+            }
+        }
+        
+        func addNewFolder(name: String, isFav: Bool, color: Int) {
             let folder = Folder(context: controller.managedObjectContext)
             folder.name = name
-            folder.isFavorite = false
+            folder.isFavorite = isFav
             folder.id = UUID()
-//            }
-            savesImage(Name: folder.id!.uuidString, inputImage: image)
+            folder.color = Int16(color)
             saveContext()
         }
         
-        
-        func editFolder(folder: Folder, name: String, image: UIImage?){
+        func editFolder(folder: Folder, name: String, isFav: Bool, color: Int) {
             folder.name = name
-//            deleteFromDirectory(Name: folder.id!.uuidString)
-            savesImage(Name: folder.id!.uuidString, inputImage: image)
+            folder.isFavorite = isFav
+            folder.color = Int16(color)
             saveContext()
         }
         
-        func favToggle(folder: Folder) {
-            folder.isFavorite.toggle()
+        func addFolderToFavorites(folder: Folder) {
+            folder.isFavorite = true
             saveContext()
         }
-      
-        func removeFolder(folder: Folder){
+        
+        func removeFolderFromFavorites(folder: Folder) {
+            folder.isFavorite = false
+            saveContext()
+        }
+        
+        func removeFolder(folder: Folder) {
             controller.managedObjectContext.delete(folder)
             saveContext()
         }
+
         
-        func saveContext(){
-            do{
+        func saveContext() {
+            do {
                 try controller.managedObjectContext.save()
                 alert = false
-            }catch {
+            } catch {
                 alert =  true
                 alertMessage = "Saving data error"
             }
         }
         
-        func getMemoriesNum(folder: Folder) -> String {
-            let memoriesNum = folder.safeMemoriesNumber
-            if memoriesNum == 1 {
-                return "\(memoriesNum) memory"
-            } else if memoriesNum > 1 {
-                return "\(memoriesNum) memories"
+        func getMemoriesNum() -> Int {
+            var memoriesNum: Int = 0
+            
+            for folder in folders {
+                memoriesNum += folder.safeMemoriesNumber
             }
-            return "No memories"
+            return memoriesNum
         }
         
-        func savesImage(Name: String, inputImage: UIImage?) {
-            let fileName = helper.getDocumentsDirectory().appendingPathComponent(Name)
-            do {
-                if let jpegData = inputImage?.jpegData(compressionQuality: 0.8) {
-                    try jpegData.write(to: fileName, options: [.atomicWrite, .completeFileProtection])
-                }
-            } catch {
-                print("Unable to save image")
-            }
-         }
         
-        func deleteFromDirectory(Name: String) {
-            let fileName = helper.getDocumentsDirectory().appendingPathComponent(Name)
-            let filePath = fileName.path
-            let fileManager = FileManager.default
-            if fileManager.fileExists(atPath: filePath) {
-                try? fileManager.removeItem(atPath: filePath)
-            } else {
-                print("File at path \(filePath) does not exist")
-            }
-        }
     }
 }

@@ -11,7 +11,7 @@ struct Title: ViewModifier {
     func body(content: Content) -> some View {
         content
             .foregroundColor(.black)
-            .font(.system(size: 25, weight: .bold, design: .serif))
+            .font(.montserrat(25))
             .padding()
     }
 }
@@ -19,7 +19,7 @@ struct Title: ViewModifier {
 struct MemoryText: ViewModifier {
     func body(content: Content) -> some View {
         content
-            .font(.system(size: 25, weight: .bold, design: .serif))
+            .font(.montserrat(25))
             .foregroundColor(.black)
             .accentColor(.black)
             .multilineTextAlignment(.center)
@@ -30,7 +30,15 @@ struct MemoryText: ViewModifier {
 struct InfoLineText: ViewModifier {
     func body(content: Content) -> some View {
         content
-            .font(.system(size: 18))
+            .font(.montserrat(18))
     }
 }
 
+struct ListFootnoteText: ViewModifier {
+    func body(content: Content) -> some View {
+        content
+            .font(.montserrat(14))
+            .foregroundColor(.secondary)
+            .padding(.leading, 20)
+    }
+}
