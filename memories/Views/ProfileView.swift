@@ -37,19 +37,8 @@ struct ProfileView: View {
                             .frame(width: 125, height: 125)
                             .clipped()
                             .mask(Circle())
-                            .overlay(
-                                Button (action: {
-                                    print("Edit")
-                                }, label: {
-                                    Circle()
-                                        .frame(width: 35, height: 35)
-                                        .foregroundColor(.cellColor)
-                                        .overlay(Image(systemName: "pencil").foregroundColor(.tabButtonColor))
-                                }).offset(x: 40, y: -40)
-                                
-                            )
                         
-                        Text(viewUserModel.userName.uppercased())
+                        Text(viewUserModel.userName)
                             .font(.title2)
                     }
                     .onAppear {
@@ -62,6 +51,9 @@ struct ProfileView: View {
                             .padding(.horizontal, 40)
                         activityView
                             .padding(.horizontal, 25)
+                            .onAppear {
+                                self.loadImage()
+                            }
                     }
                     
                     VStack(alignment: .leading) {

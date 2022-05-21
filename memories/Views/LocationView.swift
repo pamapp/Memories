@@ -33,7 +33,7 @@ struct LocationView: View {
                 HStack {
                     Spacer()
                     Button(action: {
-//                    mapData.focusLocation()
+                        //mapData.focusLocation()
                     }, label: {
                         Image(systemName: "location.fill")
                             .font(.title2)

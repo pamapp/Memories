@@ -52,8 +52,12 @@ struct ContentView: View {
                 tag: "Profile"
             ),TabBarPage(
                 page:
-                    Text("Settings View")
-                    .preferredColorScheme(.dark),
+                    SettingsView(
+                        viewUserModel: ProfileView.UserModel.init(moc: persistenceController.container.viewContext),
+                        image: ProfileView.UserModel.init(moc: persistenceController.container.viewContext).getDefaultUserImage(),
+                        name: ProfileView.UserModel.init(moc: persistenceController.container.viewContext).getDefaultUser().name ?? "Username",
+                        user: ProfileView.UserModel.init(moc: persistenceController.container.viewContext).getDefaultUser())
+                        .preferredColorScheme(.dark),
                 icon: "gearshape",
                 fillIcon: "gearshape.fill",
                 tag: "Settings"

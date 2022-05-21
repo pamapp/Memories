@@ -31,12 +31,12 @@ struct SelectAddView: View {
                         title: "New Memory",
                         color: Color.tabButtonColor
                     )
-                    SelectCellView (
-                        page: Text("Dream Add"),
-                        image: Image(systemName: "moon.fill"),
-                        title: "New Dream",
-                        color: Color.white
-                    )
+//                    SelectCellView (
+//                        page: Text("Dream Add"),
+//                        image: Image(systemName: "moon.fill"),
+//                        title: "New Dream",
+//                        color: Color.white
+//                    )
                 }
                 .padding(.bottom, 20)
             }

@@ -251,7 +251,7 @@ struct MemoryAddView: View {
                                         }.padding(.trailing, 18)
                                         .sheet(isPresented: $isShowPicker, onDismiss: loadImage) {
                                             ImagePicker(image: self.$inputImage)
-                                                .accentColor(.green)
+                                                .accentColor(.white)
                                         }
                                     }
                                 )

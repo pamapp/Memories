@@ -69,7 +69,8 @@ struct MemoryView: View {
                     VStack {
                         HStack {
                             Text(memory.safeTitle)
-                                .font(.system(size: 18, weight: .bold, design: .serif))
+                                .font(.montserrat(18))
+//                                .font(.system(size: 18, weight: .bold, design: .serif))
                         }
                     }
                     
@@ -77,7 +78,9 @@ struct MemoryView: View {
                         HStack {
                             ScrollView(.vertical, showsIndicators: true) {
                                 Text(memory.safeText)
-                                    .font(.system(size: 18, weight: .regular, design: .serif))
+                                    .font(.montserrat(18))
+                                    .lineSpacing(10)
+//                                    .font(.system(size: 18, weight: .regular, design: .serif))
                             }
                             Spacer()
                         }

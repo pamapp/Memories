@@ -19,6 +19,8 @@ struct MemoriesView: View {
     @State private var searchText: String = ""
     @State private var showAddMemory = false
     @State private var showEditFolder = false
+    @State private var showDeleteFolder = false
+    
     @State var date = Date()
     
     var folder: Folder
@@ -70,7 +72,7 @@ struct MemoriesView: View {
             .navigationTitle("\(folder.safeName)")
             .navigationBarBackButtonHidden(true)
 
-            .toolbar{
+            .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
                     Button() {
                         presentationMode.wrappedValue.dismiss()
@@ -86,11 +88,7 @@ struct MemoriesView: View {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Menu {
                         Button(action: {
-                            presentationMode.wrappedValue.dismiss()
-                            for memory in self.viewModel.memories {
-                                self.viewLocationModel.removeLocation(location: memory.place)
-                            }
-                            self.viewFolderModel.removeFolder(folder: folder)
+                            self.showDeleteFolder = true
                         }, label: {
                             Label (
                                 title: { Text("Delete Folder") },
@@ -112,7 +110,7 @@ struct MemoriesView: View {
                         } label: {
                             Label (
                                 title: { Text("Add new Memory") },
-                                                          icon: { Image(systemName: "cloud.fill") }
+                                icon: { Image(systemName: "cloud.fill") }
                             )
                         }
                     } label: {
@@ -133,7 +131,20 @@ struct MemoriesView: View {
                     )
                 }
             }
-            
+            .alert(isPresented: $showDeleteFolder) {
+                Alert (
+                  title: Text("Delete Folder"),
+                  message: Text("Are you sure that you want to delete this folder?"),
+                  primaryButton: .cancel(Text("No"), action: {print("No")}),
+                  secondaryButton: .destructive(Text("Yes"), action: {
+                      presentationMode.wrappedValue.dismiss()
+                      for memory in self.viewModel.memories {
+                          self.viewLocationModel.removeLocation(location: memory.place)
+                      }
+                      self.viewFolderModel.removeFolder(folder: folder)
+                  })
+                )
+            }
         }
     }
 }

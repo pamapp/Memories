@@ -65,12 +65,32 @@ extension ProfileView {
                 alertMessage = "Saving data error"
             }
         }
-    
-        func addUserData(name: String, image: UIImage?) {
-            let user = User(context: controller.managedObjectContext)
-            user.name = name
-            savesImage(Name: user.id!.uuidString, inputImage: image)
-            saveContext()
+        
+        func getDefaultUser() -> User {
+            if user.isEmpty {
+                let user = User(context: controller.managedObjectContext)
+                user.name = "User"
+                user.id = UUID()
+                savesImage(Name: user.id!.uuidString, inputImage: UIImage(systemName: "person"))
+                saveContext()
+                return user
+            } else {
+                return user[0]
+            }
+        }
+        
+        func getDefaultUserImage() -> Image {
+            if user[0].id == nil {
+                print("nil")
+            }
+            else {
+                let data = helper.loadImage(imageIdName: user[0].id!.uuidString)
+                guard let loadedData = data else {
+                    return Image("test_photo")
+                }
+                return Image(uiImage: UIImage(data: loadedData)!)
+            }
+            return Image("test_photo")
         }
         
         func editUserData(user: User, name: String, image: UIImage?) {
