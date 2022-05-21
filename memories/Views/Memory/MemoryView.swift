@@ -14,6 +14,7 @@ struct MemoryView: View {
 
     @State var showImage: Bool = false
     @State var showEditView = false
+    @State var showDeleteView = false
     
     @State private var inputImage: UIImage?
     @State var image: Image? = Image("test_photo")
@@ -112,8 +113,6 @@ struct MemoryView: View {
                     ToolbarItem(placement: .navigationBarTrailing) {
                         Menu {
                             Button(action: {
-        //                        self.isPresented.wrappedValue.dismiss()
-        //                        self.deleteMemory()
                                 self.showEditView.toggle()
                             }, label: {
                                 Label (
@@ -123,9 +122,7 @@ struct MemoryView: View {
                             })
 
                             Button(action: {
-                                self.isPresented.wrappedValue.dismiss()
-                                self.viewLocationModel.removeLocation(location: memory.place)
-                                self.viewModel.removeMemory(memory: memory)
+                                self.showDeleteView = true
                             }, label: {
                                 Label (
                                     title: { Text("Delete") },
@@ -158,6 +155,18 @@ struct MemoryView: View {
                             )
                         }
                     }
+                }
+                .alert(isPresented: $showDeleteView) {
+                    Alert (
+                      title: Text("Delete Memory"),
+                      message: Text("Are you sure that you want to delete this memory?"),
+                      primaryButton: .cancel(Text("No"), action: {print("No")}),
+                      secondaryButton: .destructive(Text("Yes"), action: {
+                          self.isPresented.wrappedValue.dismiss()
+                          self.viewLocationModel.removeLocation(location: memory.place)
+                          self.viewModel.removeMemory(memory: memory)
+                      })
+                    )
                 }
                 .padding(.top, 30)
                 
