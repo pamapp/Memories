@@ -87,7 +87,7 @@ struct SettingsView: View {
                 .onAppear {
                     self.loadImage()
                 }
-                .padding(.top, 70)
+                .padding(.top, 50)
                 Spacer()
             }
             HStack {
