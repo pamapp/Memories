@@ -23,10 +23,12 @@ extension View {
     public func listFootnoteTextStyle() -> some View {
         self.modifier(ListFootnoteText())
     }
+    public func specialNavBar() -> some View {
+        self.modifier(SpecialNavBar())
+    }
 }
 
 extension View {
-    
     func hasScrollEnabled(_ value: Bool) -> some View {
         self.onAppear {
             UITableView.appearance().isScrollEnabled = value
@@ -159,3 +161,17 @@ extension Array {
         return arrayOrdered
     }
 }
+
+
+struct SpecialNavBar: ViewModifier {
+
+    init() {
+        UINavigationBar.appearance().largeTitleTextAttributes = [.font: UIFont(name: "Montserrat-Bold", size: 32)!]
+    }
+
+    func body(content: Content) -> some View {
+        content
+    }
+
+}
+

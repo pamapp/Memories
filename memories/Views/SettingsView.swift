@@ -69,7 +69,7 @@ struct SettingsView: View {
                                         .multilineTextAlignment(.leading)
                                         .foregroundColor(.white)
                                         .accentColor(.white)
-                                        .font(.system(size: 18, design: .serif))
+                                        .font(.montserrat(17))
                                         .padding(.leading, 20)
                                         .onReceive(name.publisher.collect()) {
                                             let s = String($0.prefix(characterLimit))
@@ -122,7 +122,7 @@ struct SettingsView: View {
                 .overlay(
                     Text("Save")
                         .foregroundColor(.white)
-                        .fontWeight(.bold)
+                        .font(.montserratBold(16))
                 )
         }
     }

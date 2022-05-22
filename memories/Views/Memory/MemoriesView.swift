@@ -37,7 +37,6 @@ struct MemoriesView: View {
         if searchText.isEmpty {
             return viewModel.memories
         } else {
-            print("here i am")
             return viewModel.memories.filter{
                 ($0.place.name?.localizedCaseInsensitiveContains(searchText))! ||
                 ($0.content?.localizedCaseInsensitiveContains(searchText))! ||
@@ -70,6 +69,7 @@ struct MemoriesView: View {
                 }.searchable(text: $searchText, placement: .navigationBarDrawer).padding(.horizontal, 10)
             }
             .navigationTitle("\(folder.safeName)")
+            .specialNavBar()
             .navigationBarBackButtonHidden(true)
 
             .toolbar {
@@ -82,6 +82,7 @@ struct MemoriesView: View {
                                 .foregroundColor(.white)
                             Text("Back")
                                 .foregroundColor(.white)
+                                .font(.montserratBold(16))
                         }
                     }
                 }

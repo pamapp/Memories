@@ -24,7 +24,6 @@ struct MemoryView: View {
     
     let imageHeight = UIScreen.main.bounds.height / 4
     let infoWidth = UIScreen.main.bounds.width / 2
-
     
     var memory: Memory
     
@@ -34,8 +33,9 @@ struct MemoryView: View {
         ZStack {
             Color.mainBackgroundColor
                 .ignoresSafeArea()
-            if !showEditView {
-                VStack(spacing: 15) {
+
+            VStack(spacing: 15) {
+                ScrollView(.vertical, showsIndicators: true) {
                     VStack(alignment: .center) {
                         image?
                             .resizable()
@@ -46,151 +46,176 @@ struct MemoryView: View {
                             .onTapGesture {
                                 self.showImage.toggle()
                             }
-                    }.padding(.top, 0)
-                    
-                    VStack {
-                        HStack(alignment: .center) {
-                            HStack(spacing: 2) {
-                                Image(systemName: "mappin")
-                                    .font(.system(size: 15))
-                                    .foregroundColor(.tabButtonColor)
-                                Text(memory.safePlace)
-                                    .font(.system(size: 15, weight: .bold))
-                                    .foregroundColor(.tabButtonColor)
-                            }
-                            Spacer()
-                            Text(dateString(memory.date))
-                                .font(.system(size: 15, weight: .bold))
-                                .foregroundColor(.tabButtonColor)
-                        }
-                    }.padding(.horizontal, 25)
-                    
-                    Divider()
+                    }
                     
                     VStack {
                         HStack {
                             Text(memory.safeTitle)
-                                .font(.montserrat(18))
-//                                .font(.system(size: 18, weight: .bold, design: .serif))
+                                .font(.montserratBold(18))
                         }
-                    }
+                    }.padding(.horizontal, 7).padding(.top, 10)
                     
+                    Divider()
+                       
                     VStack(alignment: .leading) {
                         HStack {
-                            ScrollView(.vertical, showsIndicators: true) {
-                                Text(memory.safeText)
-                                    .font(.montserrat(18))
-                                    .lineSpacing(10)
-//                                    .font(.system(size: 18, weight: .regular, design: .serif))
-                            }
+                            Text(memory.safeText)
+                                .font(.montserrat(15))
+                                .lineSpacing(10)
                             Spacer()
                         }
-                    }.padding(.leading, 15).padding(.bottom, 50)
-                    
-                    Spacer()
+                    }.padding(.leading, 15)
                 }
-                .onAppear {
-                    self.loadImage()
-                }
+                .padding(.top, -10)
                 
-                .navigationBarTitle(Text(navDateString(memory.date)), displayMode: .inline)
-                .navigationBarBackButtonHidden(true)
-                
-                .toolbar {
-                    ToolbarItem(placement: .navigationBarLeading) {
-                        Button() {
-                            self.isPresented.wrappedValue.dismiss()
-                        } label: {
-                            HStack {
-                                Image(systemName: "chevron.left")
-                                    .foregroundColor(.white)
-                                Text("Back")
-                                    .foregroundColor(.white)
-                            }
-                        }
-                    }
-                    
-                    ToolbarItem(placement: .navigationBarTrailing) {
-                        Menu {
-                            Button(action: {
-                                self.showEditView.toggle()
-                            }, label: {
-                                Label (
-                                    title: { Text("Edit") },
-                                    icon: { Image(systemName: "pencil") }
-                                )
-                            })
-
-                            Button(action: {
-                                self.showDeleteView = true
-                            }, label: {
-                                Label (
-                                    title: { Text("Delete") },
-                                    icon: { Image(systemName: "xmark.bin") }
-                                )
-                            })
-                            
-                            Button(action: {
-                                if !memory.isFavorite {
-                                    self.viewModel.addtoFavorites(memory: memory)
-                                } else {
-                                    self.viewModel.removeFromFavorites(memory: memory)
+                VStack {
+                    HStack(alignment: .center) {
+                        RoundedRectangle(cornerRadius: 15)
+                            .frame(width: 165, height: 35)
+                            .foregroundColor(.tabColor)
+                            .overlay (
+                                HStack(spacing: 2) {
+                                    Image(systemName: "mappin")
+                                        .font(.system(size: 14))
+                                        .foregroundColor(.white)
+                                    Text(memory.safePlace)
+                                        .font(.montserratBold(14))
+                                        .fontWeight(.heavy)
+                                        .foregroundColor(.white)
                                 }
-                            }, label: {
-                                Label (
-                                    title: {
-                                        if !memory.isFavorite {
-                                            Text("Add to favorites")
-                                        } else {
-                                            Text("Remove from favorites")
-                                        }
-                                    },
-                                    icon: { Image(systemName: "star") }
-                                )
-                            })
-                        } label: {
-                            Label (
-                                title: { Text("Menu") },
-                                icon: { Image(systemName: "ellipsis").foregroundColor(.white) }
                             )
+                        Spacer()
+                        
+                        RoundedRectangle(cornerRadius: 15)
+                            .frame(width: 165, height: 35)
+                            .foregroundColor(.tabColor)
+                            .overlay(
+                                Text(dateString(memory.date))
+                                    .font(.montserrat(14))
+                                    .fontWeight(.heavy)
+                                    .foregroundColor(.white)
+                            )
+                    }
+                }
+                .padding(.horizontal, 15)
+                .padding(.top, 3)
+                .padding(.bottom, 75)
+            }
+            .onAppear {
+                self.loadImage()
+            }
+            
+            .navigationBarTitle(Text(navDateString(memory.date)), displayMode: .inline)
+            .navigationBarBackButtonHidden(true)
+            
+            .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Button() {
+                        self.isPresented.wrappedValue.dismiss()
+                    } label: {
+                        HStack {
+                            Image(systemName: "chevron.left")
+                                .foregroundColor(.white)
+                            Text("Back")
+                                .foregroundColor(.white)
+                                .font(.montserratBold(16))
                         }
                     }
                 }
-                .alert(isPresented: $showDeleteView) {
-                    Alert (
-                      title: Text("Delete Memory"),
-                      message: Text("Are you sure that you want to delete this memory?"),
-                      primaryButton: .cancel(Text("No"), action: {print("No")}),
-                      secondaryButton: .destructive(Text("Yes"), action: {
-                          self.isPresented.wrappedValue.dismiss()
-                          self.viewLocationModel.removeLocation(location: memory.place)
-                          self.viewModel.removeMemory(memory: memory)
-                      })
+                
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Menu {
+                        Button(action: {
+                            self.showEditView.toggle()
+                        }, label: {
+                            Label (
+                                title: { Text("Edit") },
+                                icon: { Image(systemName: "pencil") }
+                            )
+                        })
+
+                        Button(action: {
+                            self.showDeleteView = true
+                        }, label: {
+                            Label (
+                                title: { Text("Delete") },
+                                icon: { Image(systemName: "xmark.bin") }
+                            )
+                        })
+                        
+                        Button(action: {
+                            if !memory.isFavorite {
+                                self.viewModel.addtoFavorites(memory: memory)
+                            } else {
+                                self.viewModel.removeFromFavorites(memory: memory)
+                            }
+                        }, label: {
+                            Label (
+                                title: {
+                                    if !memory.isFavorite {
+                                        Text("Add to favorites")
+                                    } else {
+                                        Text("Remove from favorites")
+                                    }
+                                },
+                                icon: { Image(systemName: "star") }
+                            )
+                        })
+                    } label: {
+                        Label (
+                            title: { Text("Menu") },
+                            icon: { Image(systemName: "ellipsis").foregroundColor(.white) }
+                        )
+                    }
+                    .background(
+                        NavigationLink(destination: MemoryEditView(
+                            memoryText: memory.safeText,
+                            memoryTitle: memory.safeTitle,
+                            placeText: memory.safePlace,
+                            date: memory.date ?? Date(),
+                            selectedColor: viewModel.getMemoryColor(memory: memory),
+                            folder: folder,
+                            image: viewModel.getMemoryImage(memory: memory),
+                            viewFolderModel: FoldersView.FolderModel.init(moc: self.viewContext),
+                            viewModel: MemoriesView.MemoryModel.init(moc: self.viewContext, folder: folder),
+                            viewLocationModel: LocationSelectView.LocationModel.init(moc: self.viewContext),
+                            memory: memory
+                        ), isActive: $showEditView) {
+                            EmptyView()
+                        }
                     )
                 }
-                .padding(.top, 30)
-                
-                if self.showImage {
-                    ZStack {
-                        Color.black
-                            .edgesIgnoringSafeArea(.all)
-                            .onTapGesture {
-                                withAnimation{
-                                    self.showImage.toggle()
-                                }
+            }
+            .alert(isPresented: $showDeleteView) {
+                Alert (
+                  title: Text("Delete Memory"),
+                  message: Text("Are you sure that you want to delete this memory?"),
+                  primaryButton: .cancel(Text("No"), action: {print("No")}),
+                  secondaryButton: .destructive(Text("Yes"), action: {
+                      self.isPresented.wrappedValue.dismiss()
+                      self.viewLocationModel.removeLocation(location: memory.place)
+                      self.viewModel.removeMemory(memory: memory)
+                  })
+                )
+            }
+            .padding(.top, 30)
+            
+            if self.showImage {
+                ZStack {
+                    Color.black
+                        .edgesIgnoringSafeArea(.all)
+                        .onTapGesture {
+                            withAnimation{
+                                self.showImage.toggle()
                             }
-                            
-                        image?
-                            .resizable()
-                            .scaledToFit()
-                            .frame(height: 350)
+                        }
                         
-                    }
-                    .navigationBarHidden(true)
+                    image?
+                        .resizable()
+                        .scaledToFit()
+                        .frame(height: 350)
                 }
-            } else {
-                MemoryEditView(showEditView: self.$showEditView, viewModel: MemoriesView.MemoryModel.init(moc: self.viewContext, folder: folder))
-                
+                .navigationBarHidden(true)
             }
         }
     }
@@ -235,6 +260,3 @@ struct MemoryView: View {
     }
     
 }
-
-
-//ссылка на источник рядом с картинкой

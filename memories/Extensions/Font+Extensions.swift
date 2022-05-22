@@ -9,6 +9,9 @@ import SwiftUI
 
 extension Font {
     static func montserrat(_ size: CGFloat = 20) -> Font {
-        .custom("Montserrat", size: size)
+        .custom("Montserrat-Regular", size: size)
+    }
+    static func montserratBold(_ size: CGFloat = 20) -> Font {
+        .custom("Montserrat-Bold", size: size)
     }
 }

@@ -41,7 +41,7 @@ struct FolderAddView: View {
         .pickerCirclePurple
     ]
 
-    var characterLimit = 15
+    var characterLimit = 13
     
     var body: some View {
         ZStack {
@@ -71,7 +71,7 @@ struct FolderAddView: View {
                             }
                     }
                     Text(name != "" ? "\(name)" : "Folder")
-                         .foregroundColor(.white)
+                        .font(.montserratBold(18))
                 }.padding(.top, 15)
                 
                 VStack(alignment: .leading) {
@@ -84,7 +84,7 @@ struct FolderAddView: View {
                                     .multilineTextAlignment(.leading)
                                     .foregroundColor(.white)
                                     .accentColor(.white)
-                                    .font(.system(size: 18, design: .serif))
+                                    .font(.montserrat(17))
                                     .padding(.leading, 20)
                                     .onReceive(name.publisher.collect()) {
                                         let s = String($0.prefix(characterLimit))
@@ -106,7 +106,7 @@ struct FolderAddView: View {
                         .overlay(
                             HStack() {
                                 Text(Strings.favorite.uppercased())
-                                    .font(Font.callout.weight(.bold))
+                                    .font(.montserratBold(16))
                                     .padding(.leading, 20)
                                 Spacer()
                                 Toggle("", isOn: $isFav)
@@ -121,12 +121,12 @@ struct FolderAddView: View {
                 VStack(alignment: .leading) {
                     RoundedRectangle(cornerRadius: 10)
                         .foregroundColor(.tabColor)
-                        .frame(width: sectionWidth, height: sectionWidth / 4.2)
+                        .frame(width: sectionWidth, height: sectionWidth / 3.8)
                         .overlay(
                             VStack {
                                 HStack {
                                     Text(Strings.folder_color.uppercased())
-                                        .font(Font.callout.weight(.bold))
+                                        .font(.montserratBold(16))
                                         .padding(.leading, 20)
                                     Spacer()
                                 }.padding(.top, 3)
@@ -184,7 +184,8 @@ struct FolderAddView: View {
                     .overlay(
                         Text("Add")
                             .foregroundColor(.white)
-                            .fontWeight(.bold)
+                            .font(.montserratBold(16))
+                            
                     )
             }
         }
@@ -199,6 +200,7 @@ struct FolderAddView: View {
                     Image(systemName: "chevron.left")
                     Text("Cancel")
                         .foregroundColor(.white)
+                        .font(.montserratBold(16))
                 }
             }
         }

@@ -11,7 +11,6 @@ struct MemoryAddView: View {
     
     @Environment(\.presentationMode) var isPresented
     @Environment(\.managedObjectContext) private var viewContext
-    @Environment(\.presentationMode) private var presentationMode
     
     @State private var memoryText: String = ""
     @State private var memoryTitle: String = ""
@@ -409,7 +408,7 @@ struct MemoryAddView: View {
     
     private var cancelToolBar: some View {
         Button() {
-            presentationMode.wrappedValue.dismiss()
+            self.isPresented.wrappedValue.dismiss()
         } label: {
             HStack {
                 Image(systemName: "chevron.left")

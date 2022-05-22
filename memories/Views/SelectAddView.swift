@@ -73,7 +73,7 @@ struct SelectCellView: View {
                             .foregroundColor(color)
                         Text(title)
                              .foregroundColor(.white)
-                             .fontWeight(.bold)
+                             .font(.montserratBold(18))
                     }
                 })
             )

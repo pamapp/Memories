@@ -40,14 +40,12 @@ struct FoldersView: View {
                     .padding(.bottom, UIScreen.main.bounds.height / 5 / 7.1)
                     .padding(.leading, 10)
                     .padding(.trailing, 10)
-                    
                 }
                 
                 .navigationTitle("Folders")
+                .specialNavBar()
             }
             .accentColor(.white)
-//            .navigationViewStyle(StackNavigationViewStyle())
-            
         }.navigationViewStyle(.stack)
     }
 }

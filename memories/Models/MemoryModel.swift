@@ -80,10 +80,35 @@ extension MemoriesView {
             saveContext()
         }
         
+        func editMemory(memory: Memory, text: String, title: String, place: Location, date: Date, folder: Folder, color: Int, image: UIImage?) {
+            memory.content = text
+            memory.title = title
+            memory.place = place
+            memory.date = date
+            memory.is_in = folder
+            memory.color = Int16(color)
+            savesImage(Name: memory.id!.uuidString, inputImage: image)
+            saveContext()
+        }
+        
         func removeMemory(memory: Memory) {
             deleteFromDirectory(Name: memory.id!.uuidString)
             controller.managedObjectContext.delete(memory)
             saveContext()
+        }
+        
+        func getMemoryImage(memory: Memory) -> Image {
+            if memory.id == nil {
+                print("nil")
+            }
+            else {
+                let data = helper.loadImage(imageIdName: memory.id!.uuidString)
+                guard let loadedData = data else {
+                    return Image("test_photo")
+                }
+                return Image(uiImage: UIImage(data: loadedData)!)
+            }
+            return Image("test_photo")
         }
         
         func saveContext(){
@@ -152,8 +177,6 @@ extension MemoriesView {
 
             return halfYearMemories
         }
-        
-        
         
         func monthToStringByDate(month: Int) -> [String] {
             let lastMonth: Int = month

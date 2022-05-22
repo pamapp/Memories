@@ -30,7 +30,7 @@ struct ProfileView: View {
                 Color.mainBackgroundColor
                     .ignoresSafeArea()
                 VStack(spacing: 40) {
-                    VStack(spacing: 10) {
+                    VStack(spacing: 20) {
                         image?
                             .resizable()
                             .aspectRatio(contentMode: .fill)
@@ -38,8 +38,8 @@ struct ProfileView: View {
                             .clipped()
                             .mask(Circle())
                         
-                        Text(viewUserModel.userName)
-                            .font(.title2)
+                        Text(viewUserModel.userName.uppercased())
+                            .font(.montserratBold(20))
                     }
                     .onAppear {
                         self.loadImage()
@@ -49,6 +49,7 @@ struct ProfileView: View {
                     VStack(alignment: .leading) {
                         Text("Activity".uppercased())
                             .padding(.horizontal, 40)
+                            .font(.montserrat(16))
                         activityView
                             .padding(.horizontal, 25)
                             .onAppear {
@@ -58,6 +59,7 @@ struct ProfileView: View {
                     
                     VStack(alignment: .leading) {
                         Text("Statistic".uppercased())
+                            .font(.montserrat(16))
                             .padding(.horizontal, 40)
                         
                         HStack(alignment: .center) {
@@ -131,10 +133,10 @@ struct ProfileView: View {
                             HStack {
                                 Text("\(statNumber)")
                                     .foregroundColor(.white)
-                                    .font(.system(size: 30))
+                                    .font(.montserrat(28))
                                 Text(statText)
                                     .foregroundColor(.white)
-                                    .font(.system(size: 20))
+                                    .font(.montserrat(20))
                             }
                         }.padding()
                         Spacer()

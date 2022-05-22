@@ -70,6 +70,7 @@ struct FolderEditView: View {
                     }
                     Text(name != "" ? "\(name)" : "Folder")
                          .foregroundColor(.white)
+                         .font(.montserratBold(18))
                 }.padding(.top, 15)
                 
                 VStack(alignment: .leading) {
@@ -82,7 +83,7 @@ struct FolderEditView: View {
                                     .multilineTextAlignment(.leading)
                                     .foregroundColor(.white)
                                     .accentColor(.white)
-                                    .font(.system(size: 18, design: .serif))
+                                    .font(.montserrat(17))
                                     .padding(.leading, 20)
                                     .onReceive(name.publisher.collect()) {
                                         let s = String($0.prefix(characterLimit))
@@ -104,7 +105,7 @@ struct FolderEditView: View {
                         .overlay(
                             HStack() {
                                 Text(Strings.favorite.uppercased())
-                                    .font(Font.callout.weight(.bold))
+                                    .font(.montserratBold(16))
                                     .padding(.leading, 20)
                                 Spacer()
                                 Toggle("", isOn: $isFav)
@@ -119,12 +120,12 @@ struct FolderEditView: View {
                 VStack(alignment: .leading) {
                     RoundedRectangle(cornerRadius: 10)
                         .foregroundColor(.tabColor)
-                        .frame(width: sectionWidth, height: sectionWidth / 4.2)
+                        .frame(width: sectionWidth, height: sectionWidth / 3.8)
                         .overlay(
                             VStack {
                                 HStack {
                                     Text(Strings.folder_color.uppercased())
-                                        .font(Font.callout.weight(.bold))
+                                        .font(.montserratBold(16))
                                         .padding(.leading, 20)
                                     Spacer()
                                 }.padding(.top, 3)
@@ -183,7 +184,7 @@ struct FolderEditView: View {
                     .overlay(
                         Text("Save")
                             .foregroundColor(.white)
-                            .fontWeight(.bold)
+                            .font(.montserratBold(16))
                     )
             }
         }
@@ -196,8 +197,10 @@ struct FolderEditView: View {
             } label: {
                 HStack {
                     Image(systemName: "chevron.left")
+                        .foregroundColor(.white)
                     Text("Cancel")
                         .foregroundColor(.white)
+                        .font(.montserratBold(16))
                 }
             }
         }

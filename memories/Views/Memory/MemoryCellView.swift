@@ -32,7 +32,7 @@ struct MemoryCellView: View {
                     image?
                         .resizable()
                         .aspectRatio(contentMode: .fill)
-                        .frame(width: width / 2.4, height: height / 9.3)
+                        .frame(width: width / 2.4, height: height / 9.2)
                         .clipped()
                         .cornerRadius(15)
                     
@@ -44,7 +44,7 @@ struct MemoryCellView: View {
                                 .font(.system(size: 10))
                                 .foregroundColor(.gray)
                             Text("\(memory.safePlace)")
-                                .font(.montserrat(11))
+                                .font(.montserrat(10))
                                 .foregroundColor(.gray)
                             Spacer()
                         }
@@ -52,7 +52,7 @@ struct MemoryCellView: View {
                         
                         HStack {
                             Text("\(memory.safeText)")
-                                .font(.montserrat(12))
+                                .font(.montserrat(10))
                                 .lineSpacing(4)
                                 .foregroundColor(.white)
                                 .frame(height: height / 17)
@@ -60,21 +60,21 @@ struct MemoryCellView: View {
                             Spacer()
                         }
                         .padding(.horizontal, 10)
-                        .padding(.vertical, 6)
+                        .padding(.bottom, 6)
                         
                         
                         HStack {
                             Text("\(timeFormat)")
-                                .font(.system(size: 11))
+                                .font(.montserrat(10))
                                 .foregroundColor(.gray)
                             Spacer()
                             Text("\(memory.safeTitle)")
-                                .font(.system(size: 11))
+                                .font(.montserrat(10))
                                 .foregroundColor(.gray)
                                 .fontWeight(.bold)
                         }
                         .padding(.horizontal, 10)
-                        .padding(.bottom, 8)
+                        .padding(.bottom, 10)
                         
                     }
                 }

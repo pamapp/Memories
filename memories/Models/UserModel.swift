@@ -71,7 +71,7 @@ extension ProfileView {
                 let user = User(context: controller.managedObjectContext)
                 user.name = "User"
                 user.id = UUID()
-                savesImage(Name: user.id!.uuidString, inputImage: UIImage(systemName: "person"))
+                savesImage(Name: user.id!.uuidString, inputImage: Image("user_logo").asUIImage())
                 saveContext()
                 return user
             } else {
@@ -80,17 +80,17 @@ extension ProfileView {
         }
         
         func getDefaultUserImage() -> Image {
-            if user[0].id == nil {
-                print("nil")
+            if user.isEmpty {
+                return Image("user_logo")
             }
             else {
                 let data = helper.loadImage(imageIdName: user[0].id!.uuidString)
                 guard let loadedData = data else {
-                    return Image("test_photo")
+                    return Image("user_logo")
+                    
                 }
                 return Image(uiImage: UIImage(data: loadedData)!)
             }
-            return Image("test_photo")
         }
         
         func editUserData(user: User, name: String, image: UIImage?) {
