@@ -34,7 +34,8 @@ struct FolderEditView: View {
         .pickerGreen,
         .pickerBlue,
         .pickerPink,
-        .pickerCirclePurple
+        .pickerCirclePurple,
+        .pickerRed
     ]
     
     let sectionWidth = UIScreen.main.bounds.width / 1.1
@@ -213,6 +214,7 @@ struct FolderEditView: View {
         case .pickerBlue: return 2
         case .pickerPink: return 3
         case .pickerCirclePurple: return 4
+        case .pickerRed: return 5
         default:
             return 0
         }

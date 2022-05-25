@@ -7,6 +7,7 @@
 
 import SwiftUI
 import MapKit
+import CoreLocationUI
 
 struct MyAnnotationItem: Identifiable {
     var coordinate: CLLocationCoordinate2D
@@ -32,16 +33,24 @@ struct LocationView: View {
                 Spacer()
                 HStack {
                     Spacer()
-                    Button(action: {
-                        //mapData.focusLocation()
-                    }, label: {
-                        Image(systemName: "location.fill")
-                            .font(.title2)
-                            .padding(10)
-                            .foregroundColor(.tabButtonColor)
-                            .background(Color.cellColor)
-                            .clipShape(Circle())
-                    })
+                    LocationButton(.currentLocation) {
+                        print("")
+                    }
+                    .foregroundColor(.tabButtonColor)
+                    .labelStyle(.iconOnly)
+                    .cornerRadius(30)
+                    .tint(.cellColor)
+                    
+//                    Button(action: {
+//                        mapData.focusLocation()
+//                    }, label: {
+//                        Image(systemName: "location.fill")
+//                            .font(.title2)
+//                            .padding(10)
+//                            .foregroundColor(.tabButtonColor)
+//                            .background(Color.cellColor)
+//                            .clipShape(Circle())
+//                    })
                 }.padding(.trailing, 10)
             }.padding(.bottom, 95)
         }
@@ -57,7 +66,7 @@ final class LocationViewModel: NSObject, ObservableObject, CLLocationManagerDele
     @Published var region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 59.9386, longitude: 30.3141), span: MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05))
     
     var locationManager: CLLocationManager?
-   
+
     func checkIfLocationServicesIsEnabled() {
         if CLLocationManager.locationServicesEnabled() {
             locationManager = CLLocationManager()

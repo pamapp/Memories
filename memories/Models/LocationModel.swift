@@ -41,7 +41,6 @@ extension LocationSelectView {
             controller.managedObjectContext.delete(location)
             saveContext()
         }
-        
 
         func saveContext() {
             do{
@@ -69,6 +68,13 @@ extension LocationSelectView {
             return location
         }
         
+        func changeLocationCoordinates(location: Location, name: String, longitude: Double, latitude: Double) -> Location {
+            location.name = name
+            location.longitude = longitude
+            location.latitude = latitude
+            saveContext()
+            return location
+        }
 
         func locationPinConvert() -> [MyAnnotationItem] {
             var annotationItems: [MyAnnotationItem] = []

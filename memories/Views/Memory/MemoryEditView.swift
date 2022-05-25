@@ -16,10 +16,11 @@ struct MemoryEditView: View {
     @State var placeText: String
     @State var date: Date
     @State var selectedColor: Color
+    @State var place: Location
     
-    @State var longitude: Double = 0
-    @State var latitude: Double = 0
-    @State var locationName: String = ""
+    @State var longitude: Double
+    @State var latitude: Double
+    @State var locationName: String
     
     var folder: Folder
     var characterLimit = 20
@@ -42,7 +43,8 @@ struct MemoryEditView: View {
         .pickerGreen,
         .pickerBlue,
         .pickerPink,
-        .pickerCirclePurple
+        .pickerCirclePurple,
+        .pickerRed
     ]
     
     var timeFormat: String {
@@ -115,7 +117,7 @@ struct MemoryEditView: View {
                                             .multilineTextAlignment(.leading)
                                             .foregroundColor(.white)
                                             .accentColor(.white)
-                                            .font(.system(size: 18, design: .serif))
+                                            .font(.montserrat(18))
                                             .padding(.leading, 20)
                                             .onReceive(memoryTitle.publisher.collect()) {
                                                 let s = String($0.prefix(characterLimit))
@@ -137,7 +139,7 @@ struct MemoryEditView: View {
                                 .overlay(
                                     HStack(alignment: .center) {
                                         Text(Strings.date.uppercased())
-                                            .font(Font.callout.weight(.bold))
+                                            .font(.montserratBold(16))
                                             .padding(.leading, 20)
                                         Spacer()
 
@@ -146,7 +148,7 @@ struct MemoryEditView: View {
                                             self.showDatePicker.toggle()
                                         } label: {
                                             Text(timeFormat)
-                                                .font(.system(size: 18, design: .serif))
+                                                .font(.montserrat(18))
                                                 .foregroundColor(.secondary)
                                         }.padding(.trailing, 18)
                                     }
@@ -162,7 +164,7 @@ struct MemoryEditView: View {
                                 .overlay(
                                     HStack() {
                                         Text(Strings.location.uppercased())
-                                            .font(Font.callout.weight(.bold))
+                                            .font(.montserratBold(16))
                                             .padding(.leading, 20)
 
                                         Spacer()
@@ -171,7 +173,7 @@ struct MemoryEditView: View {
                                             self.isShowMap.toggle()
                                         } label: {
                                             Text(locationName == "" ? "Select" : "\(locationName)")
-                                                .font(.system(size: 18, design: .serif))
+                                                .font(.montserrat(18))
                                                 .foregroundColor(.secondary)
                                         }.padding(.trailing, 18)
                                         .sheet(isPresented: $isShowMap) {
@@ -195,7 +197,7 @@ struct MemoryEditView: View {
                                 .overlay(
                                     HStack() {
                                         Text(Strings.folder.uppercased())
-                                            .font(Font.callout.weight(.bold))
+                                            .font(.montserratBold(16))
                                             .padding(.leading, 20)
                                         Spacer()
                                         Menu {
@@ -207,6 +209,7 @@ struct MemoryEditView: View {
                                                 } label: {
                                                     HStack {
                                                         Text(selectFolder.safeName)
+                                                            .font(.montserrat(18))
                                                         if selectFolder.isFavorite {
                                                             Image(systemName: "star.circle.fill")
                                                                 .font(.system(size: 5))
@@ -218,7 +221,7 @@ struct MemoryEditView: View {
                                         } label: {
                                             HStack(spacing: 5) {
                                                 Text(viewFolderModel.folders[folderIndex].safeName)
-                                                    .font(.system(size: 18, design: .serif))
+                                                    .font(.montserrat(18))
                                                     .foregroundColor(.secondary)
                                             }.padding(.trailing, 18)
                                         }
@@ -235,7 +238,7 @@ struct MemoryEditView: View {
                                 .overlay(
                                     HStack() {
                                         Text(Strings.photo.uppercased())
-                                            .font(Font.callout.weight(.bold))
+                                            .font(.montserratBold(16))
                                             .padding(.leading, 20)
                                         Spacer()
                                         Button {
@@ -266,7 +269,7 @@ struct MemoryEditView: View {
                                     VStack {
                                         HStack() {
                                             Text(Strings.theme_color.uppercased())
-                                                .font(Font.callout.weight(.bold))
+                                                .font(.montserratBold(16))
                                                 .padding(.leading, 20)
                                             Spacer()
                                         }
@@ -308,6 +311,7 @@ struct MemoryEditView: View {
                                 HStack {
                                     Text(Strings.text)
                                         .foregroundColor(.secondary)
+                                        .font(.montserrat(18))
                                         .padding(.leading, 15)
                                         .padding(.top, 8)
                                     Spacer()
@@ -318,8 +322,10 @@ struct MemoryEditView: View {
                         VStack(alignment: .leading) {
                             TextEditor(text: $memoryText)
                                 .foregroundColor(.white)
+                                .font(.montserrat(17))
+                                .lineSpacing(10)
                                 .padding(.horizontal, 10)
-                                .padding(.bottom, 2)
+                                .padding(.bottom, 55)
                                 .accentColor(.white)
                                 .onAppear() {
                                    UITextView.appearance().backgroundColor = .clear
@@ -341,22 +347,25 @@ struct MemoryEditView: View {
                     VStack() {
                         DatePicker("Prompt Text", selection: $date, displayedComponents: [.date])
                             .accentColor(.tabButtonColor)
+                            .font(.montserratBold(16))
                             .background(
                                 RoundedRectangle(cornerRadius: 10)
                                     .fill(Color.cellColor)
                             )
                             .datePickerStyle(GraphicalDatePickerStyle())
-                            .frame(width: 300, height: 400)
+                            .frame(width: 350, height: 400)
 
                         Button {
                             self.showDatePicker.toggle()
                         } label: {
-                            RoundedRectangle(cornerRadius: 5)
+                            RoundedRectangle(cornerRadius: 15)
                                 .foregroundColor(.tabButtonColor)
-                                .frame(width: 70, height: 30)
+                                .frame(width: 120, height: 50)
                                 .overlay(
                                     Text("Save")
                                         .foregroundColor(.white)
+                                        .font(.montserratBold(18))
+
                                 )
                         }
                     }
@@ -372,6 +381,7 @@ struct MemoryEditView: View {
         case .pickerBlue: return 2
         case .pickerPink: return 3
         case .pickerCirclePurple: return 4
+        case .pickerRed: return 5
         default:
             return 0
         }
@@ -385,13 +395,12 @@ struct MemoryEditView: View {
                     memory: memory,
                     text: memoryText,
                     title: memoryTitle,
-                    place: self.viewLocationModel.addLocation(name: locationName, longitude: longitude, latitude: latitude),
+                    place: self.viewLocationModel.changeLocationCoordinates(location: place, name: locationName, longitude: longitude, latitude: latitude),
                     date: date,
                     folder: isFolderChange ? viewFolderModel.folders[folderIndex] : folder,
                     color: intByColor(color: selectedColor),
                     image: inputImage
                 )
-
                 self.isPresented.wrappedValue.dismiss()
             } else {
                 self.endEditing()
@@ -404,7 +413,7 @@ struct MemoryEditView: View {
                 .overlay(
                     Text(showMemory ? "Next" : "Save")
                         .foregroundColor(.white)
-                        .fontWeight(.bold)
+                        .font(.montserratBold(16))
                 )
         }).padding(.trailing, 20)
     }
@@ -418,6 +427,8 @@ struct MemoryEditView: View {
                     .foregroundColor(.white)
                 Text("Cancel")
                     .foregroundColor(.white)
+                    .font(.montserratBold(16))
+
             }
         }.padding(.leading, 20)
     }
@@ -429,7 +440,7 @@ struct MemoryEditView: View {
             VStack {
                 Text("Memory")
                     .foregroundColor(showMemory ? .tabButtonColor : .white)
-                    .fontWeight(.bold)
+                    .font(.montserratBold(16))
             }.frame(width: buttonSelectWidth, height: 32)
         })
     }
@@ -441,7 +452,7 @@ struct MemoryEditView: View {
             VStack {
                 Text("Info")
                     .foregroundColor(showMemory ? .white : .tabButtonColor)
-                    .fontWeight(.bold)
+                    .font(.montserratBold(16))
             }.frame(width: buttonSelectWidth, height: 32)
         })
     }

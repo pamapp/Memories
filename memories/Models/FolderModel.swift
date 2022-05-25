@@ -63,6 +63,7 @@ extension FoldersView{
             case 2: return .pickerBlue
             case 3: return .pickerPink
             case 4: return .pickerPurple
+            case 5: return .pickerRed
             default:
                 return .defaultFolderColor
             }

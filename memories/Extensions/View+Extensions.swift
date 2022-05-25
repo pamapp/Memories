@@ -164,14 +164,12 @@ extension Array {
 
 
 struct SpecialNavBar: ViewModifier {
-
     init() {
-        UINavigationBar.appearance().largeTitleTextAttributes = [.font: UIFont(name: "Montserrat-Bold", size: 32)!]
+        UINavigationBar.appearance().largeTitleTextAttributes = [.font: UIFont(name: "Montserrat-Bold", size: 35)!]
     }
 
     func body(content: Content) -> some View {
         content
     }
-
 }
 

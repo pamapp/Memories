@@ -42,10 +42,10 @@ struct MemoryCellView: View {
                         HStack(spacing: 1) {
                             Image(systemName: "mappin")
                                 .font(.system(size: 10))
-                                .foregroundColor(.gray)
+                                .foregroundColor(.memoryGray)
                             Text("\(memory.safePlace)")
                                 .font(.montserrat(10))
-                                .foregroundColor(.gray)
+                                .foregroundColor(.memoryGray)
                             Spacer()
                         }
                         .padding(.horizontal, 10)
@@ -66,11 +66,11 @@ struct MemoryCellView: View {
                         HStack {
                             Text("\(timeFormat)")
                                 .font(.montserrat(10))
-                                .foregroundColor(.gray)
+                                .foregroundColor(.memoryGray)
                             Spacer()
                             Text("\(memory.safeTitle)")
                                 .font(.montserrat(10))
-                                .foregroundColor(.gray)
+                                .foregroundColor(.memoryGray)
                                 .fontWeight(.bold)
                         }
                         .padding(.horizontal, 10)

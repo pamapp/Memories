@@ -38,7 +38,8 @@ struct FolderAddView: View {
         .pickerGreen,
         .pickerBlue,
         .pickerPink,
-        .pickerCirclePurple
+        .pickerCirclePurple,
+        .pickerRed
     ]
 
     var characterLimit = 13
@@ -213,11 +214,12 @@ struct FolderAddView: View {
         case .pickerBlue: return 2
         case .pickerPink: return 3
         case .pickerCirclePurple: return 4
+        case .pickerRed: return 5
         default:
             return 0
         }
     }
-    
+
     private func endEditing() {
         UIApplication.shared.endEditing()
     }

@@ -25,7 +25,7 @@
 //        fatalError("Unresolved error \(error), \(error.userInfo)")
 //      }
 //    }
-//      
+//
 //    storeContainer = container
 //  }
 //}
@@ -35,11 +35,11 @@
 //class memoriesTests: XCTestCase {
 //
 //    var coreDataStack: CoreDataStack!
-//    
+//
 //    lazy var context = self.coreDataStack.mainContext
-//    
+//
 ////    var model = FoldersView.FolderModel.init(moc: context)
-//    
+//
 //    override func setUp() {
 //        coreDataStack = TestCoreDataStack()
 //    }
@@ -48,7 +48,7 @@
 //      super.tearDown()
 //      coreDataStack = nil
 //    }
-//    
+//
 //    func testExample() throws {
 //        // This is an example of a functional test case.
 //        // Use XCTAssert and related functions to verify your tests produce the correct results.
@@ -60,7 +60,7 @@
 //            // Put the code you want to measure the time of here.
 //        }
 //    }
-//    
+//
 //    func testAddFolder() {
 //        let folder = Folder(context: context)
 //        folder.name = "TestFolder"
@@ -70,13 +70,13 @@
 //        XCTAssertEqual(folder.isFavorite, false)
 //        XCTAssertNotNil(folder.id, "id should not be nil")
 //    }
-//    
+//
 //    func testAddMemory() {
 //        let folder = Folder(context: context)
 //        folder.name = "TestFolder"
 //        folder.isFavorite = false
 //        folder.id = UUID()
-//    
+//
 //        let memory = Memory(context: context)
 //        memory.content = "Something"
 //        memory.place = "Somewhere"
@@ -84,13 +84,13 @@
 //        memory.isFavorite = false
 //        memory.id = UUID()
 //        memory.is_in = folder
-//        
+//
 //        XCTAssertEqual(memory.content, "Something")
 //        XCTAssertEqual(memory.place, "Somewhere")
 //        XCTAssertEqual(folder.isFavorite, false)
 //        XCTAssertNotNil(memory.id, "id should not be nil")
 //        XCTAssertEqual(memory.is_in, folder)
 //    }
-//    
+//
 //}
 //

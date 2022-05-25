@@ -21,9 +21,7 @@ struct LocationSelectView: View {
     
     var body: some View {
         ZStack {
-            //MapView
             MapView()
-                //using it as environmentObject so that it can be used in its subViews
                 .environmentObject(mapData)
                 .ignoresSafeArea(.all, edges: .all)
             
@@ -39,8 +37,6 @@ struct LocationSelectView: View {
                     .padding(.horizontal)
                     .background(Color.cellColor)
                     .cornerRadius(10)
-                    
-                    //Displaying results
                     
                     if !mapData.places.isEmpty && mapData.searchText != "" {
                         ScrollView(showsIndicators: false){
@@ -104,25 +100,15 @@ struct LocationSelectView: View {
                 
         }
         .onAppear(perform: {
-            //setting delegate
             locationManager.delegate = mapData
             locationManager.requestWhenInUseAuthorization()
             
         })
-        //Permisssion denied alert
-//        .alert(isPresented: $mapData.permissionDenied, content: {
-//            Alert(title: Text("Permission Denied"), message: Text("Please enable permission in app settings."), dismissButton: .default(Text("Goto seettings."), action: {
-//                //Redirecting to user seettings
-//                UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!)
-//            }))
-//        })
         .onChange(of: mapData.searchText, perform: { value in
-            //Searching places
             let delay = 0.8
             
             DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
                 if value == mapData.searchText {
-                    //Search
                     self.mapData.searchQuery()
                 }
             }

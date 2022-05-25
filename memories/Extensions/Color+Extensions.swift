@@ -54,11 +54,17 @@ extension Color {
         return Color.init(UIColor(red: 0.56, green: 0.25, blue: 0.83, alpha: 1.00))
     }
     
+    public static var pickerRed: Color {
+        return Color.init(UIColor(red: 1.00, green: 0.00, blue: 0.00, alpha: 1.00))
+    }
+    
     public static var defaultFolderColor: Color {
         return Color.init(UIColor(red: 1.00, green: 0.85, blue: 0.41, alpha: 1.00))
     }
-
     
+    public static var memoryGray: Color {
+        return Color.init(UIColor(red: 0.86, green: 0.86, blue: 0.86, alpha: 1.00))
+    }
     
 //    public static var bottomTrailingColor: Color {
 //        return Color.init(UIColor(red: 0.08, green: 0.00, blue: 0.32, alpha: 1.00))
