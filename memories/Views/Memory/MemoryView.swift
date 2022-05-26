@@ -176,7 +176,7 @@ struct MemoryView: View {
                             selectedColor: viewModel.getMemoryColor(memory: memory),
                             place: memory.place,
                             longitude: memory.place.longitude,
-                            latitude: memory.place.longitude,
+                            latitude: memory.place.latitude,
                             locationName: memory.place.name ?? "Select",
                             folder: folder,
                             image: viewModel.getMemoryImage(memory: memory),

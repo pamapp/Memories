@@ -70,25 +70,3 @@ struct FolderCellView: View {
     }
 
 }
-//FolderEditView(name: folder.name ?? "", image: image, folder: folder, viewModel: FoldersView.FolderModel.init(moc: self.viewContext))
-
-           
-//         NavigationLink(destination: MemoriesView(viewModel: MemoriesView.MemoryModel.init(moc: self.viewContext, folder: folder), folder: folder), label: {
-//             VStack {
-//                 HStack() {
-//                     VStack(alignment: .leading) {
-//                         Spacer()
-//                         Text("\(folder.safeName)")
-//                             .foregroundColor(.white)
-//                             .font(Font.title.weight(.bold))
-//                         Text(self.viewModel.getMemoriesNum(folder: folder))
-//                             .foregroundColor(.white)
-//                             .font(Font.subheadline.weight(.light))
-//                     }.frame(height: 90)
-//
-//                     Spacer()
-//                 }.frame(width: UIScreen.main.bounds.width / 3, height: 90)
-//             }
-//         }).buttonStyle(FolderButton())
-                    
-                    

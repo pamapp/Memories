@@ -26,7 +26,6 @@ struct FoldersView: View {
                     .ignoresSafeArea()
             
                 VStack {
-//                    Divider()
                     ScrollView {
                         LazyVGrid(columns: columns) {
                             ForEach(viewModel.folders.filter{($0.name?.hasPrefix(searchText))! || searchText == ""}) { folder in
