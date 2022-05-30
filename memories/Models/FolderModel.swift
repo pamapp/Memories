@@ -10,7 +10,7 @@ import Foundation
 import CoreData
 import SwiftUI
 
-extension FoldersView{
+extension FoldersView {
     final class FolderModel: NSObject, ObservableObject, NSFetchedResultsControllerDelegate {
         private let controller :  NSFetchedResultsController<Folder>
 

@@ -220,17 +220,15 @@
 			isa = PBXGroup;
 			children = (
 				91441A7E2697022500F44AE3 /* memoriesApp.swift */,
-				9103050F28395B4200931982 /* Fonts */,
+				91BAC83F276A8AF300CA60A1 /* Commentarium.xcdatamodeld */,
+				91441A872697024500F44AE3 /* Info.plist */,
+				9194A87A2844A5F30036BD0F /* Assets */,
 				91984A5727AA898C00B6703F /* CoreData */,
 				91326CA6269875260044F71D /* Models */,
 				91326C9C2698739F0044F71D /* Extensions */,
 				91326C9D269873B30044F71D /* Styles */,
 				912B6B3526AF755400E78093 /* Image */,
-				91984A5827AA8E2000B6703F /* CustomViewObjects */,
 				91B0578626984CC6003E4963 /* Views */,
-				91441A822697024500F44AE3 /* Assets.xcassets */,
-				91BAC83F276A8AF300CA60A1 /* Commentarium.xcdatamodeld */,
-				91441A872697024500F44AE3 /* Info.plist */,
 				91441A842697024500F44AE3 /* Preview Content */,
 			);
 			path = memories;
@@ -242,6 +240,15 @@
 				91441A852697024500F44AE3 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		9194A87A2844A5F30036BD0F /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				91441A822697024500F44AE3 /* Assets.xcassets */,
+				9103050F28395B4200931982 /* Fonts */,
+			);
+			path = Assets;
 			sourceTree = "<group>";
 		};
 		91984A5727AA898C00B6703F /* CoreData */ = {
@@ -276,6 +283,7 @@
 		91B0578626984CC6003E4963 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				91984A5827AA8E2000B6703F /* CustomViewObjects */,
 				91984A5B27AA8E8B00B6703F /* ContentView.swift */,
 				91A236F428193A1A00D09D3C /* LocationView.swift */,
 				912E1700280C6058004E0EBC /* SelectAddView.swift */,
