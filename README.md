@@ -1,5 +1,4 @@
-
-# Memories
+<h1 align="center">Memories</h1>
 
 <img width="74" src="https://user-images.githubusercontent.com/55293935/171038048-75e2635c-ccf0-4036-b74d-0ad261f35818.png" align="left" /> **Memories** is a SwiftUI CoreData application that allows you to record events occurring in life, indicating the date, place and photo. Memories are conveniently sorted into folders. You can also search for memories (by name, content and location) and folders (by name). In addition, it is possible to see the places of all memories on the map, in the form of pins.
 
@@ -21,7 +20,7 @@
 
 <!-- <img src="https://user-images.githubusercontent.com/55293935/170857277-c07d876d-a353-4b6b-aa42-4289e8c54c39.png" width="50"> -->
  
-<p align="center"> **By Pamapp** </p>
+<h3 align="center"> By pamapp </h3>
 
 <!-- <p>
     <img src="https://user-images.githubusercontent.com/55293935/167218843-6cf1916a-604c-4cdc-92d1-bb2cddb83c66.png" width="750">
