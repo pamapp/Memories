@@ -48,12 +48,6 @@ struct MemoryAddView: View {
         .pickerRed
     ]
     
-    var timeFormat: String {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "dd.MM.yyyy, HH:mm"
-        return formatter.string(from: self.date)
-    }
-    
     private enum Strings {
         static let title = "Title..."
         static let title_footnote = "Enter memory title"
@@ -372,17 +366,10 @@ struct MemoryAddView: View {
         }
     }
     
-    private func intByColor(color: Color) -> Int {
-        switch color {
-        case .cellColor: return 0
-        case .pickerGreen: return 1
-        case .pickerBlue: return 2
-        case .pickerPink: return 3
-        case .pickerCirclePurple: return 4
-        case .pickerRed: return 5
-        default:
-            return 0
-        }
+    var timeFormat: String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd.MM.yyyy"
+        return formatter.string(from: self.date)
     }
     
     private var doneToolBar: some View {
@@ -452,7 +439,20 @@ struct MemoryAddView: View {
             }.frame(width: buttonSelectWidth, height: 32)
         })
     }
-
+    
+    private func intByColor(color: Color) -> Int {
+        switch color {
+        case .cellColor: return 0
+        case .pickerGreen: return 1
+        case .pickerBlue: return 2
+        case .pickerPink: return 3
+        case .pickerCirclePurple: return 4
+        case .pickerRed: return 5
+        default:
+            return 0
+        }
+    }
+    
     func loadImage() {
         guard let inputImage = inputImage else { return }
         image = Image(uiImage: inputImage)
