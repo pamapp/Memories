@@ -4,7 +4,6 @@
 //
 //  Created by Alina Potapova on 27.07.2021.
 //
-//
 
 import SwiftUI
 
