@@ -10,7 +10,7 @@
 | :--- | :--- |
 | **Software development**   | ![Xcode](https://img.shields.io/badge/Xcode-007ACC?style=for-the-badge&logo=Xcode&logoColor=white) |
 | **Interface development**  | ![Figma](https://img.shields.io/badge/figma-%23F24E1E.svg?style=for-the-badge&logo=figma&logoColor=white) ![Adobe Photoshop](https://img.shields.io/badge/adobe%20photoshop-%2331A8FF.svg?style=for-the-badge&logo=adobe%20photoshop&logoColor=white) |
-| **Frameworks**         | ▪️ SwiftUI<br> ▪️ CoreData<br> ▪️ Combine<br> ▪️ Foundation<br> ▪️ CoreLocation<br> ▪️ CoreLocationUI<br> ▪️ MapKit |
+| **Frameworks**         | ▪️ SwiftUI<br> ▪️ CoreData<br> ▪️ Combine<br> ▪️ Foundation<br> ▪️ CoreLocation<br> ▪️ MapKit |
 
 <br>
 
