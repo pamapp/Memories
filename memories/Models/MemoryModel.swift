@@ -113,10 +113,10 @@ extension MemoriesView {
         }
         
         func saveContext(){
-            do{
+            do {
                 try controller.managedObjectContext.save()
                 alert = false
-            }catch {
+            } catch {
                 alert =  true
                 alertMessage = "Saving data error"
             }

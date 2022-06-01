@@ -15,7 +15,6 @@ struct Place: Identifiable {
     var placemark: CLPlacemark
 }
 
-
 class MapViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
     
     @Published var mapView = MKMapView()

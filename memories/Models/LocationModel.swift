@@ -68,6 +68,16 @@ extension LocationSelectView {
             return location
         }
         
+        func getDefaultLocation() -> Location {
+            let location = Location(context: controller.managedObjectContext)
+            location.name = "Location"
+            location.id = UUID()
+            location.longitude = 0.0
+            location.latitude = 0.0
+            saveContext()
+            return location
+        }
+        
         func changeLocationCoordinates(location: Location, name: String, longitude: Double, latitude: Double) -> Location {
             location.name = name
             location.longitude = longitude
