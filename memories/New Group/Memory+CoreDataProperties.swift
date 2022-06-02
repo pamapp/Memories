@@ -15,11 +15,20 @@ extension Memory {
         return NSFetchRequest<Memory>(entityName: "Memory")
     }
 
-    @nonobjc public class func resultsController(moc: NSManagedObjectContext, sortDescriptors: [NSSortDescriptor], predicate: NSPredicate) -> NSFetchedResultsController<Memory> {
+    @nonobjc public class func resultsController(
+        moc: NSManagedObjectContext,
+        sortDescriptors: [NSSortDescriptor],
+        predicate: NSPredicate) -> NSFetchedResultsController<Memory>
+    {
         let request =  NSFetchRequest<Memory>(entityName: "Memory")
         request.sortDescriptors = sortDescriptors
         request.predicate = predicate
-        return NSFetchedResultsController(fetchRequest: request, managedObjectContext: moc, sectionNameKeyPath: nil, cacheName: nil)
+        return NSFetchedResultsController(
+            fetchRequest: request,
+            managedObjectContext: moc,
+            sectionNameKeyPath: nil,
+            cacheName: nil
+        )
     }
     
     @NSManaged public var content: String?
@@ -45,7 +54,6 @@ extension Memory {
         get { place.name ?? "" }
         set { place.name = newValue }
     }
-    
     
     public var safeID: UUID {
         get { id ?? UUID() }
@@ -81,3 +89,4 @@ extension Memory {
 extension Memory : Identifiable {
 
 }
+

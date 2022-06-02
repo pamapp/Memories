@@ -4,6 +4,7 @@
 //
 //  Created by Alina Potapova on 14.12.2021.
 //
+
 import Foundation
 import CoreData
 import memories
@@ -12,11 +13,9 @@ open class CoreDataStack {
   public static let modelName = "Commentarium"
 
   public static let model: NSManagedObjectModel = {
-    // swiftlint:disable force_unwrapping
     let modelURL = Bundle.main.url(forResource: modelName, withExtension: "momd")!
     return NSManagedObjectModel(contentsOf: modelURL)!
   }()
-  // swiftlint:enable force_unwrapping
 
   public init() {
   }
@@ -50,7 +49,7 @@ open class CoreDataStack {
       return
     }
 
-    context.perform {
+  context.perform {
       do {
         try context.save()
       } catch let error as NSError {
@@ -76,16 +75,13 @@ class TestCoreDataStack: CoreDataStack {
   override init() {
     super.init()
 
-    // 1
     let persistentStoreDescription = NSPersistentStoreDescription()
     persistentStoreDescription.type = NSInMemoryStoreType
 
-    // 2
     let container = NSPersistentContainer(
       name: CoreDataStack.modelName,
       managedObjectModel: CoreDataStack.model)
 
-    // 3
     container.persistentStoreDescriptions = [persistentStoreDescription]
 
     container.loadPersistentStores { _, error in
@@ -94,7 +90,6 @@ class TestCoreDataStack: CoreDataStack {
       }
     }
 
-    // 4
     storeContainer = container
   }
 }

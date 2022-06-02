@@ -4,11 +4,8 @@ import SwiftUI
 import CoreData
 
 class FolderTests: XCTestCase {
-    // MARK: - Properties
-    // swiftlint:disable implicitly_unwrapped_optional
     var folders: FoldersView.FolderModel!
     var coreDataStack: CoreDataStack!
-    // swiftlint:enable implicitly_unwrapped_optional
 
     override func setUp() {
         super.setUp()
@@ -47,7 +44,6 @@ class FolderTests: XCTestCase {
         XCTAssertTrue(folders.folders[0].name == "Test1")
         XCTAssertTrue(folders.folders[0].isFavorite == false)
         XCTAssertTrue(folders.folders[0].color == 1)
-        
         folders.editFolder(folder: folders.folders[0], name: "Test2", isFav: true, color: 2)
         XCTAssertTrue(folders.folders[0].name == "Test2")
         XCTAssertTrue(folders.folders[0].isFavorite == true)
@@ -57,14 +53,11 @@ class FolderTests: XCTestCase {
 
 
 class MemoryTests: XCTestCase {
-    // MARK: - Properties
-    // swiftlint:disable implicitly_unwrapped_optional
     var testFolder: Folder!
     var testLocation: Location!
     var inputImage: UIImage!
     var memories: MemoriesView.MemoryModel!
     var coreDataStack: CoreDataStack!
-    // swiftlint:enable implicitly_unwrapped_optional
 
     override func setUp() {
         super.setUp()

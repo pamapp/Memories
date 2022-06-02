@@ -14,7 +14,12 @@ struct ContentView: View {
     var body: some View {
         TabBarView(pages: .constant([
             TabBarPage(
-                page: LocationView(viewLocationModel: LocationSelectView.LocationModel.init(moc: persistenceController.container.viewContext))
+                page:
+                    LocationView(
+                        viewLocationModel: LocationSelectView.LocationModel.init(
+                            moc: persistenceController.container.viewContext
+                        )
+                    )
                     .preferredColorScheme(.dark),
                 icon: "map",
                 fillIcon: "map.fill",
@@ -22,9 +27,13 @@ struct ContentView: View {
             ),
             TabBarPage(
                 page:
-                    FoldersView(viewModel: FoldersView.FolderModel.init(moc: persistenceController.container.viewContext))
-                        .environment(\.managedObjectContext, persistenceController.container.viewContext)
-                        .preferredColorScheme(.dark),
+                    FoldersView(
+                        viewModel: FoldersView.FolderModel.init(
+                            moc: persistenceController.container.viewContext
+                        )
+                    )
+                    .environment(\.managedObjectContext, persistenceController.container.viewContext)
+                    .preferredColorScheme(.dark),
                 icon: "cloud",
                 fillIcon: "cloud.fill",
                 tag: "Memories"
@@ -32,39 +41,66 @@ struct ContentView: View {
             TabBarPage(
                 page:
                     SelectAddView(
-                        viewModel: FoldersView.FolderModel.init(moc: persistenceController.container.viewContext))
-                        .environment(\.managedObjectContext, persistenceController.container.viewContext)
-                        .preferredColorScheme(.dark),
+                        viewModel: FoldersView.FolderModel.init(
+                            moc: persistenceController.container.viewContext
+                        )
+                    )
+                    .environment(\.managedObjectContext, persistenceController.container.viewContext)
+                    .preferredColorScheme(.dark),
                 icon: "plus",
                 fillIcon: "plus",
                 tag: "Add"
             ),
             TabBarPage(
                 page:
-                    ProfileView(viewLocationModel: LocationSelectView.LocationModel.init(moc: persistenceController.container.viewContext),
-                                viewFolderModel: FoldersView.FolderModel.init(moc: persistenceController.container.viewContext),
-                                viewMemoryModel: MemoriesView.MemoryModel.init(moc: persistenceController.container.viewContext, folder: FoldersView.FolderModel.init(moc: persistenceController.container.viewContext).getDefaultFolder()),
-                                viewUserModel: ProfileView.UserModel.init(moc: persistenceController.container.viewContext))
-                        .environment(\.managedObjectContext, persistenceController.container.viewContext)
-                        .preferredColorScheme(.dark),
+                    ProfileView(
+                        viewLocationModel: LocationSelectView.LocationModel.init(
+                            moc: persistenceController.container.viewContext
+                        ),
+                        viewFolderModel: FoldersView.FolderModel.init(
+                            moc: persistenceController.container.viewContext
+                        ),
+                        viewMemoryModel: MemoriesView.MemoryModel.init(
+                            moc: persistenceController.container.viewContext,
+                            folder: FoldersView.FolderModel.init(
+                                moc: persistenceController.container.viewContext
+                            ).getDefaultFolder()
+                        ),
+                        viewUserModel: ProfileView.UserModel.init(
+                            moc: persistenceController.container.viewContext
+                        )
+                    )
+                    .environment(\.managedObjectContext, persistenceController.container.viewContext)
+                    .preferredColorScheme(.dark),
                 icon: "person",
                 fillIcon: "person.fill",
                 tag: "Profile"
             ),TabBarPage(
                 page:
                     SettingsView(
-                        viewUserModel: ProfileView.UserModel.init(moc: persistenceController.container.viewContext),
-                        image: ProfileView.UserModel.init(moc: persistenceController.container.viewContext).getDefaultUserImage(),
-                        name: ProfileView.UserModel.init(moc: persistenceController.container.viewContext).getDefaultUser().name ?? "Username",
-                        user: ProfileView.UserModel.init(moc: persistenceController.container.viewContext).getDefaultUser())
-                        .preferredColorScheme(.dark),
+                        viewUserModel: ProfileView.UserModel.init(
+                            moc: persistenceController.container.viewContext
+                        ),
+                        image: ProfileView.UserModel.init(
+                            moc: persistenceController.container.viewContext
+                        ).getDefaultUserImage(),
+                        name: ProfileView.UserModel.init(
+                            moc: persistenceController.container.viewContext
+                        ).getDefaultUser().name ?? "Username",
+                        user: ProfileView.UserModel.init(
+                            moc: persistenceController.container.viewContext
+                        ).getDefaultUser()
+                    )
+                    .preferredColorScheme(.dark),
                 icon: "gearshape",
                 fillIcon: "gearshape.fill",
                 tag: "Settings"
             )
         ])).onAppear {
-            UIDevice.current.setValue(UIInterfaceOrientation.portrait.rawValue, forKey: "orientation") // Forcing the rotation to portrait
-            AppDelegate.orientationLock = .portrait // And making sure it stays that way
+            UIDevice.current.setValue(UIInterfaceOrientation.portrait.rawValue, forKey: "orientation")
+            AppDelegate.orientationLock = .portrait
         }
     }
 }
+
+

@@ -5,7 +5,6 @@
 //  Created by Alina Potapova on 16.08.2021.
 //
 
-
 import Foundation
 import CoreData
 
@@ -13,3 +12,5 @@ import CoreData
 public class Memory: NSManagedObject {
 
 }
+
+
