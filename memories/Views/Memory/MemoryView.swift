@@ -71,7 +71,7 @@ struct MemoryView: View {
                 VStack {
                     HStack(alignment: .center) {
                         RoundedRectangle(cornerRadius: 15)
-                            .frame(width: 165, height: 35)
+                            .frame(width: 170, height: 45)
                             .foregroundColor(.tabColor)
                             .overlay (
                                 HStack(spacing: 2) {
@@ -87,7 +87,7 @@ struct MemoryView: View {
                         Spacer()
                         
                         RoundedRectangle(cornerRadius: 15)
-                            .frame(width: 165, height: 35)
+                            .frame(width: 170, height: 45)
                             .foregroundColor(.tabColor)
                             .overlay(
                                 Text(dateString(memory.date))

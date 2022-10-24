@@ -11,6 +11,7 @@
 		9103051328395C7500931982 /* Montserrat-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9103051228395C7400931982 /* Montserrat-Regular.ttf */; };
 		91062D0326A1CB5100C44739 /* MemoryAddView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91062D0226A1CB5100C44739 /* MemoryAddView.swift */; };
 		910700E12746EE42004919C0 /* FolderEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 910700E02746EE42004919C0 /* FolderEditView.swift */; };
+		91075E7828F8EFA5003F7A18 /* cell_test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91075E7728F8EFA5003F7A18 /* cell_test.swift */; };
 		910A0C4F274423B000E7A42D /* MemoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 910A0C4D274423B000E7A42D /* MemoryModel.swift */; };
 		910A0C50274423B000E7A42D /* FolderModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 910A0C4E274423B000E7A42D /* FolderModel.swift */; };
 		910A0C542744248A00E7A42D /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 910A0C532744248A00E7A42D /* Persistence.swift */; };
@@ -84,6 +85,7 @@
 		9103051228395C7400931982 /* Montserrat-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Regular.ttf"; sourceTree = "<group>"; };
 		91062D0226A1CB5100C44739 /* MemoryAddView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoryAddView.swift; sourceTree = "<group>"; };
 		910700E02746EE42004919C0 /* FolderEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderEditView.swift; sourceTree = "<group>"; };
+		91075E7728F8EFA5003F7A18 /* cell_test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cell_test.swift; sourceTree = "<group>"; };
 		910A0C4D274423B000E7A42D /* MemoryModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemoryModel.swift; sourceTree = "<group>"; };
 		910A0C4E274423B000E7A42D /* FolderModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FolderModel.swift; sourceTree = "<group>"; };
 		910A0C532744248A00E7A42D /* Persistence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
@@ -353,6 +355,7 @@
 				91B0578326984CBB003E4963 /* MemoriesView.swift */,
 				91E78DE726A73E9D00A6913F /* MemoryView.swift */,
 				91326CAA2698769B0044F71D /* MemoryCellView.swift */,
+				91075E7728F8EFA5003F7A18 /* cell_test.swift */,
 				91062D0226A1CB5100C44739 /* MemoryAddView.swift */,
 				91C0454326C7FA4800E29DDC /* MemoryEditView.swift */,
 				91C0F39D27C1828B00806BE2 /* LocationSelectView.swift */,
@@ -566,6 +569,7 @@
 				91D08BB827AC18720069BAC6 /* MapView.swift in Sources */,
 				91C0454C26CA858E00E29DDC /* FolderAddView.swift in Sources */,
 				91CAE44F27453A4C0020D0DB /* CellButtons.swift in Sources */,
+				91075E7828F8EFA5003F7A18 /* cell_test.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
